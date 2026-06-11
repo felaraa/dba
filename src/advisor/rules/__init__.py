@@ -117,18 +117,29 @@ def _norm(cols) -> list[str]:
 def existing_index_covering(metadata, table_name: str,
                             leading_cols: list[str]):
     """
-    Retorna o IndexMeta existente que já SERVE para um probe liderado por
-    `leading_cols` (na ordem dada), ou None. "Serve" = as primeiras N colunas
-    do índice batem com leading_cols na mesma ordem (prefixo de igualdade).
-    Isso evita recomendar um índice que já existe (mesmo que com colunas extras
-    à direita).
+    Retorna o IndexMeta existente que já SERVE para um probe pelas colunas de
+    IGUALDADE `leading_cols`, ou None. "Serve" = as primeiras N colunas do
+    índice são EXATAMENTE o CONJUNTO `leading_cols` (N = len(leading_cols)),
+    com colunas extras à direita (range/cobertura) permitidas.
+
+    A comparação é por CONJUNTO, não por sequência: para predicados de
+    IGUALDADE a ordem entre as colunas líderes não muda a utilidade do índice
+    no probe. Assim um índice (MOBILE_SITE_NAME, CELL_NAME, STARTTIME) é
+    reconhecido como adequado para um join por (CELL_NAME, MOBILE_SITE_NAME) —
+    evitando recomendar um índice REDUNDANTE que só difere na ordem das colunas
+    de igualdade (bug real: a query a3yqht3qtyyhy recebia uma sugestão de índice
+    idêntico, em outra ordem, ao IX_ENR4G_MSITE_CELL_START já existente).
+
+    Como exatidão-de-ordem é um caso particular de igualdade-de-conjunto, esta
+    versão nunca deixa de reconhecer o que a versão por sequência reconhecia.
     """
     want = _norm(leading_cols)
     if not want:
         return None
+    want_set = set(want)
     for ix in metadata.indexes_of(table_name):
         have = _norm(ix.columns)
-        if len(have) >= len(want) and have[:len(want)] == want:
+        if len(have) >= len(want) and set(have[:len(want)]) == want_set:
             return ix
     return None
 

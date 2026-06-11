@@ -57,6 +57,7 @@ def build_context(args):
     plan = parse_plan(plan_text)
 
     targets = [(t.owner, t.name) for t in query.tables]
+    plan_history = None
     if args.source == "fixture":
         # garante que módulos de fixture do projeto (ex.: tests.fixtures_*) sejam
         # encontrados ao rodar pelo entry point a partir da raiz do projeto
@@ -72,6 +73,23 @@ def build_context(args):
         hot = set(s["name"] for s in env.raw["rac_contention"].get("hot_segments", []))
         collector = OracleMetadataCollector(conn, hot)
         metadata = collector.collect(targets)
+
+        # histórico de planos do SQL_ID: revela instabilidade de plano (vários
+        # plan_hash_value) e alimenta a regra R009. Resiliente: nunca derruba.
+        from .plan_history import collect_plan_history
+        plan_history = collect_plan_history(conn, plan.sql_id)
+        if getattr(args, "diag", False):
+            import sys as _sys
+            n = plan_history.distinct_count()
+            print(f"[coleta] planos distintos para SQL_ID {plan.sql_id}: {n}",
+                  file=_sys.stderr)
+            for ps in plan_history.plans:
+                cur_mark = " <== plano do arquivo" if str(plan.plan_hash) == ps.plan_hash else ""
+                el = f"{ps.avg_elapsed_s:.3f}s" if ps.avg_elapsed_s is not None else "?"
+                bg = f"{ps.avg_buffer_gets:,.0f}" if ps.avg_buffer_gets is not None else "?"
+                print(f"  plan_hash={ps.plan_hash} fontes={','.join(ps.sources)} "
+                      f"execs={ps.executions:,.0f} elapsed/exec={el} "
+                      f"gets/exec={bg}{cur_mark}", file=_sys.stderr)
         # diagnóstico: o que o coletor enxergou e o que FALTOU coletar
         if getattr(args, "diag", False):
             import sys as _sys
@@ -89,7 +107,11 @@ def build_context(args):
                 for o, n in missing:
                     print(f"  {o or '?'}.{n}", file=_sys.stderr)
 
-    return RuleContext(query=query, plan=plan, metadata=metadata, env=env), sql
+    from .models import PlanHistory
+    if plan_history is None:
+        plan_history = PlanHistory(sql_id=plan.sql_id, plans=())
+    return RuleContext(query=query, plan=plan, metadata=metadata, env=env,
+                       plan_history=plan_history), sql
 
 
 def main(argv=None):

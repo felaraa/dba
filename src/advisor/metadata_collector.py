@@ -194,7 +194,13 @@ class OracleMetadataCollector(MetadataCollector):
             WHERE i.table_name IN ({ph}){owner_clause}
         """
         out = []
-        for o, t, iname, uniq, part, loc in cur.execute(sql, binds):
+        # IMPORTANTE: materializar com fetchall() ANTES do loop. _index_cols e
+        # _index_usage reexecutam neste MESMO cursor; se iterássemos o cursor de
+        # forma preguiçosa, a primeira subconsulta interna descartaria o result
+        # set externo e quase todos os índices seriam perdidos silenciosamente
+        # (bug real: tabela com 5 índices voltava com 0). fetchall() isola.
+        rows = cur.execute(sql, binds).fetchall()
+        for o, t, iname, uniq, part, loc in rows:
             cols = self._index_cols(cur, o, iname)
             usage = self._index_usage(cur, o, iname)
             out.append(IndexMeta(o, t, iname, cols, uniq == "UNIQUE",

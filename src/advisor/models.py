@@ -118,6 +118,72 @@ class ParsedPlan:
 
 
 # ---------------------------------------------------------------------------
+# HISTÓRICO DE PLANOS — saída do coletor de planos por SQL_ID
+# ---------------------------------------------------------------------------
+@dataclass(frozen=True)
+class PlanStat:
+    """
+    Métricas agregadas de UM plan_hash_value de um SQL_ID. As médias são
+    SEMPRE por execução, derivadas dos totais — assim planos com contagens de
+    execução muito diferentes ficam comparáveis. Vem de GV$SQL (cursores no
+    shared pool) e/ou DBA_HIST_SQLSTAT (AWR), já fundidas pelo coletor.
+    """
+    plan_hash: str
+    sources: tuple[str, ...]          # ('cursor',), ('awr',) ou ambos
+    executions: float                 # total de execuções somadas
+    avg_elapsed_s: Optional[float]    # elapsed por execução (s)
+    avg_buffer_gets: Optional[float]  # buffer gets por execução
+    avg_cpu_s: Optional[float]        # cpu por execução (s)
+    avg_rows: Optional[float]         # linhas processadas por execução
+    first_seen: Optional[str] = None
+    last_seen: Optional[str] = None
+
+    @property
+    def cost_metric(self) -> Optional[float]:
+        """Métrica única para ranquear: elapsed/exec; cai para buffer_gets/exec."""
+        if self.avg_elapsed_s is not None:
+            return self.avg_elapsed_s
+        return self.avg_buffer_gets
+
+
+@dataclass(frozen=True)
+class PlanHistory:
+    """
+    Conjunto de planos distintos observados para um SQL_ID. Uma query com mais
+    de um plan_hash sofre de INSTABILIDADE DE PLANO — o otimizador escolhe
+    planos diferentes ao longo do tempo (bind peeking, cardinality feedback,
+    estatística obsoleta, etc.), e basta um plano ruim para degradar o serviço.
+    """
+    sql_id: Optional[str]
+    plans: tuple[PlanStat, ...] = ()
+
+    def distinct_count(self) -> int:
+        return len({p.plan_hash for p in self.plans})
+
+    def _eligible(self) -> list[PlanStat]:
+        """Planos com pelo menos uma execução e métrica de custo conhecida."""
+        return [p for p in self.plans
+                if p.executions and p.cost_metric is not None]
+
+    def best(self) -> Optional[PlanStat]:
+        """Plano com menor custo por execução (o 'melhor plano' candidato)."""
+        elig = self._eligible()
+        return min(elig, key=lambda p: p.cost_metric) if elig else None
+
+    def worst(self) -> Optional[PlanStat]:
+        elig = self._eligible()
+        return max(elig, key=lambda p: p.cost_metric) if elig else None
+
+    def find(self, plan_hash: Optional[str]) -> Optional[PlanStat]:
+        if plan_hash is None:
+            return None
+        for p in self.plans:
+            if p.plan_hash == str(plan_hash):
+                return p
+        return None
+
+
+# ---------------------------------------------------------------------------
 # METADADOS — saída do coletor (python-oracledb) ou entrada manual
 # ---------------------------------------------------------------------------
 @dataclass(frozen=True)

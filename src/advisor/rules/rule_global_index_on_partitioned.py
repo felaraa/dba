@@ -34,6 +34,12 @@ class GlobalIndexOnPartitionedRule(Rule):
                 # global = índice não-local; em tabela particionada é o alvo
                 if ix.local:
                     continue
+                # ignora índices GERADOS PELO SISTEMA (funcionais/virtuais): nomes
+                # IDX$$_/SYS_ ou cujas colunas são todas virtuais ocultas (SYS_NC%).
+                # São backing de colunas funcionais/JSON, não decisões de design do
+                # usuário — aconselhar "converter para LOCAL" aqui só gera ruído.
+                if self._is_system_generated(ix):
+                    continue
                 recs.append(Recommendation(
                     rule_id=self.rule_id,
                     title=(f"Índice GLOBAL {ix.index_name} sobre tabela particionada "
@@ -62,3 +68,12 @@ class GlobalIndexOnPartitionedRule(Rule):
                     ],
                 ))
         return recs
+
+    @staticmethod
+    def _is_system_generated(ix) -> bool:
+        name = (ix.index_name or "").upper()
+        if name.startswith(("IDX$$", "SYS_IL", "SYS_IOT", "SYS_C00")):
+            return True
+        cols = [c.upper() for c in ix.columns]
+        # todas as colunas são virtuais ocultas (function-based / JSON)
+        return bool(cols) and all(c.startswith("SYS_NC") for c in cols)

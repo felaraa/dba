@@ -13,7 +13,8 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
 from .env_profile import EnvProfile
-from .models import ParsedPlan, ParsedQuery, Recommendation, SchemaMetadata
+from .models import (ParsedPlan, ParsedQuery, PlanHistory, Recommendation,
+                     SchemaMetadata)
 
 
 @dataclass(frozen=True)
@@ -26,6 +27,9 @@ class RuleContext:
     plan: ParsedPlan
     metadata: SchemaMetadata
     env: EnvProfile
+    # histórico de planos do SQL_ID (vazio quando não coletado / source=fixture).
+    # PlanHistory é imutável, então uma instância default compartilhada é segura.
+    plan_history: PlanHistory = PlanHistory(sql_id=None, plans=())
 
     # ---- helpers de conveniência reutilizados por várias regras ----------
     def avg_col_len(self, table_name: str, column: str) -> float:

@@ -35,6 +35,8 @@ src/advisor/
   env_profile.py         carrega perfil do ambiente (YAML)
   sql_parser.py          SQL  -> ParsedQuery (via sqlglot)
   plan_parser.py         plano -> ParsedPlan (SQL Monitor XML | DBMS_XPLAN texto)
+  plan_history.py        histórico de planos do SQL_ID (GV$SQL + AWR) -> PlanHistory.
+                         Detecta instabilidade (vários plan_hash). Só no modo db.
   metadata_collector.py  cardinalidade (Oracle DBA_* | fixture). É resiliente:
                          coleta cada tabela isolada, trata views, reporta faltantes.
   db_connection.py       resolução de credenciais (CLI > env > YAML > wallet)
@@ -51,6 +53,7 @@ src/advisor/
 | ID | Prioridade | O que detecta |
 |----|-----------|---------------|
 | R005_existing_intervention | 1 | SQL Profile / Baseline / Outline já ativo no plano |
+| R009_plan_instability | 2 | vários plan_hash_value para o mesmo SQL_ID (instabilidade de plano). Identifica o MELHOR plano observado (menor elapsed/exec) e recomenda fixá-lo via SQL Plan Baseline. Depende do histórico de planos coletado de GV$SQL + AWR (só no modo db) |
 | R004_cartesian_or_bad_estimates | 5 | MERGE JOIN CARTESIAN; E-Rows overflow; divergência E-Rows×A-Rows. NO modo db, identifica QUAL tabela está com estatística obsoleta |
 | R007_unused_existing_index | 8 | índice adequado já existe mas o otimizador faz FULL SCAN (explica o porquê) |
 | R001_filter_should_be_access | 10 | join aplicado como `filter` pós-acesso + explosão de NESTED LOOPS |
@@ -62,7 +65,15 @@ src/advisor/
 
 R005 e R004 rodam ANTES das regras de índice de propósito: cartesiano se corrige
 com estatística (não índice) e um índice pode nem ser usado se um SQL Profile
-fixa o plano.
+fixa o plano. R009 (prioridade 2) também é contexto: se a query tem vários
+planos, a primeira coisa é estabilizar o melhor — um índice novo é inútil se o
+otimizador continua trocando de plano.
+
+`R009` consome um dado novo no `RuleContext`: `ctx.plan_history` (um
+`PlanHistory`), preenchido por `plan_history.collect_plan_history(conn, sql_id)`
+a partir de **GV$SQL** (cursores vivos em todos os nós do RAC) + **DBA_HIST_SQLSTAT**
+(AWR), fundidos por `plan_hash_value` com médias por execução. Em `--source
+fixture` o histórico vem vazio e a regra fica inerte (a coleta é só no modo db).
 
 ## Convenções de geração de índice (FIRMADAS — manter)
 
@@ -76,7 +87,11 @@ fixa o plano.
    `EXEC DBMS_STATS.GATHER_INDEX_STATS(OWNNAME=>'...', INDNAME=>'...',
    GRANULARITY=>'ALL', DEGREE=>16, FORCE=>TRUE);` (via `build_index_ddl`).
 4. **Não recomendar índice que já existe.** As regras checam
-   `existing_index_covering` (prefixo de colunas) antes de propor.
+   `existing_index_covering` antes de propor. O match das colunas líderes de
+   IGUALDADE é por CONJUNTO, não por sequência: um índice `(MOBILE_SITE_NAME,
+   CELL_NAME, STARTTIME)` é reconhecido como adequado para um join por
+   `(CELL_NAME, MOBILE_SITE_NAME)` — não se gera um índice redundante que só
+   difere na ordem das colunas de igualdade.
 5. **Consolidar redundâncias.** `reporter.consolidate_indexes` funde índices
    sobrepostos na mesma tabela (mantém o superset).
 
@@ -103,6 +118,13 @@ fixa o plano.
    → test_unused_index_case.py
 4. **bs541hud638cr** — estatística obsoleta identificada; LOCAL inferido do
    plano quando a tabela não foi coletada. → test_improvements_v3.py
+5. **a3yqht3qtyyhy** — instabilidade de plano (2 planos; NL 3,8x pior que o
+   HASH JOIN). Expôs e fechou dois bugs de coleta de índice:
+   (a) cursor reusado em `_indexes` perdia índices silenciosamente (tabela com 5
+   índices voltava com 0) → fix `fetchall()` antes do loop;
+   (b) índice existente em outra ordem das colunas de igualdade não era
+   reconhecido → `existing_index_covering` passou a comparar por CONJUNTO.
+   → test_index_collection_fixes.py
 
 ## Pendências / próximos passos conhecidos
 
