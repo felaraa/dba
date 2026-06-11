@@ -1,0 +1,33 @@
+SQL_ID  24h537gmxw93d, child number 0
+-------------------------------------
+Plan hash value: 671759471
+
+----------------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                                       | Name                    | Starts | E-Rows | A-Rows |   A-Time   | Buffers |
+----------------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                                |                         |      1 |        |  24360 |00:05:33.00 |     33M |
+|   1 |  SORT GROUP BY                                  |                         |      1 |      1 |  24360 |00:05:33.00 |     33M |
+|*  2 |   FILTER                                        |                         |      1 |        |  24368 |00:05:33.00 |     33M |
+|   3 |    NESTED LOOPS                                 |                         |      1 |      1 |  24368 |00:05:33.00 |     33M |
+|   4 |     NESTED LOOPS                                |                         |      1 |      1 |   609M |00:05:30.00 |     30M |
+|   5 |      NESTED LOOPS                               |                         |      1 |      1 |  29678 |00:00:02.00 |     78000 |
+|   6 |       PARTITION RANGE ITERATOR                  |                         |      1 |      1 |     4M |00:00:01.50 |     69000 |
+|*  7 |        TABLE ACCESS BY LOCAL INDEX ROWID BATCHED| T1542455817             |      1 |      1 |     4M |00:00:01.50 |     69000 |
+|*  8 |         INDEX RANGE SCAN                        | T15424558172            |      1 |      1 |     4M |00:00:00.50 |       80 |
+|*  9 |       INDEX RANGE SCAN                          | IX_ENRSCTP_NE_LINK      |     4M |      1 |  29678 |00:00:01.00 |       8192 |
+|* 10 |      INDEX RANGE SCAN                           | PK_ENR_RADIO_5G_GNODEB  |  29678 |      1 |   609M |00:05:00.00 |     30M |
+|* 11 |     TABLE ACCESS BY GLOBAL INDEX ROWID          | ENR_RADIO_5G_GNODEB     |   609M |      1 |  24368 |00:00:20.00 |     2000000 |
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - filter((TO_DATE(:6,'YYYYMMDDHH24MI')>TO_DATE(:5,'YYYYMMDDHH24MI') AND
+              TO_DATE(TO_CHAR(:4),'YYYYMMDDHH24MI')>TO_DATE(TO_CHAR(:3),'YYYYMMDDHH24MI')))
+   7 - filter("A"."OBJECT" IS NOT NULL)
+   8 - access("A"."RESULTTIME">=TO_DATE(TO_CHAR(:3),'YYYYMMDDHH24MI') AND
+              "A"."RESULTTIME"<TO_DATE(TO_CHAR(:4),'YYYYMMDDHH24MI'))
+   9 - access("A"."LINKNO"="L"."LINKNO" AND "A"."OBJECT"="L"."NE_NAME")
+  10 - access("K"."STARTTIME">=TO_DATE(:5,'YYYYMMDDHH24MI') AND
+              "K"."STARTTIME"<TO_DATE(:6,'YYYYMMDDHH24MI'))
+  11 - filter("A"."OBJECT"="K"."NE_NAME")

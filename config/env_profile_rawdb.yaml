@@ -1,0 +1,65 @@
+# =============================================================================
+# env_profile_rawdb.yaml
+# Perfil do ambiente extraído dos AWRs do cluster RAWDB (2 nós, 19c, NÃO-Exadata).
+# Janela analisada: ~900 min/instância. Edite este arquivo para recalibrar a
+# engine sem tocar em código. Cada chave alimenta pesos/limiares das regras.
+# =============================================================================
+
+identity:
+  name: RAWDB
+  rac_nodes: 2
+  exadata: false
+  oracle_version: "19.1.0"
+  db_block_size: 8192
+
+# --- Natureza da carga (define o que "benefício" significa no scoring) -------
+workload:
+  cpu_bound: true              # DB CPU = 67-71% do DB time
+  db_cpu_pct_of_dbtime: 0.69
+  cache_hit_very_high: true    # LIO 6.67M/s vs PIO 88K/s
+  # alvo de otimização: reduzir gets/linhas (proxy de CPU), não IO físico
+  benefit_metric: buffer_gets_and_rows
+  redo_mb_per_s: 91
+  block_changes_per_s: 206655
+
+# --- Latências de IO reais (break-even índice vs full scan) ------------------
+io:
+  single_block_read_us: 340    # db file sequential read médio
+  multiblock_read_count: 128   # db_file_multiblock_read_count
+  # custo relativo de 1 multiblock read vs 1 single block (mesma latência ~,
+  # mas traz MBRC blocos): usado p/ decidir quando full scan vence índice
+  full_scan_block_discount: 0.85
+
+# --- Contenção em RAC já existente (regras de mitigação ativas) --------------
+rac_contention:
+  index_contention_in_top_events: true   # enq: TX - index contention no top 10
+  # padrão observado: índices de chave SEQUENCIAL dominam Buffer Busy
+  sequential_index_hotblock_observed: true
+  gc_buffer_busy_in_top_events: true
+  # objetos confirmadamente quentes pelo AWR (segment stats):
+  hot_segments:
+    - {owner: NA_MF,        name: NAMF_STATS_SEQ_IDX,       type: INDEX}
+    - {owner: NA_MF,        name: NAMF_STATS_DATA_SEQ_IDX,  type: INDEX}
+    - {owner: NA_MF,        name: PK_NAMF_STATS,            type: INDEX}
+    - {owner: DBN0_ERI_RAN, name: LTE_SCTPASSOCIATION,      type: TABLE}
+    - {owner: DBN0_HUA_RAN, name: T1526726713,             type: TABLE}
+    - {owner: DBN0_HUA_RAN, name: T1542455817,             type: TABLE}  # tabela 'a' da query alvo
+
+# --- Pesos do scoring (consumidos pelo motor de regras) ----------------------
+# Aumentar penalidade de manutenção pune índices em tabelas quentes; o ambiente
+# tem redo altíssimo e contenção, então o default aqui é conservador.
+scoring:
+  maint_cost_hot_table: 0.6        # penalidade base p/ índice em tabela quente
+  maint_cost_cold_table: 0.05      # tabelas enriquecidas (carga em lote)
+  # custo de cobertura: por byte de coluna adicional além das chaves
+  coverage_cost_per_byte: 0.004
+  # limiar de "coluna larga" — acima disso, cobrir penaliza muito
+  wide_column_bytes: 30
+  # fator de explosão de NESTED LOOPS que dispara severidade crítica
+  nl_explosion_factor: 100         # A-Rows/Execs vs linhas finais
+
+# --- Optimizer (sem viés artificial; engine não compensa distorção) ----------
+optimizer:
+  index_cost_adj: 100
+  index_caching: 0
+  adaptive_plans: true

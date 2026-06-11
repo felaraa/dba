@@ -1,0 +1,34 @@
+# =============================================================================
+# db.yaml.example — modelo de configuração de conexão ao banco.
+#
+# COMO USAR:
+#   1) copie para config/db.yaml      (cp config/db.yaml.example config/db.yaml)
+#   2) preencha os valores reais
+#   3) RESTRINJA A PERMISSÃO:          chmod 600 config/db.yaml
+#   4) NÃO versione config/db.yaml (adicione ao .gitignore)
+#
+# Alternativas a este arquivo (mesma informação, mais seguras):
+#   - variáveis de ambiente: ORACLE_DSN, ORACLE_USER, ORACLE_PASSWORD, ...
+#   - Oracle Wallet (autenticação sem senha em texto)
+#
+# Prioridade de resolução: parâmetros de CLI > variáveis de ambiente > este YAML.
+# =============================================================================
+
+database:
+  # "host:porta/serviço"  OU  alias do tnsnames.ora (com wallet/config_dir)
+  dsn: "rac-scan.empresa.com:1521/RAWDB"
+
+  user: "USUARIO_LEITURA"
+  password: "TROQUE_AQUI"
+
+  # "thin" (padrão, sem Oracle Client) ou "thick" (requer Instant Client)
+  mode: "thin"
+
+  # --- apenas para mode: thick ---
+  # client_lib_dir: "/opt/oracle/instantclient_21_13"
+
+  # --- apenas para autenticação por Oracle Wallet (sem senha em texto) ---
+  # Com wallet, user/password acima podem ser omitidos.
+  # wallet_location: "/opt/oracle/wallet"
+  # wallet_password: "senha_do_wallet"        # se o wallet for protegido
+  # config_dir: "/opt/oracle/network/admin"   # onde está tnsnames.ora/sqlnet.ora

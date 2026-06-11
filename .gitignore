@@ -1,0 +1,16 @@
+# credenciais reais — NUNCA versionar
+config/db.yaml
+
+# artefatos Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+build/
+dist/
+
+# saídas locais de análise
+*.local.md
+out/

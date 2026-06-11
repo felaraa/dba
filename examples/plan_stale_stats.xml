@@ -1,0 +1,2409 @@
+<report db_version="19.0.0.0.0" elapsed_time="2.23" cpu_time="0.24" inst_count="2" cpu_cores="96" hyperthread="Y" con_id="3" con_name="RAWDB" timezone_offset="-10800" packs="2" service_type="0">
+  <report_id><![CDATA[/orarep/sqlmonitor/main%3fsql_id%3dbs541hud638cr]]></report_id>
+  <sql_monitor_report version="4.0" sysdate="06/10/2026 20:08:38">
+    <report_parameters>
+      <sql_id>bs541hud638cr</sql_id>
+      <bucket_count>111</bucket_count>
+      <interval_start>06/10/2026 19:53:58</interval_start>
+      <interval_end>06/10/2026 20:08:41</interval_end>
+    </report_parameters>
+    <target instance_id="2" session_id="21066" session_serial="8060" sql_id="bs541hud638cr" sql_exec_start="06/10/2026 19:53:58" sql_exec_id="33554432" sql_plan_hash="3959440571" sql_full_plan_hash="2163659652" db_unique_name="dbn0" db_platform_name="x86_64/Linux 2.4.xx" report_host_name="rjbar-dbn0del-rac01">
+      <user_id>141</user_id>
+      <user>DBN0_HUA_RAN</user>
+      <con_id>3</con_id>
+      <con_name>RAWDB</con_name>
+      <program>JDBC Thin Client</program>
+      <module>JDBC Thin Client</module>
+      <service>rawdb</service>
+      <sql_fulltext is_full="Y">select SUM(P__1),inner_select.par0, inner_select.par1, inner_select.par2, inner_select.par3, inner_select.par4, inner_select.par5, inner_select.par6, inner_select.par7, inner_select.par8, inner_select.par9, inner_select.par10, inner_select.par11, inner_select.par12, inner_select.par13, inner_select.par14, inner_select.par15, inner_select.par16, inner_select.par17, inner_select.par18, inner_select.par19, inner_select.par20, inner_select.par21, inner_select.par22, inner_select.par23, inner_select.par24, inner_select.par25, inner_select.par26, inner_select.par27, inner_select.par28, inner_select.par29, inner_select.par30, inner_select.par31 from (select SUM(a.GRANULARITYPERIOD) P__1 ,l.CELL_NAME_D par0, k.AZIMUTH par1, k.BEAMWIDTH par2, k.ENODEB_CN par3, a.LOCAL_CELL_NAME par4, k.CELL_TYPE par5, k.CELL_BAND par6, k.CELL_EARFCN par7, k.CELL_OPERATOR par8, k.ENODEB_IBGE_ID par9, k.ID_MASTER par10, k.ENODEB_MUNICIPALY par11, k.NETWORK par12, k.SITE_OPERATOR par13, :1  par14, k.ENODEB_REGION par15, k.SETOR_FISICO par16, k.SHARING_MODE par17, k.SIGLA_LOGICA par18, k.SITE_TYPE par19, k.ERB_FISICA par20, k.STATION_CODE par21, k.CELL_TAC par22, k.ENODEB_UF par23, k.SITE_VENDOR par24, k.SITE_VERSION par25, :2  par26, a.ENODEB_NAME par27, k.ENODEB_IBGE_ID par28, k.ENODEB_LATITUDE par29, k.ENODEB_LONGITUDE par30, k.ENODEB_NEIGHBORHOOD par31 from DBN0_HUA_RAN.T1526726713 a, DBN0_EXT_ENRICH.ENR_RADIO_4G_CELLS k, DBN0_EXT_ENRICH.V_ENR_RADIO_4G_CELLS l where a.ENODEB_NAME = k.MOBILE_SITE_NAME AND a.LOCAL_CELL_NAME = k.CELL_NAME AND a.CELLID = l.CELL_ID_D(+) AND a.ENODEB_ID = l.ENODEB_ID(+) AND a.RESULTTIME&gt;=to_date(:3 ,&apos;YYYYMMDDHH24MI&apos;) AND a.RESULTTIME&lt;to_date(:4 ,&apos;YYYYMMDDHH24MI&apos;) AND k.STARTTIME&gt;=to_date(:5 ,&apos;YYYYMMDDHH24MI&apos;) AND k.STARTTIME&lt;to_date(:6 ,&apos;YYYYMMDDHH24MI&apos;) AND l.STARTTIME(+)&gt;=to_date(:7 ,&apos;YYYYMMDDHH24MI&apos;) AND l.STARTTIME(+)&lt;to_date(:8 ,&apos;YYYYMMDDHH24MI&apos;) group by a.CELLID, l.CELL_NAME_D, k.ENODEB_CN, a.ENODEB_ID, k.ENODEB_MUNICIPALY, a.ENODEB_NAME, k.ENODEB_REGION, k.ENODEB_UF, k.ERB_FISICA, k.ID_MASTER, a.LOCAL_CELL_NAME, k.SETOR_FISICO, k.SIGLA_LOGICA, k.SITE_OPERATOR, k.SITE_VENDOR, k.STATION_CODE, k.AZIMUTH, k.BEAMWIDTH, k.CELL_BAND, k.CELL_EARFCN, k.CELL_OPERATOR, k.CELL_TAC, k.CELL_TYPE, k.ENODEB_IBGE_ID, k.ENODEB_LATITUDE, k.ENODEB_LONGITUDE, k.ENODEB_NEIGHBORHOOD, k.NETWORK, k.SHARING_MODE, k.SITE_TYPE, k.SITE_VERSION) inner_select group by inner_select.par0, inner_select.par1, inner_select.par2, inner_select.par3, inner_select.par4, inner_select.par5, inner_select.par6, inner_select.par7, inner_select.par8, inner_select.par9, inner_select.par10, inner_select.par11, inner_select.par12, inner_select.par13, inner_select.par14, inner_select.par15, inner_select.par16, inner_select.par17, inner_select.par18, inner_select.par19, inner_select.par20, inner_select.par21, inner_select.par22, inner_select.par23, inner_select.par24, inner_select.par25, inner_select.par26, inner_select.par27, inner_select.par28, inner_select.par29, inner_select.par30, inner_select.par31 order by inner_select.par0, inner_select.par3, inner_select.par4, inner_select.par10, inner_select.par11, inner_select.par13, inner_select.par14, inner_select.par15, inner_select.par16, inner_select.par18, inner_select.par20, inner_select.par21, inner_select.par23, inner_select.par24, inner_select.par26, inner_select.par27, inner_select.par1, inner_select.par2, inner_select.par5, inner_select.par6, inner_select.par7, inner_select.par8, inner_select.par9, inner_select.par12, inner_select.par17, inner_select.par19, inner_select.par22, inner_select.par25, inner_select.par28, inner_select.par29, inner_select.par30, inner_select.par31</sql_fulltext>
+      <status>EXECUTING</status>
+      <refresh_count>439</refresh_count>
+      <first_refresh_time>06/10/2026 19:54:02</first_refresh_time>
+      <last_refresh_time>06/10/2026 20:08:38</last_refresh_time>
+      <duration>882</duration>
+      <rminfo rmcg="OTHER_GROUPS"/>
+      <optimizer_env>
+        <param name="active_instance_count">2</param>
+        <param name="is_recur_flags">0</param>
+        <param name="optimizer_features_hinted">19.1.0</param>
+        <param name="optimizer_mode_hinted">true</param>
+        <param name="parallel_autodop">0</param>
+        <param name="parallel_ddl_mode">enabled</param>
+        <param name="parallel_ddldml">0</param>
+        <param name="parallel_degree">0</param>
+        <param name="parallel_execution_enabled">true</param>
+        <param name="parallel_force_local">true</param>
+        <param name="parallel_max_degree">192</param>
+        <param name="parallel_query_default_dop">0</param>
+        <param name="parallel_query_mode">enabled</param>
+        <param name="pga_aggregate_target">157286400 KB</param>
+        <param name="total_cpu_count">384</param>
+      </optimizer_env>
+    </target>
+    <stats type="monitor">
+      <stat name="elapsed_time">892332940</stat>
+      <stat name="cpu_time">458282954</stat>
+      <stat name="user_io_wait_time">187378615</stat>
+      <stat name="concurrency_wait_time">7760</stat>
+      <stat name="cluster_wait_time">246663611</stat>
+      <stat name="buffer_gets">100177837</stat>
+      <stat name="disk_reads">357131</stat>
+      <stat name="read_reqs">357131</stat>
+      <stat name="read_bytes">2925617152</stat>
+    </stats>
+    <activity_sampled>
+      <activity class="Cluster" event="gc cr grant 2-way">19</activity>
+      <activity class="Cluster" event="gc cr grant busy">213</activity>
+      <activity class="Cluster" event="gc cr grant congested">23</activity>
+      <activity class="Cpu">439</activity>
+      <activity class="Other" event="latch: gcs resource hash">1</activity>
+      <activity class="User I/O" event="db file sequential read">182</activity>
+    </activity_sampled>
+    <binds>
+      <bind name=":3" pos="3" dty="2" dtystr="NUMBER" maxlen="22" len="7">202606101515</bind>
+      <bind name=":4" pos="4" dty="2" dtystr="NUMBER" maxlen="22" len="7">202606101530</bind>
+      <bind name=":5" pos="5" dty="1" dtystr="VARCHAR2(128)" maxlen="128" csid="873" len="12">202606100000</bind>
+      <bind name=":6" pos="6" dty="1" dtystr="VARCHAR2(128)" maxlen="128" csid="873" len="12">202606110000</bind>
+      <bind name=":7" pos="7" dty="1" dtystr="VARCHAR2(128)" maxlen="128" csid="873" len="12">202606100000</bind>
+      <bind name=":8" pos="8" dty="1" dtystr="VARCHAR2(128)" maxlen="128" csid="873" len="12">202606110000</bind>
+    </binds>
+    <activity_detail start_time="06/10/2026 19:53:58" end_time="06/10/2026 20:08:41" first_sample_time="06/10/2026 19:53:59" last_sample_time="06/10/2026 20:08:40" duration="882" sample_interval="1" bucket_interval="8" bucket_count="111" bucket_duration="884" cpu_cores="96" total_cpu_cores="96" hyperthread="Y">
+      <bucket number="1">
+        <activity class="Cluster" event="gc cr grant busy" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">5</activity>
+        <activity class="User I/O" event="db file sequential read" line="9">1</activity>
+      </bucket>
+      <bucket number="2">
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">6</activity>
+        <activity class="User I/O" event="db file sequential read" line="9">1</activity>
+      </bucket>
+      <bucket number="3">
+        <activity class="Cluster" event="gc cr grant busy" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">7</activity>
+      </bucket>
+      <bucket number="4">
+        <activity class="Cluster" event="gc cr grant busy" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">7</activity>
+      </bucket>
+      <bucket number="5">
+        <activity class="Cluster" event="gc cr grant busy" line="8">4</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">4</activity>
+      </bucket>
+      <bucket number="6">
+        <activity class="Cluster" event="gc cr grant busy" line="8">2</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">5</activity>
+        <activity class="User I/O" event="db file sequential read" line="9">1</activity>
+      </bucket>
+      <bucket number="7">
+        <activity class="Cluster" event="gc cr grant busy" line="8">6</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="9">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="8">
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="9">1</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="8">1</activity>
+        <activity class="Other" event="latch: gcs resource hash" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">2</activity>
+      </bucket>
+      <bucket number="9">
+        <activity class="Cluster" event="gc cr grant busy" line="8">6</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="9">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="10">
+        <activity class="Cluster" event="gc cr grant busy" line="8">7</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="11">
+        <activity class="Cluster" event="gc cr grant busy" line="8">5</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">2</activity>
+      </bucket>
+      <bucket number="12">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">1</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="8">5</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">2</activity>
+      </bucket>
+      <bucket number="13">
+        <activity class="Cluster" event="gc cr grant busy" line="8">5</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="9">2</activity>
+        <activity class="Cpu" line="8">1</activity>
+      </bucket>
+      <bucket number="14">
+        <activity class="Cluster" event="gc cr grant busy" line="8">4</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">4</activity>
+      </bucket>
+      <bucket number="15">
+        <activity class="Cluster" event="gc cr grant busy" line="8">4</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="9">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">3</activity>
+      </bucket>
+      <bucket number="16">
+        <activity class="Cluster" event="gc cr grant congested" line="8">1</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">6</activity>
+      </bucket>
+      <bucket number="17">
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="8">3</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">2</activity>
+      </bucket>
+      <bucket number="18">
+        <activity class="Cluster" event="gc cr grant busy" line="8">6</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="9">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="19">
+        <activity class="Cluster" event="gc cr grant busy" line="8">5</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="9">1</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="8">2</activity>
+      </bucket>
+      <bucket number="20">
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="8">4</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="21">
+        <activity class="Cluster" event="gc cr grant busy" line="8">5</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="9">2</activity>
+        <activity class="Cpu" line="8">1</activity>
+      </bucket>
+      <bucket number="22">
+        <activity class="Cluster" event="gc cr grant busy" line="8">7</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="23">
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="8">3</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="24">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">1</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="8">2</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="8">1</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="9">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">3</activity>
+      </bucket>
+      <bucket number="25">
+        <activity class="Cluster" event="gc cr grant busy" line="8">6</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="26">
+        <activity class="Cluster" event="gc cr grant busy" line="8">5</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">3</activity>
+      </bucket>
+      <bucket number="27">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">1</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="8">5</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="28">
+        <activity class="Cluster" event="gc cr grant busy" line="8">5</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">3</activity>
+      </bucket>
+      <bucket number="29">
+        <activity class="Cluster" event="gc cr grant busy" line="8">6</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="9">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="30">
+        <activity class="Cluster" event="gc cr grant busy" line="8">6</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">2</activity>
+      </bucket>
+      <bucket number="31">
+        <activity class="User I/O" event="db file sequential read" line="8">8</activity>
+      </bucket>
+      <bucket number="32">
+        <activity class="Cluster" event="gc cr grant busy" line="8">4</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">3</activity>
+      </bucket>
+      <bucket number="33">
+        <activity class="Cluster" event="gc cr grant busy" line="8">7</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="34">
+        <activity class="Cluster" event="gc cr grant busy" line="8">4</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="8">2</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">2</activity>
+      </bucket>
+      <bucket number="35">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">1</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="8">4</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="8">1</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="36">
+        <activity class="Cluster" event="gc cr grant busy" line="8">8</activity>
+      </bucket>
+      <bucket number="37">
+        <activity class="Cluster" event="gc cr grant busy" line="8">8</activity>
+      </bucket>
+      <bucket number="38">
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="Cluster" event="gc cr grant congested" line="8">2</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">2</activity>
+      </bucket>
+      <bucket number="39">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">1</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">6</activity>
+      </bucket>
+      <bucket number="40">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">4</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">4</activity>
+      </bucket>
+      <bucket number="41">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">2</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="8">5</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">1</activity>
+      </bucket>
+      <bucket number="42">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">1</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">6</activity>
+      </bucket>
+      <bucket number="43">
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">4</activity>
+      </bucket>
+      <bucket number="44">
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">4</activity>
+        <activity class="User I/O" event="db file sequential read" line="9">1</activity>
+      </bucket>
+      <bucket number="45">
+        <activity class="Cluster" event="gc cr grant busy" line="8">4</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">3</activity>
+      </bucket>
+      <bucket number="46">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">2</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">6</activity>
+      </bucket>
+      <bucket number="47">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">1</activity>
+        <activity class="Cpu" line="8">2</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">4</activity>
+        <activity class="User I/O" event="db file sequential read" line="9">1</activity>
+      </bucket>
+      <bucket number="48">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">1</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="8">1</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">3</activity>
+        <activity class="User I/O" event="db file sequential read" line="9">2</activity>
+      </bucket>
+      <bucket number="49">
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">4</activity>
+      </bucket>
+      <bucket number="50">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">7</activity>
+      </bucket>
+      <bucket number="51">
+        <activity class="Cluster" event="gc cr grant busy" line="8">1</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">6</activity>
+      </bucket>
+      <bucket number="52">
+        <activity class="Cluster" event="gc cr grant busy" line="8">2</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">6</activity>
+      </bucket>
+      <bucket number="53">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">1</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">2</activity>
+      </bucket>
+      <bucket number="54">
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">4</activity>
+      </bucket>
+      <bucket number="55">
+        <activity class="Cluster" event="gc cr grant busy" line="8">4</activity>
+        <activity class="Cpu" line="9">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">3</activity>
+      </bucket>
+      <bucket number="56">
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="9">1</activity>
+        <activity class="Cpu" line="8">2</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">2</activity>
+      </bucket>
+      <bucket number="57">
+        <activity class="Cluster" event="gc cr grant 2-way" line="8">1</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="8">4</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">3</activity>
+      </bucket>
+      <bucket number="58">
+        <activity class="Cluster" event="gc cr grant busy" line="8">3</activity>
+        <activity class="Cpu" line="8">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="8">3</activity>
+        <activity class="User I/O" event="db file sequential read" line="9">1</activity>
+      </bucket>
+      <bucket number="59">
+        <activity class="Cpu" line="8">6</activity>
+        <activity class="Cpu" line="9">2</activity>
+      </bucket>
+      <bucket number="60">
+        <activity class="Cpu" line="8">6</activity>
+        <activity class="Cpu" line="9">2</activity>
+      </bucket>
+      <bucket number="61">
+        <activity class="Cpu" line="8">5</activity>
+        <activity class="Cpu" line="9">3</activity>
+      </bucket>
+      <bucket number="62">
+        <activity class="Cpu" line="8">6</activity>
+        <activity class="Cpu" line="9">2</activity>
+      </bucket>
+      <bucket number="63">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="64">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="65">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="66">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="67">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="68">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="69">
+        <activity class="Cpu" line="8">5</activity>
+        <activity class="Cpu" line="9">3</activity>
+      </bucket>
+      <bucket number="70">
+        <activity class="Cpu" line="8">4</activity>
+        <activity class="Cpu" line="9">4</activity>
+      </bucket>
+      <bucket number="71">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="72">
+        <activity class="Cpu" line="8">5</activity>
+        <activity class="Cpu" line="9">3</activity>
+      </bucket>
+      <bucket number="73">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="74">
+        <activity class="Cpu" line="8">6</activity>
+        <activity class="Cpu" line="9">2</activity>
+      </bucket>
+      <bucket number="75">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="76">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="77">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="78">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="79">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="80">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="81">
+        <activity class="Cpu" line="8">5</activity>
+        <activity class="Cpu" line="9">2</activity>
+      </bucket>
+      <bucket number="82">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="83">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="84">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="85">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="86">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="87">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="88">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="89">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="90">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="91">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="92">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="93">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="94">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="95">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="96">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="97">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="98">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="99">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="100">
+        <activity class="Cpu" line="8">6</activity>
+        <activity class="Cpu" line="9">2</activity>
+      </bucket>
+      <bucket number="101">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="102">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="103">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="104">
+        <activity class="Cpu" line="8">6</activity>
+        <activity class="Cpu" line="9">2</activity>
+      </bucket>
+      <bucket number="105">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="106">
+        <activity class="Cpu" line="8">7</activity>
+      </bucket>
+      <bucket number="107">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="108">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="109">
+        <activity class="Cpu" line="8">7</activity>
+        <activity class="Cpu" line="9">1</activity>
+      </bucket>
+      <bucket number="110">
+        <activity class="Cpu" line="8">8</activity>
+      </bucket>
+      <bucket number="111">
+        <activity class="Cpu" line="8">3</activity>
+      </bucket>
+    </activity_detail>
+    <plan>
+      <operation name="SELECT STATEMENT" id="0" depth="0" pos="2143134">
+        <cost>2143134</cost>
+      </operation>
+      <operation name="SORT" options="GROUP BY" id="1" depth="1" pos="1">
+        <card>353585</card>
+        <bytes>94760780</bytes>
+        <temp_space>99894000</temp_space>
+        <cost>2143134</cost>
+        <io_cost>2142068</io_cost>
+        <cpu_cost>31561729679</cpu_cost>
+        <time>00:01:24 </time>
+        <qblock>SEL$3C403FE2</qblock>
+        <other_xml>
+          <info type="nodeid/pflags">000009000001</info>
+          <info type="nodeid/pflags">000008000001</info>
+          <info type="nodeid/pflags">000007000001</info>
+          <info type="has_user_tab">yes</info>
+          <info type="db_version">19.0.0.0</info>
+          <info type="parse_schema"><![CDATA["DBN0_HUA_RAN"]]></info>
+          <info type="plan_hash_full">2163659652</info>
+          <info type="plan_hash">3959440571</info>
+          <info type="plan_hash_2">2163659652</info>
+          <info type="sql_profile" note="y"><![CDATA["coe_bs541hud638cr_3959440571"]]></info>
+          <peeked_binds>
+            <bind nam=":3" pos="3" dty="2" pre="0" scl="0" mxl="22">c6151b070b1010</bind>
+            <bind nam=":4" pos="4" dty="2" pre="0" scl="0" mxl="22">c6151b070b101f</bind>
+            <bind nam=":5" pos="5" dty="1" csi="873" frm="1" mxl="128">323032363036313030303030</bind>
+            <bind nam=":6" pos="6" dty="1" csi="873" frm="1" mxl="128">323032363036313130303030</bind>
+            <bind nam=":7" pos="7" dty="1" csi="873" frm="1" mxl="128">323032363036313030303030</bind>
+            <bind nam=":8" pos="8" dty="1" csi="873" frm="1" mxl="128">323032363036313130303030</bind>
+          </peeked_binds>
+          <stats type="compilation">
+            <stat name="bg">208</stat>
+          </stats>
+          <qb_registry>
+            <q o="69" h="y">
+              <n><![CDATA[SEL$A3822D64]]></n>
+              <p><![CDATA[SEL$335DD26A]]></p>
+              <f>
+                <h>
+                  <t><![CDATA[A]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
+                <h>
+                  <t><![CDATA[K]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
+                <h>
+                  <t><![CDATA[ENR_RADIO_4G_CELLS]]></t>
+                  <s><![CDATA[SEL$3]]></s>
+                </h>
+              </f>
+            </q>
+            <q o="2">
+              <n><![CDATA[SEL$1]]></n>
+              <f>
+                <h>
+                  <t><![CDATA[INNER_SELECT]]></t>
+                  <s><![CDATA[SEL$1]]></s>
+                </h>
+              </f>
+            </q>
+            <q o="18" f="y" h="y">
+              <n><![CDATA[SEL$3C403FE2]]></n>
+              <p><![CDATA[SEL$1]]></p>
+              <i>
+                <o>
+                  <t>VW</t>
+                  <v><![CDATA[SEL$A3822D64]]></v>
+                </o>
+              </i>
+              <f>
+                <h>
+                  <t><![CDATA[A]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
+                <h>
+                  <t><![CDATA[K]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
+                <h>
+                  <t><![CDATA[ENR_RADIO_4G_CELLS]]></t>
+                  <s><![CDATA[SEL$3]]></s>
+                </h>
+              </f>
+            </q>
+            <q o="2">
+              <n><![CDATA[SEL$2]]></n>
+              <f>
+                <h>
+                  <t><![CDATA[A]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
+                <h>
+                  <t><![CDATA[K]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
+                <h>
+                  <t><![CDATA[L]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
+              </f>
+            </q>
+            <q o="2">
+              <n><![CDATA[SEL$3]]></n>
+              <f>
+                <h>
+                  <t><![CDATA[ENR_RADIO_4G_CELLS]]></t>
+                  <s><![CDATA[SEL$3]]></s>
+                </h>
+              </f>
+            </q>
+            <q o="18" h="y">
+              <n><![CDATA[SEL$335DD26A]]></n>
+              <p><![CDATA[SEL$2]]></p>
+              <i>
+                <o>
+                  <t>VW</t>
+                  <v><![CDATA[SEL$3]]></v>
+                </o>
+              </i>
+              <f>
+                <h>
+                  <t><![CDATA[A]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
+                <h>
+                  <t><![CDATA[K]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
+                <h>
+                  <t><![CDATA[ENR_RADIO_4G_CELLS]]></t>
+                  <s><![CDATA[SEL$3]]></s>
+                </h>
+              </f>
+            </q>
+          </qb_registry>
+          <outline_data>
+            <hint><![CDATA[IGNORE_OPTIM_EMBEDDED_HINTS]]></hint>
+            <hint><![CDATA[OPTIMIZER_FEATURES_ENABLE('19.1.0')]]></hint>
+            <hint><![CDATA[DB_VERSION('19.1.0')]]></hint>
+            <hint><![CDATA[ALL_ROWS]]></hint>
+            <hint><![CDATA[OUTLINE_LEAF(@"SEL$3C403FE2")]]></hint>
+            <hint><![CDATA[MERGE(@"SEL$A3822D64" >"SEL$1")]]></hint>
+            <hint><![CDATA[OUTLINE(@"SEL$1")]]></hint>
+            <hint><![CDATA[OUTLINE(@"SEL$A3822D64")]]></hint>
+            <hint><![CDATA[ELIM_GROUPBY(@"SEL$335DD26A")]]></hint>
+            <hint><![CDATA[OUTLINE(@"SEL$335DD26A")]]></hint>
+            <hint><![CDATA[MERGE(@"SEL$3" >"SEL$2")]]></hint>
+            <hint><![CDATA[OUTLINE(@"SEL$2")]]></hint>
+            <hint><![CDATA[OUTLINE(@"SEL$3")]]></hint>
+            <hint><![CDATA[INDEX_RS_ASC(@"SEL$3C403FE2" "K"@"SEL$2" ("ENR_RADIO_4G_CELLS"."STARTTIME" "ENR_RADIO_4G_CELLS"."CELL_NAME" "ENR_RADIO_4G_CELLS"."MOBILE_SITE_NAME" "ENR_RADIO_4G_CELLS"."ENODEB_ID" "ENR_RADIO_4G_CELLS"."CELL_ID"))]]></hint>
+            <hint><![CDATA[BATCH_TABLE_ACCESS_BY_ROWID(@"SEL$3C403FE2" "K"@"SEL$2")]]></hint>
+            <hint><![CDATA[INDEX_RS_ASC(@"SEL$3C403FE2" "A"@"SEL$2" ("T1526726713"."RESULTTIME" "T1526726713"."SEQ_NUMBER"))]]></hint>
+            <hint><![CDATA[BATCH_TABLE_ACCESS_BY_ROWID(@"SEL$3C403FE2" "A"@"SEL$2")]]></hint>
+            <hint><![CDATA[INDEX(@"SEL$3C403FE2" "ENR_RADIO_4G_CELLS"@"SEL$3" ("ENR_RADIO_4G_CELLS"."STARTTIME" "ENR_RADIO_4G_CELLS"."CELL_NAME" "ENR_RADIO_4G_CELLS"."MOBILE_SITE_NAME" "ENR_RADIO_4G_CELLS"."ENODEB_ID" "ENR_RADIO_4G_CELLS"."CELL_ID"))]]></hint>
+            <hint><![CDATA[LEADING(@"SEL$3C403FE2" "K"@"SEL$2" "A"@"SEL$2" "ENR_RADIO_4G_CELLS"@"SEL$3")]]></hint>
+            <hint><![CDATA[USE_NL(@"SEL$3C403FE2" "A"@"SEL$2")]]></hint>
+            <hint><![CDATA[USE_NL(@"SEL$3C403FE2" "ENR_RADIO_4G_CELLS"@"SEL$3")]]></hint>
+          </outline_data>
+          <hint_usage>
+            <q>
+              <n><![CDATA[SEL$3C403FE2]]></n>
+              <h o="OU">
+                <x><![CDATA[ELIM_GROUPBY(@"SEL$335DD26A")]]></x>
+              </h>
+              <m>
+                <h o="SR">
+                  <x><![CDATA[LEADING(@"SEL$3C403FE2" "K"@"SEL$2" "A"@"SEL$2" "ENR_RADIO_4G_CELLS"@"SEL$3")]]></x>
+                </h>
+              </m>
+              <t>
+                <f><![CDATA["ENR_RADIO_4G_CELLS"@"SEL$3"]]></f>
+                <h o="SR">
+                  <x><![CDATA[USE_NL(@"SEL$3C403FE2" "ENR_RADIO_4G_CELLS"@"SEL$3")]]></x>
+                </h>
+                <h o="OU">
+                  <x><![CDATA[INDEX(@"SEL$3C403FE2" "ENR_RADIO_4G_CELLS"@"SEL$3" ("ENR_RADIO_4G_CELLS"."STARTTIME" "ENR_RADIO_4G_CELLS"."CELL_NAME" "ENR_RADIO_4G_CELLS"."MOBILE_SITE_NAME" "ENR_RADIO_4G_CELLS"."ENODEB_ID" "ENR_RADIO_4G_CELLS"."CELL_ID"))]]></x>
+                </h>
+              </t>
+              <t>
+                <f><![CDATA["K"@"SEL$2"]]></f>
+                <h o="OU">
+                  <x><![CDATA[BATCH_TABLE_ACCESS_BY_ROWID(@"SEL$3C403FE2" "K"@"SEL$2")]]></x>
+                </h>
+                <h o="OU">
+                  <x><![CDATA[INDEX_RS_ASC(@"SEL$3C403FE2" "K"@"SEL$2" ("ENR_RADIO_4G_CELLS"."STARTTIME" "ENR_RADIO_4G_CELLS"."CELL_NAME" "ENR_RADIO_4G_CELLS"."MOBILE_SITE_NAME" "ENR_RADIO_4G_CELLS"."ENODEB_ID" "ENR_RADIO_4G_CELLS"."CELL_ID"))]]></x>
+                </h>
+              </t>
+              <t>
+                <f><![CDATA["A"@"SEL$2"]]></f>
+                <h o="SR">
+                  <x><![CDATA[USE_NL(@"SEL$3C403FE2" "A"@"SEL$2")]]></x>
+                </h>
+                <h o="OU">
+                  <x><![CDATA[BATCH_TABLE_ACCESS_BY_ROWID(@"SEL$3C403FE2" "A"@"SEL$2")]]></x>
+                </h>
+                <h o="OU">
+                  <x><![CDATA[INDEX_RS_ASC(@"SEL$3C403FE2" "A"@"SEL$2" ("T1526726713"."RESULTTIME" "T1526726713"."SEQ_NUMBER"))]]></x>
+                </h>
+              </t>
+            </q>
+            <q>
+              <n><![CDATA[SEL$A3822D64]]></n>
+              <h o="OU">
+                <x><![CDATA[MERGE(@"SEL$A3822D64" >"SEL$1")]]></x>
+              </h>
+            </q>
+            <q>
+              <n><![CDATA[SEL$3]]></n>
+              <h o="OU">
+                <x><![CDATA[MERGE(@"SEL$3" >"SEL$2")]]></x>
+              </h>
+            </q>
+            <s>
+              <h o="OU">
+                <x><![CDATA[ALL_ROWS]]></x>
+              </h>
+              <h o="OU">
+                <x><![CDATA[DB_VERSION('19.1.0')]]></x>
+              </h>
+              <h o="OU">
+                <x><![CDATA[OPTIMIZER_FEATURES_ENABLE('19.1.0')]]></x>
+              </h>
+              <h o="OU">
+                <x><![CDATA[IGNORE_OPTIM_EMBEDDED_HINTS]]></x>
+              </h>
+            </s>
+          </hint_usage>
+        </other_xml>
+      </operation>
+      <operation name="FILTER" id="2" depth="2" pos="1">
+        <predicates type="filter">(TO_DATE(:6,&apos;YYYYMMDDHH24MI&apos;)&gt;TO_DATE(:5,&apos;YYYYMMDDHH24MI&apos;) AND TO_DATE(TO_CHAR(:4),&apos;YYYYMMDDHH24MI&apos;)&gt;TO_DATE(TO_CHAR(:3),&apos;YYYYMMDDHH24MI&apos;))</predicates>
+      </operation>
+      <operation name="NESTED LOOPS" options="OUTER" id="3" depth="3" pos="1">
+        <card>353585</card>
+        <bytes>94760780</bytes>
+        <cost>2122754</cost>
+        <io_cost>2121710</io_cost>
+        <cpu_cost>30913332783</cpu_cost>
+        <time>00:01:23 </time>
+      </operation>
+      <operation name="NESTED LOOPS" id="4" depth="4" pos="1">
+        <card>353585</card>
+        <bytes>85213985</bytes>
+        <cost>1061233</cost>
+        <io_cost>1060955</io_cost>
+        <cpu_cost>8243450224</cpu_cost>
+        <time>00:00:42 </time>
+      </operation>
+      <operation name="TABLE ACCESS" options="BY GLOBAL INDEX ROWID BATCHED" id="5" depth="5" pos="1">
+        <object>ENR_RADIO_4G_CELLS</object>
+        <card>353585</card>
+        <bytes>70009830</bytes>
+        <cost>200</cost>
+        <io_cost>200</io_cost>
+        <cpu_cost>1624268</cpu_cost>
+        <time>00:00:01 </time>
+        <partition start="ROW LOCATION" stop="ROW LOCATION"/>
+        <qblock>SEL$3C403FE2</qblock>
+        <object_alias>&quot;K&quot;@&quot;SEL$2&quot;</object_alias>
+      </operation>
+      <operation name="INDEX" options="RANGE SCAN" id="6" depth="6" pos="1">
+        <object>PK_ENR_RADIO_4G_CELLS</object>
+        <card>10</card>
+        <cost>4</cost>
+        <io_cost>4</io_cost>
+        <cpu_cost>68886</cpu_cost>
+        <time>00:00:01 </time>
+        <predicates type="access">&quot;K&quot;.&quot;STARTTIME&quot;&gt;=TO_DATE(:5,&apos;YYYYMMDDHH24MI&apos;) AND &quot;K&quot;.&quot;STARTTIME&quot;&lt;TO_DATE(:6,&apos;YYYYMMDDHH24MI&apos;)</predicates>
+        <qblock>SEL$3C403FE2</qblock>
+        <object_alias>&quot;K&quot;@&quot;SEL$2&quot;</object_alias>
+      </operation>
+      <operation name="PARTITION RANGE" options="ITERATOR" id="7" depth="5" pos="2">
+        <card>1</card>
+        <bytes>43</bytes>
+        <cost>3</cost>
+        <io_cost>3</io_cost>
+        <cpu_cost>23309</cpu_cost>
+        <time>00:00:01 </time>
+        <partition start="KEY" stop="KEY"/>
+      </operation>
+      <operation name="TABLE ACCESS" options="BY LOCAL INDEX ROWID BATCHED" id="8" depth="6" pos="1">
+        <object>T1526726713</object>
+        <card>1</card>
+        <bytes>43</bytes>
+        <cost>3</cost>
+        <io_cost>3</io_cost>
+        <cpu_cost>23309</cpu_cost>
+        <time>00:00:01 </time>
+        <partition start="KEY" stop="KEY"/>
+        <predicates type="filter">(&quot;A&quot;.&quot;LOCAL_CELL_NAME&quot;=&quot;K&quot;.&quot;CELL_NAME&quot; AND &quot;A&quot;.&quot;ENODEB_NAME&quot;=&quot;K&quot;.&quot;MOBILE_SITE_NAME&quot;)</predicates>
+        <qblock>SEL$3C403FE2</qblock>
+        <object_alias>&quot;A&quot;@&quot;SEL$2&quot;</object_alias>
+      </operation>
+      <operation name="INDEX" options="RANGE SCAN" id="9" depth="7" pos="1">
+        <object>T15267267132</object>
+        <card>1</card>
+        <cost>2</cost>
+        <io_cost>2</io_cost>
+        <cpu_cost>15293</cpu_cost>
+        <time>00:00:01 </time>
+        <partition start="KEY" stop="KEY"/>
+        <predicates type="access">&quot;A&quot;.&quot;RESULTTIME&quot;&gt;=TO_DATE(TO_CHAR(:3),&apos;YYYYMMDDHH24MI&apos;) AND &quot;A&quot;.&quot;RESULTTIME&quot;&lt;TO_DATE(TO_CHAR(:4),&apos;YYYYMMDDHH24MI&apos;)</predicates>
+        <qblock>SEL$3C403FE2</qblock>
+        <object_alias>&quot;A&quot;@&quot;SEL$2&quot;</object_alias>
+      </operation>
+      <operation name="INDEX" options="RANGE SCAN" id="10" depth="4" pos="2">
+        <object>PK_ENR_RADIO_4G_CELLS</object>
+        <card>1</card>
+        <bytes>27</bytes>
+        <cost>3</cost>
+        <io_cost>3</io_cost>
+        <cpu_cost>64114</cpu_cost>
+        <time>00:00:01 </time>
+        <predicates type="access">&quot;STARTTIME&quot;&gt;=TO_DATE(:7,&apos;YYYYMMDDHH24MI&apos;) AND &quot;STARTTIME&quot;&lt;TO_DATE(:8,&apos;YYYYMMDDHH24MI&apos;)</predicates>
+        <predicates type="filter">(&quot;A&quot;.&quot;ENODEB_ID&quot;=TO_CHAR(&quot;ENODEB_ID&quot;) AND &quot;A&quot;.&quot;CELLID&quot;=TO_CHAR(&quot;CELL_ID&quot;))</predicates>
+        <qblock>SEL$3C403FE2</qblock>
+        <object_alias>&quot;ENR_RADIO_4G_CELLS&quot;@&quot;SEL$3&quot;</object_alias>
+      </operation>
+    </plan>
+    <plan_monitor max_activity_count="807" max_io_reqs="338601" max_io_bytes="2773819392" max_imq_count="0" max_cpu_count="390" max_wait_count="417" max_other_sql_count="0">
+      <operation id="0" name="SELECT STATEMENT" depth="0" position="0" skp="0">
+        <stats type="plan_monitor">
+          <stat name="starts">1</stat>
+        </stats>
+      </operation>
+      <operation id="1" parent_id="0" name="SORT" options="GROUP BY" depth="1" position="1" skp="0">
+        <optimizer>
+          <cardinality>353585</cardinality>
+          <bytes>94760780</bytes>
+          <cost>2143134</cost>
+          <cpu_cost>31561729679</cpu_cost>
+          <io_cost>2142068</io_cost>
+          <temp>99894000</temp>
+          <time>84</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="starts">1</stat>
+        </stats>
+        <rwsstats group_id="20">
+          <metadata>
+            <stat id="1" name="Total Number of Rowsets" desc="Total number of rowsets received from underlying input" type="1"/>
+            <stat id="2" name="Rowsets with Encodings" desc="Number of rowsets with encodings" type="1"/>
+            <stat id="3" name="Rowsets Leveraging Encodings" desc="Number of rowsets leveraging encodings" type="1"/>
+            <stat id="4" name="Rowsets Leveraging Storage Aggregation" desc="Number of rowsets leveraging storage aggregation pushdown" type="1"/>
+          </metadata>
+        </rwsstats>
+      </operation>
+      <operation id="2" parent_id="1" name="FILTER" depth="2" position="1" skp="0">
+        <stats type="plan_monitor">
+          <stat name="starts">1</stat>
+        </stats>
+      </operation>
+      <operation id="3" parent_id="2" name="NESTED LOOPS" options="OUTER" depth="3" position="1" skp="0">
+        <optimizer>
+          <cardinality>353585</cardinality>
+          <bytes>94760780</bytes>
+          <cost>2122754</cost>
+          <cpu_cost>30913332783</cpu_cost>
+          <io_cost>2121710</io_cost>
+          <time>83</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="starts">1</stat>
+        </stats>
+      </operation>
+      <operation id="4" parent_id="3" name="NESTED LOOPS" depth="4" position="1" skp="0">
+        <optimizer>
+          <cardinality>353585</cardinality>
+          <bytes>85213985</bytes>
+          <cost>1061233</cost>
+          <cpu_cost>8243450224</cpu_cost>
+          <io_cost>1060955</io_cost>
+          <time>42</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="first_active">06/10/2026 19:54:02</stat>
+          <stat name="last_active">06/10/2026 20:08:40</stat>
+          <stat name="duration">879</stat>
+          <stat name="from_most_recent">0</stat>
+          <stat name="from_sql_exec_start">4</stat>
+          <stat name="starts">1</stat>
+          <stat name="cardinality">0</stat>
+        </stats>
+      </operation>
+      <operation id="5" parent_id="4" name="TABLE ACCESS" options="BY GLOBAL INDEX ROWID BATCHED" depth="5" position="1" skp="0">
+        <object type="TABLE">
+          <owner>DBN0_EXT_ENRICH</owner>
+          <name>ENR_RADIO_4G_CELLS</name>
+        </object>
+        <partition_start>ROW LOCATION</partition_start>
+        <partition_stop>ROW LOCATION</partition_stop>
+        <optimizer>
+          <cardinality>353585</cardinality>
+          <bytes>70009830</bytes>
+          <cost>200</cost>
+          <cpu_cost>1624268</cpu_cost>
+          <io_cost>200</io_cost>
+          <time>1</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="first_active">06/10/2026 19:54:02</stat>
+          <stat name="last_active">06/10/2026 20:08:40</stat>
+          <stat name="duration">879</stat>
+          <stat name="from_most_recent">0</stat>
+          <stat name="from_sql_exec_start">4</stat>
+          <stat name="starts">1</stat>
+          <stat name="cardinality">407</stat>
+        </stats>
+      </operation>
+      <operation id="6" parent_id="5" name="INDEX" options="RANGE SCAN" depth="6" position="1" skp="0">
+        <object type="INDEX (UNIQUE)">
+          <owner>DBN0_EXT_ENRICH</owner>
+          <name>PK_ENR_RADIO_4G_CELLS</name>
+        </object>
+        <optimizer>
+          <cardinality>10</cardinality>
+          <cost>4</cost>
+          <cpu_cost>68886</cpu_cost>
+          <io_cost>4</io_cost>
+          <time>1</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="first_active">06/10/2026 19:54:02</stat>
+          <stat name="last_active">06/10/2026 20:08:40</stat>
+          <stat name="duration">879</stat>
+          <stat name="from_most_recent">0</stat>
+          <stat name="from_sql_exec_start">4</stat>
+          <stat name="starts">1</stat>
+          <stat name="cardinality">407</stat>
+        </stats>
+      </operation>
+      <operation id="7" parent_id="4" name="PARTITION RANGE" options="ITERATOR" depth="5" position="2" skp="0">
+        <partition_start>KEY</partition_start>
+        <partition_stop>KEY</partition_stop>
+        <optimizer>
+          <cardinality>1</cardinality>
+          <bytes>43</bytes>
+          <cost>3</cost>
+          <cpu_cost>23309</cpu_cost>
+          <io_cost>3</io_cost>
+          <time>1</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="starts">407</stat>
+        </stats>
+      </operation>
+      <operation id="8" parent_id="7" name="TABLE ACCESS" options="BY LOCAL INDEX ROWID BATCHED" depth="6" position="1" skp="0">
+        <object type="TABLE">
+          <owner>DBN0_HUA_RAN</owner>
+          <name>T1526726713</name>
+        </object>
+        <partition_start>KEY</partition_start>
+        <partition_stop>KEY</partition_stop>
+        <optimizer>
+          <cardinality>1</cardinality>
+          <bytes>43</bytes>
+          <cost>3</cost>
+          <cpu_cost>23309</cpu_cost>
+          <io_cost>3</io_cost>
+          <time>1</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="first_active">06/10/2026 19:54:00</stat>
+          <stat name="first_row">06/10/2026 19:54:02</stat>
+          <stat name="last_active">06/10/2026 20:08:40</stat>
+          <stat name="duration">881</stat>
+          <stat name="from_most_recent">0</stat>
+          <stat name="from_sql_exec_start">2</stat>
+          <stat name="starts">407</stat>
+          <stat name="cardinality">0</stat>
+          <stat name="read_reqs">338601</stat>
+          <stat name="read_bytes">2773819392</stat>
+        </stats>
+        <activity_sampled start_time="06/10/2026 19:54:00" end_time="06/10/2026 20:08:40" duration="881" count="807" imq_count="0" wait_count="417" cpu_count="390" other_sql_count="0" cpu_cores="96" hyperthread="Y">
+          <activity class="Cluster" event="gc cr grant 2-way">19</activity>
+          <activity class="Cluster" event="gc cr grant busy">201</activity>
+          <activity class="Cluster" event="gc cr grant congested">22</activity>
+          <activity class="Cpu">390</activity>
+          <activity class="Other" event="latch: gcs resource hash">1</activity>
+          <activity class="User I/O" event="db file sequential read">174</activity>
+          <activity_histogram bucket_interval="8" bucket_count="111" start_time="06/10/2026 19:53:58" end_time="06/10/2026 20:08:41" duration="884">
+            <bucket number="1">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+              <activity class="User I/O" event="db file sequential read">5</activity>
+            </bucket>
+            <bucket number="2">
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">6</activity>
+            </bucket>
+            <bucket number="3">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+              <activity class="User I/O" event="db file sequential read">7</activity>
+            </bucket>
+            <bucket number="4">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+              <activity class="User I/O" event="db file sequential read">7</activity>
+            </bucket>
+            <bucket number="5">
+              <activity class="Cluster" event="gc cr grant busy">4</activity>
+              <activity class="User I/O" event="db file sequential read">4</activity>
+            </bucket>
+            <bucket number="6">
+              <activity class="Cluster" event="gc cr grant busy">2</activity>
+              <activity class="User I/O" event="db file sequential read">5</activity>
+            </bucket>
+            <bucket number="7">
+              <activity class="Cluster" event="gc cr grant busy">6</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="8">
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="Cluster" event="gc cr grant congested">1</activity>
+              <activity class="Other" event="latch: gcs resource hash">1</activity>
+              <activity class="User I/O" event="db file sequential read">2</activity>
+            </bucket>
+            <bucket number="9">
+              <activity class="Cluster" event="gc cr grant busy">6</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="10">
+              <activity class="Cluster" event="gc cr grant busy">7</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="11">
+              <activity class="Cluster" event="gc cr grant busy">5</activity>
+              <activity class="User I/O" event="db file sequential read">2</activity>
+            </bucket>
+            <bucket number="12">
+              <activity class="Cluster" event="gc cr grant 2-way">1</activity>
+              <activity class="Cluster" event="gc cr grant busy">5</activity>
+              <activity class="User I/O" event="db file sequential read">2</activity>
+            </bucket>
+            <bucket number="13">
+              <activity class="Cluster" event="gc cr grant busy">5</activity>
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="14">
+              <activity class="Cluster" event="gc cr grant busy">4</activity>
+              <activity class="User I/O" event="db file sequential read">4</activity>
+            </bucket>
+            <bucket number="15">
+              <activity class="Cluster" event="gc cr grant busy">4</activity>
+              <activity class="User I/O" event="db file sequential read">3</activity>
+            </bucket>
+            <bucket number="16">
+              <activity class="Cluster" event="gc cr grant congested">1</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">6</activity>
+            </bucket>
+            <bucket number="17">
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="Cluster" event="gc cr grant congested">3</activity>
+              <activity class="User I/O" event="db file sequential read">2</activity>
+            </bucket>
+            <bucket number="18">
+              <activity class="Cluster" event="gc cr grant busy">6</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="19">
+              <activity class="Cluster" event="gc cr grant busy">5</activity>
+              <activity class="Cluster" event="gc cr grant congested">2</activity>
+            </bucket>
+            <bucket number="20">
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="Cluster" event="gc cr grant congested">4</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="21">
+              <activity class="Cluster" event="gc cr grant busy">5</activity>
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="22">
+              <activity class="Cluster" event="gc cr grant busy">7</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="23">
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="Cluster" event="gc cr grant congested">3</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="24">
+              <activity class="Cluster" event="gc cr grant 2-way">1</activity>
+              <activity class="Cluster" event="gc cr grant busy">2</activity>
+              <activity class="Cluster" event="gc cr grant congested">1</activity>
+              <activity class="User I/O" event="db file sequential read">3</activity>
+            </bucket>
+            <bucket number="25">
+              <activity class="Cluster" event="gc cr grant busy">6</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="26">
+              <activity class="Cluster" event="gc cr grant busy">5</activity>
+              <activity class="User I/O" event="db file sequential read">3</activity>
+            </bucket>
+            <bucket number="27">
+              <activity class="Cluster" event="gc cr grant 2-way">1</activity>
+              <activity class="Cluster" event="gc cr grant busy">5</activity>
+              <activity class="Cluster" event="gc cr grant congested">1</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="28">
+              <activity class="Cluster" event="gc cr grant busy">5</activity>
+              <activity class="User I/O" event="db file sequential read">3</activity>
+            </bucket>
+            <bucket number="29">
+              <activity class="Cluster" event="gc cr grant busy">6</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="30">
+              <activity class="Cluster" event="gc cr grant busy">6</activity>
+              <activity class="User I/O" event="db file sequential read">2</activity>
+            </bucket>
+            <bucket number="31">
+              <activity class="User I/O" event="db file sequential read">8</activity>
+            </bucket>
+            <bucket number="32">
+              <activity class="Cluster" event="gc cr grant busy">4</activity>
+              <activity class="Cluster" event="gc cr grant congested">1</activity>
+              <activity class="User I/O" event="db file sequential read">3</activity>
+            </bucket>
+            <bucket number="33">
+              <activity class="Cluster" event="gc cr grant busy">7</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="34">
+              <activity class="Cluster" event="gc cr grant busy">4</activity>
+              <activity class="Cluster" event="gc cr grant congested">2</activity>
+              <activity class="User I/O" event="db file sequential read">2</activity>
+            </bucket>
+            <bucket number="35">
+              <activity class="Cluster" event="gc cr grant 2-way">1</activity>
+              <activity class="Cluster" event="gc cr grant busy">4</activity>
+              <activity class="Cluster" event="gc cr grant congested">1</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="36">
+              <activity class="Cluster" event="gc cr grant busy">8</activity>
+            </bucket>
+            <bucket number="37">
+              <activity class="Cluster" event="gc cr grant busy">8</activity>
+            </bucket>
+            <bucket number="38">
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="Cluster" event="gc cr grant congested">2</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">2</activity>
+            </bucket>
+            <bucket number="39">
+              <activity class="Cluster" event="gc cr grant 2-way">1</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">6</activity>
+            </bucket>
+            <bucket number="40">
+              <activity class="Cluster" event="gc cr grant 2-way">4</activity>
+              <activity class="User I/O" event="db file sequential read">4</activity>
+            </bucket>
+            <bucket number="41">
+              <activity class="Cluster" event="gc cr grant 2-way">2</activity>
+              <activity class="Cluster" event="gc cr grant busy">5</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="42">
+              <activity class="Cluster" event="gc cr grant 2-way">1</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">6</activity>
+            </bucket>
+            <bucket number="43">
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">4</activity>
+            </bucket>
+            <bucket number="44">
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="User I/O" event="db file sequential read">4</activity>
+            </bucket>
+            <bucket number="45">
+              <activity class="Cluster" event="gc cr grant busy">4</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">3</activity>
+            </bucket>
+            <bucket number="46">
+              <activity class="Cluster" event="gc cr grant 2-way">2</activity>
+              <activity class="User I/O" event="db file sequential read">6</activity>
+            </bucket>
+            <bucket number="47">
+              <activity class="Cluster" event="gc cr grant 2-way">1</activity>
+              <activity class="Cpu">2</activity>
+              <activity class="User I/O" event="db file sequential read">4</activity>
+            </bucket>
+            <bucket number="48">
+              <activity class="Cluster" event="gc cr grant 2-way">1</activity>
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">3</activity>
+            </bucket>
+            <bucket number="49">
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">4</activity>
+            </bucket>
+            <bucket number="50">
+              <activity class="Cluster" event="gc cr grant 2-way">1</activity>
+              <activity class="User I/O" event="db file sequential read">7</activity>
+            </bucket>
+            <bucket number="51">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">6</activity>
+            </bucket>
+            <bucket number="52">
+              <activity class="Cluster" event="gc cr grant busy">2</activity>
+              <activity class="User I/O" event="db file sequential read">6</activity>
+            </bucket>
+            <bucket number="53">
+              <activity class="Cluster" event="gc cr grant 2-way">1</activity>
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">2</activity>
+            </bucket>
+            <bucket number="54">
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">4</activity>
+            </bucket>
+            <bucket number="55">
+              <activity class="Cluster" event="gc cr grant busy">4</activity>
+              <activity class="User I/O" event="db file sequential read">3</activity>
+            </bucket>
+            <bucket number="56">
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="Cpu">2</activity>
+              <activity class="User I/O" event="db file sequential read">2</activity>
+            </bucket>
+            <bucket number="57">
+              <activity class="Cluster" event="gc cr grant 2-way">1</activity>
+              <activity class="Cluster" event="gc cr grant busy">4</activity>
+              <activity class="User I/O" event="db file sequential read">3</activity>
+            </bucket>
+            <bucket number="58">
+              <activity class="Cluster" event="gc cr grant busy">3</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">3</activity>
+            </bucket>
+            <bucket number="59">
+              <activity class="Cpu">6</activity>
+            </bucket>
+            <bucket number="60">
+              <activity class="Cpu">6</activity>
+            </bucket>
+            <bucket number="61">
+              <activity class="Cpu">5</activity>
+            </bucket>
+            <bucket number="62">
+              <activity class="Cpu">6</activity>
+            </bucket>
+            <bucket number="63">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="64">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="65">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="66">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="67">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="68">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="69">
+              <activity class="Cpu">5</activity>
+            </bucket>
+            <bucket number="70">
+              <activity class="Cpu">4</activity>
+            </bucket>
+            <bucket number="71">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="72">
+              <activity class="Cpu">5</activity>
+            </bucket>
+            <bucket number="73">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="74">
+              <activity class="Cpu">6</activity>
+            </bucket>
+            <bucket number="75">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="76">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="77">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="78">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="79">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="80">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="81">
+              <activity class="Cpu">5</activity>
+            </bucket>
+            <bucket number="82">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="83">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="84">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="85">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="86">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="87">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="88">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="89">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="90">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="91">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="92">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="93">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="94">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="95">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="96">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="97">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="98">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="99">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="100">
+              <activity class="Cpu">6</activity>
+            </bucket>
+            <bucket number="101">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="102">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="103">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="104">
+              <activity class="Cpu">6</activity>
+            </bucket>
+            <bucket number="105">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="106">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="107">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="108">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="109">
+              <activity class="Cpu">7</activity>
+            </bucket>
+            <bucket number="110">
+              <activity class="Cpu">8</activity>
+            </bucket>
+            <bucket number="111">
+              <activity class="Cpu">3</activity>
+            </bucket>
+          </activity_histogram>
+        </activity_sampled>
+      </operation>
+      <operation id="9" parent_id="8" name="INDEX" options="RANGE SCAN" depth="7" position="1" skp="0">
+        <object type="INDEX">
+          <owner>DBN0_HUA_RAN</owner>
+          <name>T15267267132</name>
+        </object>
+        <partition_start>KEY</partition_start>
+        <partition_stop>KEY</partition_stop>
+        <optimizer>
+          <cardinality>1</cardinality>
+          <cost>2</cost>
+          <cpu_cost>15293</cpu_cost>
+          <io_cost>2</io_cost>
+          <time>1</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="first_active">06/10/2026 19:53:59</stat>
+          <stat name="first_row">06/10/2026 19:54:02</stat>
+          <stat name="last_active">06/10/2026 20:08:40</stat>
+          <stat name="duration">882</stat>
+          <stat name="from_most_recent">0</stat>
+          <stat name="from_sql_exec_start">1</stat>
+          <stat name="starts">407</stat>
+          <stat name="cardinality">1548119935</stat>
+          <stat name="read_reqs">18530</stat>
+          <stat name="read_bytes">151797760</stat>
+        </stats>
+        <activity_sampled start_time="06/10/2026 19:53:59" end_time="06/10/2026 20:08:22" duration="864" count="70" imq_count="0" wait_count="21" cpu_count="49" other_sql_count="0" cpu_cores="96" hyperthread="Y">
+          <activity class="Cluster" event="gc cr grant busy">12</activity>
+          <activity class="Cluster" event="gc cr grant congested">1</activity>
+          <activity class="Cpu">49</activity>
+          <activity class="User I/O" event="db file sequential read">8</activity>
+          <activity_histogram bucket_interval="8" bucket_count="111" start_time="06/10/2026 19:53:58" end_time="06/10/2026 20:08:41" duration="884">
+            <bucket number="1">
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="2">
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="6">
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="7">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+            </bucket>
+            <bucket number="8">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+            </bucket>
+            <bucket number="9">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+            </bucket>
+            <bucket number="13">
+              <activity class="Cluster" event="gc cr grant busy">2</activity>
+            </bucket>
+            <bucket number="15">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+            </bucket>
+            <bucket number="18">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+            </bucket>
+            <bucket number="19">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+            </bucket>
+            <bucket number="21">
+              <activity class="Cluster" event="gc cr grant busy">2</activity>
+            </bucket>
+            <bucket number="24">
+              <activity class="Cluster" event="gc cr grant congested">1</activity>
+            </bucket>
+            <bucket number="29">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+            </bucket>
+            <bucket number="44">
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="47">
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="48">
+              <activity class="User I/O" event="db file sequential read">2</activity>
+            </bucket>
+            <bucket number="55">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="56">
+              <activity class="Cluster" event="gc cr grant busy">1</activity>
+            </bucket>
+            <bucket number="58">
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="59">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="60">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="61">
+              <activity class="Cpu">3</activity>
+            </bucket>
+            <bucket number="62">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="63">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="65">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="66">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="69">
+              <activity class="Cpu">3</activity>
+            </bucket>
+            <bucket number="70">
+              <activity class="Cpu">4</activity>
+            </bucket>
+            <bucket number="72">
+              <activity class="Cpu">3</activity>
+            </bucket>
+            <bucket number="73">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="74">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="75">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="77">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="78">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="79">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="80">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="81">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="82">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="84">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="85">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="86">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="88">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="91">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="95">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="98">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="100">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="101">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="102">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="104">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="105">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="109">
+              <activity class="Cpu">1</activity>
+            </bucket>
+          </activity_histogram>
+        </activity_sampled>
+      </operation>
+      <operation id="10" parent_id="3" name="INDEX" options="RANGE SCAN" depth="4" position="2" skp="0">
+        <object type="INDEX (UNIQUE)">
+          <owner>DBN0_EXT_ENRICH</owner>
+          <name>PK_ENR_RADIO_4G_CELLS</name>
+        </object>
+        <optimizer>
+          <cardinality>1</cardinality>
+          <bytes>27</bytes>
+          <cost>3</cost>
+          <cpu_cost>64114</cpu_cost>
+          <io_cost>3</io_cost>
+          <time>1</time>
+        </optimizer>
+        <stats type="plan_monitor"/>
+      </operation>
+    </plan_monitor>
+    <stattype name="metrics" cpu_cores="96" hyperthread="Y">
+      <stat_info>
+        <stat id="1" name="nb_cpu"/>
+        <stat id="2" name="nb_sess"/>
+        <stat id="3" name="reads" unit="per_sec"/>
+        <stat id="4" name="writes" unit="per_sec"/>
+        <stat id="5" name="read_kb" unit="bytes_per_sec" factor="1024"/>
+        <stat id="6" name="write_kb" unit="bytes_per_sec" factor="1024"/>
+        <stat id="7" name="interc_kb" unit="bytes_per_sec" factor="1024"/>
+        <stat id="8" name="cache_kb" unit="bytes_per_sec" factor="1024"/>
+        <stat id="9" name="pga_kb" unit="bytes" factor="1024"/>
+        <stat id="10" name="tmp_kb" unit="bytes" factor="1024"/>
+      </stat_info>
+      <buckets bucket_interval="8" bucket_count="111" start_time="06/10/2026 19:53:58" end_time="06/10/2026 20:08:41" duration="884">
+        <bucket bucket_id="1">
+          <stat id="1" value=".06"/>
+          <stat id="3" value="371"/>
+          <stat id="5" value="2971"/>
+          <stat id="7" value="2971"/>
+          <stat id="8" value="3268"/>
+          <stat id="9" value="12998"/>
+        </bucket>
+        <bucket bucket_id="2">
+          <stat id="1" value=".07"/>
+          <stat id="3" value="492"/>
+          <stat id="5" value="3937"/>
+          <stat id="7" value="3937"/>
+          <stat id="8" value="3938"/>
+          <stat id="9" value="14658"/>
+        </bucket>
+        <bucket bucket_id="3">
+          <stat id="1" value=".06"/>
+          <stat id="3" value="425"/>
+          <stat id="5" value="3400"/>
+          <stat id="7" value="3400"/>
+          <stat id="8" value="3401"/>
+          <stat id="9" value="14659"/>
+        </bucket>
+        <bucket bucket_id="4">
+          <stat id="1" value=".07"/>
+          <stat id="3" value="367"/>
+          <stat id="5" value="2936"/>
+          <stat id="7" value="2936"/>
+          <stat id="8" value="2937"/>
+          <stat id="9" value="14657"/>
+        </bucket>
+        <bucket bucket_id="5">
+          <stat id="1" value=".07"/>
+          <stat id="3" value="413"/>
+          <stat id="5" value="3307"/>
+          <stat id="7" value="3307"/>
+          <stat id="8" value="3311"/>
+          <stat id="9" value="13817"/>
+        </bucket>
+        <bucket bucket_id="6">
+          <stat id="1" value=".04"/>
+          <stat id="3" value="220"/>
+          <stat id="5" value="1757"/>
+          <stat id="7" value="1757"/>
+          <stat id="8" value="1757"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="7">
+          <stat id="1" value=".03"/>
+          <stat id="3" value="158"/>
+          <stat id="5" value="1262"/>
+          <stat id="7" value="1262"/>
+          <stat id="8" value="1262"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="8">
+          <stat id="1" value=".05"/>
+          <stat id="3" value="281"/>
+          <stat id="5" value="2248"/>
+          <stat id="7" value="2248"/>
+          <stat id="8" value="2249"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="9">
+          <stat id="1" value=".04"/>
+          <stat id="3" value="173"/>
+          <stat id="5" value="1383"/>
+          <stat id="7" value="1383"/>
+          <stat id="8" value="1383"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="10">
+          <stat id="1" value=".03"/>
+          <stat id="3" value="167"/>
+          <stat id="5" value="1333"/>
+          <stat id="7" value="1333"/>
+          <stat id="8" value="1334"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="11">
+          <stat id="1" value=".03"/>
+          <stat id="3" value="102"/>
+          <stat id="5" value="820"/>
+          <stat id="7" value="820"/>
+          <stat id="8" value="820"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="12">
+          <stat id="1" value=".06"/>
+          <stat id="3" value="365"/>
+          <stat id="5" value="2921"/>
+          <stat id="7" value="2921"/>
+          <stat id="8" value="2923"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="13">
+          <stat id="1" value=".02"/>
+          <stat id="3" value="75"/>
+          <stat id="5" value="603"/>
+          <stat id="7" value="603"/>
+          <stat id="8" value="603"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="14">
+          <stat id="1" value=".04"/>
+          <stat id="3" value="233"/>
+          <stat id="5" value="1863"/>
+          <stat id="7" value="1863"/>
+          <stat id="8" value="1864"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="15">
+          <stat id="1" value=".04"/>
+          <stat id="3" value="192"/>
+          <stat id="5" value="1538"/>
+          <stat id="7" value="1538"/>
+          <stat id="8" value="1538"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="16">
+          <stat id="1" value=".07"/>
+          <stat id="3" value="394"/>
+          <stat id="5" value="3151"/>
+          <stat id="7" value="3151"/>
+          <stat id="8" value="3156"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="17">
+          <stat id="1" value=".05"/>
+          <stat id="3" value="241"/>
+          <stat id="5" value="1930"/>
+          <stat id="7" value="1930"/>
+          <stat id="8" value="1933"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="18">
+          <stat id="1" value=".04"/>
+          <stat id="3" value="191"/>
+          <stat id="5" value="1530"/>
+          <stat id="7" value="1530"/>
+          <stat id="8" value="1531"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="19">
+          <stat id="1" value=".04"/>
+          <stat id="3" value="240"/>
+          <stat id="5" value="1918"/>
+          <stat id="7" value="1918"/>
+          <stat id="8" value="1918"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="20">
+          <stat id="1" value=".08"/>
+          <stat id="3" value="455"/>
+          <stat id="5" value="3643"/>
+          <stat id="7" value="3643"/>
+          <stat id="8" value="3648"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="21">
+          <stat id="1" value=".04"/>
+          <stat id="3" value="191"/>
+          <stat id="5" value="1532"/>
+          <stat id="7" value="1532"/>
+          <stat id="8" value="1533"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="22">
+          <stat id="1" value=".05"/>
+          <stat id="3" value="276"/>
+          <stat id="5" value="2210"/>
+          <stat id="7" value="2210"/>
+          <stat id="8" value="2212"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="23">
+          <stat id="1" value=".06"/>
+          <stat id="3" value="337"/>
+          <stat id="5" value="2699"/>
+          <stat id="7" value="2699"/>
+          <stat id="8" value="2703"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="24">
+          <stat id="1" value=".09"/>
+          <stat id="3" value="580"/>
+          <stat id="5" value="4642"/>
+          <stat id="7" value="4642"/>
+          <stat id="8" value="4645"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="25">
+          <stat id="1" value=".06"/>
+          <stat id="3" value="390"/>
+          <stat id="5" value="3123"/>
+          <stat id="7" value="3123"/>
+          <stat id="8" value="3125"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="26">
+          <stat id="1" value=".05"/>
+          <stat id="3" value="332"/>
+          <stat id="5" value="2656"/>
+          <stat id="7" value="2656"/>
+          <stat id="8" value="2658"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="27">
+          <stat id="1" value=".06"/>
+          <stat id="3" value="359"/>
+          <stat id="5" value="2871"/>
+          <stat id="7" value="2871"/>
+          <stat id="8" value="2873"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="28">
+          <stat id="1" value=".05"/>
+          <stat id="3" value="296"/>
+          <stat id="5" value="2367"/>
+          <stat id="7" value="2367"/>
+          <stat id="8" value="2368"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="29">
+          <stat id="1" value=".05"/>
+          <stat id="3" value="302"/>
+          <stat id="5" value="2418"/>
+          <stat id="7" value="2418"/>
+          <stat id="8" value="2422"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="30">
+          <stat id="1" value=".05"/>
+          <stat id="3" value="309"/>
+          <stat id="5" value="2471"/>
+          <stat id="7" value="2471"/>
+          <stat id="8" value="2471"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="31">
+          <stat id="1" value=".07"/>
+          <stat id="3" value="468"/>
+          <stat id="5" value="3740"/>
+          <stat id="7" value="3740"/>
+          <stat id="8" value="3745"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="32">
+          <stat id="1" value=".08"/>
+          <stat id="3" value="548"/>
+          <stat id="5" value="4384"/>
+          <stat id="7" value="4384"/>
+          <stat id="8" value="4389"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="33">
+          <stat id="1" value=".06"/>
+          <stat id="3" value="397"/>
+          <stat id="5" value="3174"/>
+          <stat id="7" value="3174"/>
+          <stat id="8" value="3176"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="34">
+          <stat id="1" value=".08"/>
+          <stat id="3" value="513"/>
+          <stat id="5" value="4106"/>
+          <stat id="7" value="4106"/>
+          <stat id="8" value="4110"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="35">
+          <stat id="1" value=".1"/>
+          <stat id="3" value="604"/>
+          <stat id="5" value="4835"/>
+          <stat id="7" value="4835"/>
+          <stat id="8" value="4840"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="36">
+          <stat id="1" value=".06"/>
+          <stat id="3" value="403"/>
+          <stat id="5" value="3228"/>
+          <stat id="7" value="3228"/>
+          <stat id="8" value="3229"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="37">
+          <stat id="1" value=".09"/>
+          <stat id="3" value="583"/>
+          <stat id="5" value="4666"/>
+          <stat id="7" value="4666"/>
+          <stat id="8" value="4669"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="38">
+          <stat id="1" value=".11"/>
+          <stat id="3" value="779"/>
+          <stat id="5" value="6229"/>
+          <stat id="7" value="6229"/>
+          <stat id="8" value="6232"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="39">
+          <stat id="1" value=".17"/>
+          <stat id="3" value="1305"/>
+          <stat id="5" value="10438"/>
+          <stat id="7" value="10438"/>
+          <stat id="8" value="10449"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="40">
+          <stat id="1" value=".17"/>
+          <stat id="3" value="1303"/>
+          <stat id="5" value="10422"/>
+          <stat id="7" value="10422"/>
+          <stat id="8" value="10429"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="41">
+          <stat id="1" value=".13"/>
+          <stat id="3" value="927"/>
+          <stat id="5" value="7418"/>
+          <stat id="7" value="7418"/>
+          <stat id="8" value="7422"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="42">
+          <stat id="1" value=".14"/>
+          <stat id="3" value="1090"/>
+          <stat id="5" value="8721"/>
+          <stat id="7" value="8721"/>
+          <stat id="8" value="8729"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="43">
+          <stat id="1" value=".15"/>
+          <stat id="3" value="1187"/>
+          <stat id="5" value="9493"/>
+          <stat id="7" value="9493"/>
+          <stat id="8" value="9502"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="44">
+          <stat id="1" value=".17"/>
+          <stat id="3" value="1280"/>
+          <stat id="5" value="10242"/>
+          <stat id="7" value="10242"/>
+          <stat id="8" value="10253"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="45">
+          <stat id="1" value=".15"/>
+          <stat id="3" value="1193"/>
+          <stat id="5" value="9541"/>
+          <stat id="7" value="9541"/>
+          <stat id="8" value="9546"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="46">
+          <stat id="1" value=".18"/>
+          <stat id="3" value="1497"/>
+          <stat id="5" value="11974"/>
+          <stat id="7" value="11974"/>
+          <stat id="8" value="11985"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="47">
+          <stat id="1" value=".19"/>
+          <stat id="3" value="1525"/>
+          <stat id="5" value="12203"/>
+          <stat id="7" value="12203"/>
+          <stat id="8" value="12216"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="48">
+          <stat id="1" value=".19"/>
+          <stat id="3" value="1500"/>
+          <stat id="5" value="11998"/>
+          <stat id="7" value="11998"/>
+          <stat id="8" value="12008"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="49">
+          <stat id="1" value=".17"/>
+          <stat id="3" value="1369"/>
+          <stat id="5" value="10953"/>
+          <stat id="7" value="10953"/>
+          <stat id="8" value="10971"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="50">
+          <stat id="1" value=".17"/>
+          <stat id="3" value="1343"/>
+          <stat id="5" value="10746"/>
+          <stat id="7" value="10746"/>
+          <stat id="8" value="10764"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="51">
+          <stat id="1" value=".17"/>
+          <stat id="3" value="1280"/>
+          <stat id="5" value="10244"/>
+          <stat id="7" value="10244"/>
+          <stat id="8" value="10254"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="52">
+          <stat id="1" value=".2"/>
+          <stat id="3" value="2413"/>
+          <stat id="5" value="19304"/>
+          <stat id="7" value="19304"/>
+          <stat id="8" value="23612"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="53">
+          <stat id="1" value=".27"/>
+          <stat id="3" value="2088"/>
+          <stat id="5" value="16705"/>
+          <stat id="7" value="16705"/>
+          <stat id="8" value="16921"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="54">
+          <stat id="1" value=".24"/>
+          <stat id="3" value="1977"/>
+          <stat id="5" value="15813"/>
+          <stat id="7" value="15813"/>
+          <stat id="8" value="15826"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="55">
+          <stat id="1" value=".24"/>
+          <stat id="3" value="2038"/>
+          <stat id="5" value="16304"/>
+          <stat id="7" value="16304"/>
+          <stat id="8" value="16332"/>
+          <stat id="9" value="13120"/>
+        </bucket>
+        <bucket bucket_id="56">
+          <stat id="1" value=".25"/>
+          <stat id="3" value="2079"/>
+          <stat id="5" value="16629"/>
+          <stat id="7" value="16629"/>
+          <stat id="8" value="16644"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="57">
+          <stat id="1" value=".23"/>
+          <stat id="3" value="1854"/>
+          <stat id="5" value="14835"/>
+          <stat id="7" value="14835"/>
+          <stat id="8" value="14856"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="58">
+          <stat id="1" value=".24"/>
+          <stat id="3" value="2002"/>
+          <stat id="5" value="16019"/>
+          <stat id="7" value="16019"/>
+          <stat id="8" value="16036"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="59">
+          <stat id="1" value=".86"/>
+          <stat id="3" value="168"/>
+          <stat id="5" value="1344"/>
+          <stat id="7" value="1344"/>
+          <stat id="8" value="1965426"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="60">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2236041"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="61">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2216575"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="62">
+          <stat id="1" value=".97"/>
+          <stat id="8" value="2216024"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="63">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2256390"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="64">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2194543"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="65">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2245866"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="66">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2232575"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="67">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2338430"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="68">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2324171"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="69">
+          <stat id="1" value="1.1"/>
+          <stat id="8" value="2161051"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="70">
+          <stat id="1" value=".97"/>
+          <stat id="8" value="2167410"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="71">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2194299"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="72">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2312032"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="73">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2208347"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="74">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2249198"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="75">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1994088"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="76">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1739428"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="77">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1789543"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="78">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1760704"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="79">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1733579"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="80">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1769334"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="81">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1772433"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="82">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1802626"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="83">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1785469"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="84">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1762325"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="85">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1811825"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="86">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1757650"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="87">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1582468"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="88">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1694096"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="89">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1821878"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="90">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1738544"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="91">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1732594"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="92">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1770759"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="93">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1747677"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="94">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1797157"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="95">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1767591"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="96">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1796186"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="97">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1788288"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="98">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1723813"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="99">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1826884"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="100">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1793755"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="101">
+          <stat id="1" value="1.11"/>
+          <stat id="8" value="1748298"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="102">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1793703"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="103">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1816719"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="104">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1821689"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="105">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1809853"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="106">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1879780"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="107">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1832209"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="108">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1829196"/>
+          <stat id="9" value="13122"/>
+        </bucket>
+        <bucket bucket_id="109">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1792595"/>
+          <stat id="9" value="13121"/>
+        </bucket>
+        <bucket bucket_id="110">
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1739484"/>
+          <stat id="9" value="13123"/>
+        </bucket>
+        <bucket bucket_id="111">
+          <stat id="1" value=".29"/>
+          <stat id="8" value="928593"/>
+          <stat id="9" value="6561"/>
+        </bucket>
+      </buckets>
+    </stattype>
+  </sql_monitor_report>
+</report>

@@ -1,0 +1,6 @@
+sqlglot>=25.0
+PyYAML>=6.0
+# Apenas para --source db e --validate (produção):
+oracledb>=2.0
+# Apenas para rodar a suite com pytest (opcional):
+pytest>=7.0
