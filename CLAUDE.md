@@ -57,6 +57,7 @@ src/advisor/
 | R002_avoidable_full_scan | 20 | TABLE ACCESS FULL evitável por join seletivo |
 | R006_buffer_sort_materialization | 25 | BUFFER SORT/SORT JOIN materializando muitas linhas para join |
 | R003_covering_for_aggregation | 30 | TABLE ACCESS BY ROWID custoso só para projeção/agregação |
+| R008_global_index_on_partitioned | 40 | índice GLOBAL existente sobre tabela PARTICIONADA (dívida de manutenção) |
 | R900_rac_hotblock_mitigation | 900 | hot leaf block em índice de chave crescente (RAC) — anexa mitigação |
 
 R005 e R004 rodam ANTES das regras de índice de propósito: cartesiano se corrige
@@ -143,7 +144,8 @@ python -m advisor.cli ... --source db --validate
 ## Regras de ouro ao evoluir
 
 - Toda nova capacidade de tuning é uma REGRA nova em `rules/`, não código no
-  engine.
+  engine. **Use a skill `.claude/skills/criar-regra/` — ela padroniza o ritual
+  (interface Rule, 5 convenções, teste obrigatório).**
 - Todo caso real novo vira um teste em `tests/` (mantém a regressão viva).
 - Nunca quebrar as 5 convenções de geração de índice acima.
 - Em dúvida sobre o ambiente, o perfil YAML é a fonte; recalibrar editando o

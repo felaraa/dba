@@ -48,6 +48,8 @@ Veja `docs/MANUAL_DE_USO.md` (passo a passo) e `docs/GUIA_DE_COLETA.md`
 ```
 oracle-query-otim/
 ├── CLAUDE.md                 contexto do projeto (lido pelo Claude Code)
+├── .claude/skills/           Agent Skills do Claude Code
+│   └── criar-regra/          skill que padroniza a criação de regras novas
 ├── pyproject.toml            pacote instalável (src layout) + config pytest
 ├── README.md
 ├── config/
