@@ -91,19 +91,45 @@ def is_local_index(table: TableRef, partition_key: tuple[str, ...],
 
 
 def build_index_ddl(owner: str, table: str, index_name: str,
-                    columns: list[str], local: bool) -> str:
+                    columns: list[str], local: bool,
+                    parallel: int | None = None,
+                    tablespace: str | None = None) -> str:
     """
-    Monta o DDL completo: CREATE INDEX + coleta de estatísticas do índice.
-    O GATHER_INDEX_STATS segue o padrão pedido (GRANULARITY=ALL, DEGREE=16,
-    FORCE=TRUE) e é essencial: um índice novo sem estatísticas pode não ser
-    usado pelo otimizador.
+    Monta o DDL completo: CREATE INDEX + (opcional NOPARALLEL) + coleta de
+    estatísticas do índice.
+
+    Convenções FIRMADAS:
+      - O índice é SEMPRE qualificado pelo MESMO owner da tabela
+        (CREATE INDEX owner.idx ON owner.tab ...), evitando criar o índice no
+        schema do usuário conectado por engano.
+      - `tablespace` (vindo do env): se definido, adiciona `TABLESPACE <ts>`.
+      - `parallel` (vindo do env): se definido, cria com `PARALLEL <n>` (acelera
+        a construção) e EMITE LOGO DEPOIS `ALTER INDEX ... NOPARALLEL;` — o
+        índice nasce paralelo só para a carga e volta a NOPARALLEL para não
+        herdar um DOP alto nas consultas em runtime.
+      - GATHER_INDEX_STATS no padrão (GRANULARITY=ALL, DEGREE=16, FORCE=TRUE):
+        um índice novo sem estatísticas pode não ser usado pelo otimizador.
     """
-    create = (f"CREATE INDEX {index_name} ON {owner}.{table} "
-              f"({', '.join(columns)}){' LOCAL' if local else ''};")
-    gather = (f"EXEC DBMS_STATS.GATHER_INDEX_STATS"
-              f"(OWNNAME=>'{owner}', INDNAME=>'{index_name}', "
-              f"GRANULARITY=>'ALL', DEGREE=>16, FORCE=>TRUE);")
-    return create + "\n" + gather
+    qname = f"{owner}.{index_name}"
+    create = f"CREATE INDEX {qname} ON {owner}.{table} ({', '.join(columns)})"
+    if local:
+        create += " LOCAL"
+    if tablespace:
+        create += f" TABLESPACE {tablespace}"
+    if parallel:
+        create += f" PARALLEL {parallel}"
+    create += ";"
+
+    lines = [create]
+    if parallel:
+        # devolve o índice ao estado serial após a criação paralela
+        lines.append(f"ALTER INDEX {qname} NOPARALLEL;")
+    lines.append(
+        f"EXEC DBMS_STATS.GATHER_INDEX_STATS"
+        f"(OWNNAME=>'{owner}', INDNAME=>'{index_name}', "
+        f"GRANULARITY=>'ALL', DEGREE=>16, FORCE=>TRUE);"
+    )
+    return "\n".join(lines)
 
 
 def qualified(owner: str | None, name: str) -> str:

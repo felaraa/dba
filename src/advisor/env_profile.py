@@ -59,6 +59,22 @@ class EnvProfile:
     def nl_explosion_factor(self) -> float:
         return self.score("nl_explosion_factor", 100)
 
+    # ---- opções de geração de DDL de índice (afetam só o texto do CREATE) ----
+    @property
+    def index_parallel(self) -> int | None:
+        """DOP para criar o índice (None = sem PARALLEL). Vem de index_ddl.parallel."""
+        v = self.raw.get("index_ddl", {}).get("parallel")
+        try:
+            return int(v) if v not in (None, "", 0, "0") else None
+        except (TypeError, ValueError):
+            return None
+
+    @property
+    def index_tablespace(self) -> str | None:
+        """TABLESPACE de destino do índice (None = default do schema)."""
+        v = self.raw.get("index_ddl", {}).get("tablespace")
+        return str(v) if v not in (None, "") else None
+
 
 def load_env_profile(path: str | Path) -> EnvProfile:
     with open(path, "r", encoding="utf-8") as fh:

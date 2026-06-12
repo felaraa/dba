@@ -63,3 +63,16 @@ optimizer:
   index_cost_adj: 100
   index_caching: 0
   adaptive_plans: true
+
+# --- Geração de DDL de índice (opcional; afeta SÓ o texto do CREATE INDEX) ----
+# Estes parâmetros NÃO influenciam o scoring/decisão das regras — só o DDL
+# recomendado. Deixe vazio para o comportamento padrão.
+index_ddl:
+  # DOP para acelerar a CRIAÇÃO do índice. Se definido (ex.: 16), o CREATE INDEX
+  # sai com "PARALLEL 16" e é SEGUIDO de "ALTER INDEX ... NOPARALLEL;" — o índice
+  # nasce paralelo só para a carga e volta a serial, para não herdar um DOP alto
+  # nas consultas em runtime. Vazio = sem cláusula PARALLEL.
+  parallel: 32            # ex.: 16
+  # TABLESPACE de destino do índice. Se definido (ex.: TBS_INDX), adiciona
+  # "TABLESPACE TBS_INDX" ao CREATE INDEX. Vazio = tablespace default do schema.
+  tablespace:  DBN0_I_BIG        # ex.: TBS_INDX

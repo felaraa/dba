@@ -76,7 +76,9 @@ class FilterShouldBeAccessRule(Rule):
             if existing:
                 continue  # índice adequado já existe → não recomendar (ver R007)
 
-            ddl = build_index_ddl(owner, table_name, idx_name, cols, local)
+            ddl = build_index_ddl(owner, table_name, idx_name, cols, local,
+                                  parallel=ctx.env.index_parallel,
+                                  tablespace=ctx.env.index_tablespace)
 
             # benefício: proporcional ao trabalho desperdiçado (work_rows vs
             # resultado final). Em ambiente CPU-bound, linhas processadas a menos

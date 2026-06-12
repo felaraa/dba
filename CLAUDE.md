@@ -83,9 +83,15 @@ fixture` o histórico vem vazio e a regra fica inerte (a coleta é só no modo d
    coletada, o particionamento é INFERIDO do plano (`ctx.is_partitioned`,
    procura `PARTITION RANGE` ancestral). Nunca gerar índice global em tabela
    particionada por engano.
-3. **GATHER_INDEX_STATS após todo CREATE**, no formato:
+3. **DDL via `build_index_ddl` — owner-qualificado + GATHER_INDEX_STATS.**
+   O índice é SEMPRE criado no MESMO owner da tabela
+   (`CREATE INDEX owner.idx ON owner.tab ...`). Seguido de
    `EXEC DBMS_STATS.GATHER_INDEX_STATS(OWNNAME=>'...', INDNAME=>'...',
-   GRANULARITY=>'ALL', DEGREE=>16, FORCE=>TRUE);` (via `build_index_ddl`).
+   GRANULARITY=>'ALL', DEGREE=>16, FORCE=>TRUE);`. Opções vindas do env
+   (`index_ddl:`) afetam só o texto: `parallel` adiciona `PARALLEL n` ao CREATE
+   e emite `ALTER INDEX ... NOPARALLEL;` em seguida; `tablespace` adiciona
+   `TABLESPACE <ts>`. As regras passam `parallel=ctx.env.index_parallel,
+   tablespace=ctx.env.index_tablespace`.
 4. **Não recomendar índice que já existe.** As regras checam
    `existing_index_covering` antes de propor. O match das colunas líderes de
    IGUALDADE é por CONJUNTO, não por sequência: um índice `(MOBILE_SITE_NAME,

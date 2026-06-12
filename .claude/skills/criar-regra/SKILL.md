@@ -38,8 +38,11 @@ veem a saída umas das outras.
 2. **LOCAL em tabela particionada**: use `local = ctx.is_partitioned(owner, table)`
    (infere do plano se a tabela não foi coletada). NUNCA gere índice global em
    tabela particionada por engano.
-3. **GATHER_INDEX_STATS após o CREATE**: monte o DDL com
-   `build_index_ddl(owner, table, idx_name, cols, local)`.
+3. **DDL owner-qualificado + GATHER_INDEX_STATS**: monte o DDL com
+   `build_index_ddl(owner, table, idx_name, cols, local,
+   parallel=ctx.env.index_parallel, tablespace=ctx.env.index_tablespace)`.
+   O índice é criado no MESMO owner da tabela; `parallel`/`tablespace` (do env)
+   só ajustam o texto do CREATE.
 4. **Não recomendar índice que já existe**: cheque
    `existing_index_covering(ctx.metadata, table, eq_cols)` e pule se retornar algo.
 5. **Não deduplicar manualmente**: a consolidação de índices sobrepostos é feita

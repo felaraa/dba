@@ -68,7 +68,9 @@ class BufferSortMaterializationRule(Rule):
             cols = order_columns(eq_cols, [], covering)
             idx_name = build_index_name(table_name, cols, owner=owner)
             local = ctx.is_partitioned(owner, table_name)
-            ddl = build_index_ddl(owner, table_name, idx_name, cols, local)
+            ddl = build_index_ddl(owner, table_name, idx_name, cols, local,
+                                  parallel=ctx.env.index_parallel,
+                                  tablespace=ctx.env.index_tablespace)
 
             hot = ctx.is_table_hot(owner, table_name)
             maint = ((ctx.env.score("maint_cost_hot_table") if hot
