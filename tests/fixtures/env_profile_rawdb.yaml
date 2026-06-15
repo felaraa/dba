@@ -1,0 +1,76 @@
+# =============================================================================
+# FIXTURE DE REGRESSÃO — NÃO é o perfil de produção. NÃO regenere com awr_cli.
+#
+# Ambiente RAWDB CONGELADO para a regressão do pipeline (caso real 24h537gmxw93d
+# e a mitigação R900). Captura o cenário em que o caso foi observado: cluster
+# RAC com o PADRÃO de contenção de índice PRESENTE no top de eventos
+# (enq: TX - index contention) e a tabela quente T1542455817 da query alvo.
+#
+# Por que existe separado de config/env_profile_rawdb.yaml:
+#   o perfil de produção é DADO, regenerado de AWRs reais (advisor.awr_cli). Um
+#   AWR novo pode — legitimamente — não mostrar mais contenção de índice no top
+#   de eventos (foi o que aconteceu ao migrar o perfil para DBN0). Se a regressão
+#   lesse o perfil de produção, ela quebraria a cada recalibração do ambiente.
+#   Aqui o ambiente da regressão fica PINADO ao cenário que o teste verifica.
+# =============================================================================
+
+identity:
+  name: RAWDB
+  rac_nodes: 2
+  exadata: false            # [humano] AWR não detecta com confiança
+  oracle_version: "19.0.0.0.0"
+  db_block_size: 8192
+
+# --- Natureza da carga (define o que "benefício" significa no scoring) -------
+workload:
+  cpu_bound: true              # DB CPU >= 50% do DB time
+  db_cpu_pct_of_dbtime: 0.5
+  cache_hit_very_high: true    # Buffer Hit% alto ou LIO>>PIO
+  # alvo de otimização: reduzir gets/linhas (proxy de CPU), não IO físico
+  benefit_metric: buffer_gets_and_rows
+  redo_mb_per_s: 65.2
+  block_changes_per_s: 143762
+
+# --- Latências de IO reais (break-even índice vs full scan) ------------------
+io:
+  single_block_read_us: 1470    # db file sequential read médio
+  multiblock_read_count: 128   # db_file_multiblock_read_count
+  # [humano] custo relativo de 1 multiblock read vs 1 single block
+  full_scan_block_discount: 0.85
+
+# --- Contenção em RAC já existente (regras de mitigação ativas) --------------
+# PINADO: este é o cenário que a regressão R900 verifica — contenção de índice
+# PRESENTE no top de eventos + hot block sequencial observado.
+rac_contention:
+  index_contention_in_top_events: true    # enq: TX - index contention no top
+  sequential_index_hotblock_observed: true
+  gc_buffer_busy_in_top_events: true
+  # objetos confirmadamente quentes pelo AWR (Segments by ...):
+  hot_segments:
+    - {owner: DBN0_HUA_RAN, name: T1542455817, type: TABLE}   # tabela 'a' da query alvo
+    - {owner: DBN0_ERI_RAN, name: LTE_SCTPASSOCIATION, type: TABLE}
+    - {owner: NA_MF, name: NAMF_STATS, type: TABLE}
+    - {owner: NA_MF, name: NAMF_STATS_SEQ_IDX, type: INDEX}
+    - {owner: NA_MF, name: NAMF_STATS_DATA_SEQ_IDX, type: INDEX}
+    - {owner: NA_MF, name: PK_NAMF_STATS, type: INDEX}
+
+# --- Pesos do scoring [humano] — NÃO vêm do AWR; calibração manual -----------
+scoring:
+  maint_cost_hot_table: 0.6        # penalidade base p/ índice em tabela quente
+  maint_cost_cold_table: 0.05      # tabelas enriquecidas (carga em lote)
+  coverage_cost_per_byte: 0.004    # custo de cobertura por byte extra
+  wide_column_bytes: 30              # limiar de "coluna larga"
+  nl_explosion_factor: 100          # explosão de NESTED LOOPS p/ severidade crítica
+
+# --- Optimizer (de init.ora no AWR; engine não compensa distorção) -----------
+optimizer:
+  index_cost_adj: 100
+  index_caching: 0
+  adaptive_plans: true
+
+# --- Geração de DDL de índice [humano] (afeta SÓ o texto do CREATE INDEX) ----
+index_ddl:
+  # DOP para acelerar a CRIAÇÃO do índice (vazio = sem PARALLEL).
+  parallel: 16
+  # TABLESPACE de destino do índice (vazio = default do schema).
+  tablespace: DBN0_I_BIG

@@ -23,7 +23,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 SQL = os.path.join(ROOT, "examples", "query.sql")
 PLAN = os.path.join(ROOT, "examples", "plan.txt")
-ENV = os.path.join(ROOT, "config", "env_profile_rawdb.yaml")
+# Ambiente PINADO da regressão (ver cabeçalho do YAML). Não usar o perfil de
+# produção config/env_profile_rawdb.yaml: ele é DADO regenerado de AWRs e o
+# padrão de contenção de índice — premissa da regressão R900 — pode sumir do
+# top de eventos numa recalibração, quebrando o teste sem que a engine mude.
+ENV = os.path.join(HERE, "fixtures", "env_profile_rawdb.yaml")
 
 
 def _ctx():
