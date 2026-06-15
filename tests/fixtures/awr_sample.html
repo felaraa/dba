@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+  AWR HTML sintético para testes do awr_parser. NÃO é um AWR real; reproduz a
+  ESTRUTURA de um AWR 19c (atributos `summary` nas tabelas + cabeçalhos) com
+  números escolhidos para exercitar cada caminho do parser:
+   - CPU-bound (DB CPU 71% do DB time), cache hit altíssimo
+   - índice em contenção (enq: TX - index contention, gc buffer busy)
+   - db file sequential read 0.34 ms -> 340 µs
+   - init.ora com block size / mbrc / optimizer_*
+   - segmentos quentes (tabela + índice em buffer busy)
+-->
+<html><head><title>AWR Report for TESTDB</title></head><body>
+
+<h1>WORKLOAD REPOSITORY report for</h1>
+<table border="0" class="tdiff" summary="This table displays database instance information">
+<tr><th>DB Name</th><th>DB Id</th><th>Unique Name</th><th>Role</th><th>Edition</th><th>Release</th><th>RAC</th><th>CDB</th></tr>
+<tr><td>TESTDB</td><td>123456789</td><td>testdb</td><td>PRIMARY</td><td>EE</td><td>19.0.0.0.0</td><td>YES</td><td>YES</td></tr>
+</table>
+
+<table border="0" class="tdiff" summary="This table displays host configuration">
+<tr><th>Platform</th><th>CPUs</th><th>Cores</th><th>Sockets</th><th>Memory (GB)</th></tr>
+<tr><td>Linux x86 64-bit</td><td>192</td><td>96</td><td>4</td><td>1024.00</td></tr>
+</table>
+
+<h2>Load Profile</h2>
+<table border="0" class="tdiff" summary="This table displays load profile">
+<tr><th>&nbsp;</th><th>Per Second</th><th>Per Transaction</th><th>Per Exec</th><th>Per Call</th></tr>
+<tr><td>DB Time(s):</td><td>59.6</td><td>0.3</td><td>0.00</td><td>0.01</td></tr>
+<tr><td>DB CPU(s):</td><td>42.3</td><td>0.2</td><td>0.00</td><td>0.01</td></tr>
+<tr><td>Redo size (bytes):</td><td>95,420,160</td><td>421,233</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Logical read (blocks):</td><td>6,670,000.5</td><td>29,400.0</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Block changes:</td><td>206,655.0</td><td>912.1</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Physical read (blocks):</td><td>88,000.0</td><td>388.1</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Executes (SQL):</td><td>12,345.0</td><td>54.5</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<h2>Instance Efficiency Percentages (Target 100%)</h2>
+<table border="0" class="tdiff" summary="This table displays instance efficiency percentages">
+<tr><td>Buffer Nowait %:</td><td>99.99</td><td>Redo NoWait %:</td><td>100.00</td></tr>
+<tr><td>Buffer Hit %:</td><td>99.95</td><td>In-memory Sort %:</td><td>100.00</td></tr>
+<tr><td>Library Hit %:</td><td>99.20</td><td>Soft Parse %:</td><td>98.70</td></tr>
+</table>
+
+<h2>Time Model Statistics</h2>
+<table border="0" class="tdiff" summary="This table displays system time model statistics">
+<tr><th>Statistic Name</th><th>Time (s)</th><th>% of DB time</th></tr>
+<tr><td>sql execute elapsed time</td><td>198,500.10</td><td>96.40</td></tr>
+<tr><td>DB CPU</td><td>146,000.00</td><td>70.90</td></tr>
+<tr><td>parse time elapsed</td><td>1,200.00</td><td>0.58</td></tr>
+<tr><td>DB time</td><td>205,900.00</td><td>&nbsp;</td></tr>
+</table>
+
+<h2>Top 10 Foreground Events by Total Wait Time</h2>
+<table border="0" class="tdiff" summary="This table displays top 10 wait events by total wait time">
+<tr><th>Event</th><th>Waits</th><th>Total Wait Time (sec)</th><th>Wait Avg(ms)</th><th>% DB time</th><th>Wait Class</th></tr>
+<tr><td>DB CPU</td><td>&nbsp;</td><td>146,000</td><td>&nbsp;</td><td>70.9</td><td>&nbsp;</td></tr>
+<tr><td>db file sequential read</td><td>40,000,000</td><td>13,600</td><td>0.34</td><td>6.6</td><td>User I/O</td></tr>
+<tr><td>enq: TX - index contention</td><td>1,200,000</td><td>4,800</td><td>4.00</td><td>2.3</td><td>Concurrency</td></tr>
+<tr><td>gc buffer busy acquire</td><td>900,000</td><td>3,100</td><td>3.44</td><td>1.5</td><td>Cluster</td></tr>
+<tr><td>log file sync</td><td>2,000,000</td><td>2,500</td><td>1.25</td><td>1.2</td><td>Commit</td></tr>
+</table>
+
+<h2>Foreground Wait Events</h2>
+<table border="0" class="tdiff" summary="This table displays Foreground Wait Events and their wait statistics">
+<tr><th>Event</th><th>Waits</th><th>%Time -outs</th><th>Total Wait Time (s)</th><th>Avg wait (ms)</th><th>Waits /txn</th><th>% DB time</th></tr>
+<tr><td>db file sequential read</td><td>40,000,000</td><td>0</td><td>13,600</td><td>0.34</td><td>176.6</td><td>6.6</td></tr>
+<tr><td>enq: TX - index contention</td><td>1,200,000</td><td>0</td><td>4,800</td><td>4.00</td><td>5.3</td><td>2.3</td></tr>
+<tr><td>direct path read</td><td>500,000</td><td>0</td><td>900</td><td>1.80</td><td>2.2</td><td>0.4</td></tr>
+</table>
+
+<h2>Segments by Logical Reads</h2>
+<table border="0" class="tdiff" summary="This table displays top segments by logical reads">
+<tr><th>Owner</th><th>Tablespace Name</th><th>Object Name</th><th>Subobject Name</th><th>Obj. Type</th><th>Logical Reads</th><th>%Total</th></tr>
+<tr><td>SYS</td><td>SYSTEM</td><td>SEG$</td><td>&nbsp;</td><td>TABLE</td><td>162,633,513,760</td><td>88.20</td></tr>
+<tr><td>SYS</td><td>SYSAUX</td><td>WRI$_OPTSTAT_SYNOPSIS_HEAD$</td><td>&nbsp;</td><td>TABLE</td><td>547,709,472</td><td>0.30</td></tr>
+<tr><td>DBN0_HUA_RAN</td><td>DBN0_D_BIG</td><td>T1542455817</td><td>&nbsp;</td><td>TABLE PARTITION</td><td>1,200,000,000</td><td>18.20</td></tr>
+<tr><td>DBN0_ERI_RAN</td><td>DBN0_D_BIG</td><td>LTE_SCTPASSOCIATION</td><td>&nbsp;</td><td>TABLE</td><td>880,000,000</td><td>13.35</td></tr>
+</table>
+
+<h2>Segments by Buffer Busy Waits</h2>
+<table border="0" class="tdiff" summary="This table displays top segments by buffer busy waits">
+<tr><th>Owner</th><th>Tablespace Name</th><th>Object Name</th><th>Subobject Name</th><th>Obj. Type</th><th>Buffer Busy Waits</th><th>%Total</th></tr>
+<tr><td>NA_MF</td><td>DBN0_I_BIG</td><td>NAMF_STATS_SEQ_IDX</td><td>&nbsp;</td><td>INDEX</td><td>2,400,000</td><td>41.10</td></tr>
+<tr><td>NA_MF</td><td>DBN0_I_BIG</td><td>PK_NAMF_STATS</td><td>&nbsp;</td><td>INDEX</td><td>900,000</td><td>15.40</td></tr>
+</table>
+
+<h2>Segments by Row Lock Waits</h2>
+<table border="0" class="tdiff" summary="This table displays top segments by row lock waits">
+<tr><th>Owner</th><th>Tablespace Name</th><th>Object Name</th><th>Subobject Name</th><th>Obj. Type</th><th>Row Lock Waits</th><th>%Total</th></tr>
+<tr><td>DBN0_HUA_RAN</td><td>DBN0_D_BIG</td><td>T1526726713</td><td>&nbsp;</td><td>TABLE PARTITION</td><td>120,000</td><td>22.10</td></tr>
+</table>
+
+<h2>Initialization Parameters</h2>
+<!-- como num AWR de CDB: parâmetros MODIFICADOS pelo container (End value em
+     branco quando não mudou no período) ... -->
+<table border="0" class="tdiff" summary="This table displays name and value of the initialization parametersmodified by the current container">
+<tr><th>Parameter Name</th><th>Begin value</th><th>End value (if different)</th><th>PDB Name</th></tr>
+<tr><td>cpu_count</td><td>192</td><td>&nbsp;&nbsp;</td><td>TESTDB</td></tr>
+<tr><td>optimizer_adaptive_plans</td><td>TRUE</td><td>&nbsp;&nbsp;</td><td>TESTDB</td></tr>
+<tr><td>sga_target</td><td>0</td><td>&nbsp;&nbsp;</td><td>TESTDB</td></tr>
+</table>
+<!-- ... e parâmetros HERDADos/no default (onde mora db_block_size etc.) -->
+<table border="0" class="tdiff" summary="This table displays name and value of database parametersthat have been inherited by the current container">
+<tr><th>Parameter Name</th><th>Begin value</th><th>End value (if different)</th><th>PDB Name</th></tr>
+<tr><td>db_block_size</td><td>8192</td><td>&nbsp;&nbsp;</td><td>TESTDB</td></tr>
+<tr><td>db_file_multiblock_read_count</td><td>128</td><td>&nbsp;&nbsp;</td><td>TESTDB</td></tr>
+<tr><td>optimizer_index_caching</td><td>0</td><td>&nbsp;&nbsp;</td><td>TESTDB</td></tr>
+<tr><td>optimizer_index_cost_adj</td><td>100</td><td>&nbsp;&nbsp;</td><td>TESTDB</td></tr>
+</table>
+
+</body></html>

@@ -40,6 +40,22 @@ python -m advisor.cli \
 - `--diag` mostra o que o coletor enxergou e quais tabelas faltaram.
 - `--validate` cria o índice como `INVISIBLE`, mede gets antes/depois e remove.
 
+## Perfil do ambiente a partir de um AWR
+
+O `env_profile_*.yaml` (CPU-bound, latência de IO, contenção em RAC, segmentos
+quentes) é gerado/atualizado automaticamente de um AWR HTML — você não digita os
+números a mão:
+
+```bash
+# criar um perfil novo
+python -m advisor.awr_cli --awr awr_prod.html --out config/env_profile_prod.yaml --diag
+
+# atualizar com um AWR mais recente (preserva scoring/index_ddl ajustados a mão)
+python -m advisor.awr_cli --awr awr_novo.html --out config/env_profile_prod.yaml --update
+```
+
+Passo a passo em `docs/GUIA_ENV_PROFILE.md`.
+
 Veja `docs/MANUAL_DE_USO.md` (passo a passo) e `docs/GUIA_DE_COLETA.md`
 (como coletar query, plano e cardinalidade).
 
@@ -75,6 +91,7 @@ oracle-query-otim/
 | `CLAUDE.md` | Arquitetura, decisões, regras, casos, pendências (para o Claude Code) |
 | `docs/MANUAL_DE_USO.md` | Passo a passo de uso, conexão, regras, validação |
 | `docs/GUIA_DE_COLETA.md` | Scripts SQL para coletar query/plano/cardinalidade |
+| `docs/GUIA_ENV_PROFILE.md` | Criar/atualizar um `env_profile` a partir de um AWR (`advisor-awr`) |
 | `docs/ARQUITETURA.md` | Visão técnica dos módulos e do fluxo |
 | `docs/CONTRIBUTING.md` | Como criar uma regra nova sem tocar no motor |
 | `docs/plano_tuning_rawdb.md` | Plano de tuning de ambiente (parâmetros, INITRANS, memória) |

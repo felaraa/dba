@@ -264,8 +264,28 @@ Copie `config/env_profile_rawdb.yaml` e ajuste:
 - `scoring.*` — pesos de custo de manutenção (tabela quente vs fria), custo de
   cobertura por byte, limiar de coluna larga e fator de explosão de NL.
 
-O parser de AWR validado (que extraiu o perfil RAWDB) pode ser reaproveitado
-para gerar este YAML a partir de qualquer AWR HTML.
+### Gerar/atualizar o perfil automaticamente a partir de um AWR
+
+Em vez de editar os campos derivados do AWR a mão, use `advisor-awr`
+(`advisor.awr_cli`), que lê um AWR HTML e emite o YAML comentado:
+
+```bash
+# criar um perfil novo
+python -m advisor.awr_cli --awr awr_prod.html --out config/env_profile_prod.yaml --diag
+
+# RAC: agregar um AWR por nó
+python -m advisor.awr_cli --awr awr_inst1.html awr_inst2.html \
+  --name PRODDB --rac-nodes 2 --out config/env_profile_prod.yaml
+
+# atualizar com AWR mais recente (REFRESCA o que vem do AWR, PRESERVA scoring/index_ddl)
+python -m advisor.awr_cli --awr awr_novo.html --out config/env_profile_prod.yaml --update
+```
+
+A ferramenta aplica os limiares (`cpu_bound`, `cache_hit_very_high`), extrai
+contenção/segmentos quentes do AWR e re-emite o arquivo inteiro — então o
+`--update` nunca perde comentários nem os campos de calibração manual. Passo a
+passo completo, tabela de origem de cada campo e limites em
+`docs/GUIA_ENV_PROFILE.md`.
 
 ---
 

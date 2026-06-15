@@ -1,13 +1,13 @@
-<report db_version="19.0.0.0.0" elapsed_time="1.84" cpu_time="0.18" inst_count="2" cpu_cores="96" hyperthread="Y" con_id="3" con_name="RAWDB" timezone_offset="-10800" packs="2" service_type="0">
-  <report_id><![CDATA[/orarep/sqlmonitor/main%3fsql_id%3d2qwnuzkvyxs90]]></report_id>
-  <sql_monitor_report version="4.0" sysdate="06/12/2026 14:29:59">
+<report db_version="19.0.0.0.0" elapsed_time="1.85" cpu_time="0.18" inst_count="2" cpu_cores="96" hyperthread="Y" con_id="3" con_name="RAWDB" timezone_offset="-10800" packs="2" service_type="0">
+  <report_id><![CDATA[/orarep/sqlmonitor/main%3fsql_id%3dgfvws3961tybn]]></report_id>
+  <sql_monitor_report version="4.0" sysdate="06/12/2026 15:09:55">
     <report_parameters>
-      <sql_id>2qwnuzkvyxs90</sql_id>
-      <bucket_count>86</bucket_count>
-      <interval_start>06/12/2026 14:24:19</interval_start>
-      <interval_end>06/12/2026 14:30:00</interval_end>
+      <sql_id>gfvws3961tybn</sql_id>
+      <bucket_count>69</bucket_count>
+      <interval_start>06/12/2026 15:05:25</interval_start>
+      <interval_end>06/12/2026 15:09:58</interval_end>
     </report_parameters>
-    <target instance_id="2" session_id="21668" session_serial="58286" sql_id="2qwnuzkvyxs90" sql_exec_start="06/12/2026 14:24:19" sql_exec_id="33555247" sql_plan_hash="2100321346" sql_full_plan_hash="4124211292" db_unique_name="dbn0" db_platform_name="x86_64/Linux 2.4.xx" report_host_name="rjbar-dbn0del-rac01">
+    <target instance_id="1" session_id="17678" session_serial="1441" sql_id="gfvws3961tybn" sql_exec_start="06/12/2026 15:05:25" sql_exec_id="16778075" sql_plan_hash="784346099" sql_full_plan_hash="3604957022" db_unique_name="dbn0" db_platform_name="x86_64/Linux 2.4.xx" report_host_name="rjbar-dbn0del-rac01">
       <user_id>140</user_id>
       <user>DBN0_ERI_RAN</user>
       <con_id>3</con_id>
@@ -15,12 +15,12 @@
       <program>JDBC Thin Client</program>
       <module>JDBC Thin Client</module>
       <service>rawdb</service>
-      <sql_fulltext is_full="Y">select SUM(P__1),inner_select.par0, inner_select.par1, inner_select.par2, inner_select.par3, inner_select.par4, inner_select.par5, inner_select.par6, inner_select.par7 from (select SUM(a.PMCELLDOWNTIMEAUTO) P__1 ,k.GNODEB_CN par0, k.GNODEB_MUNICIPALY par1, k.SITE_OPERATOR par2, k.GNODEB_REGION par3, k.SETOR_FISICO par4, k.SIGLA_LOGICA par5, k.GNODEB_UF par6, k.SITE_VENDOR par7 from DBN0_ERI_RAN.LTE_NRCELLDU a, DBN0_EXT_ENRICH.ENR_RADIO_5G_CELLS k where a.MECONTEXT = k.MOBILE_SITE_NAME AND a.NRCELLDU = k.CELL_NAME AND a.MEASSTARTTIME&gt;=to_date(:1 ,&apos;YYYYMMDDHH24MI&apos;) AND a.MEASSTARTTIME&lt;to_date(:2 ,&apos;YYYYMMDDHH24MI&apos;) AND k.STARTTIME&gt;=to_date(:3 ,&apos;YYYYMMDDHH24MI&apos;) AND k.STARTTIME&lt;to_date(:4 ,&apos;YYYYMMDDHH24MI&apos;) group by k.ERB_FISICA, k.GNODEB_CN, k.GNODEB_MUNICIPALY, k.GNODEB_REGION, k.GNODEB_UF, k.ID_MASTER, a.MECONTEXT, k.NE_NAME, a.NRCELLDU, k.SETOR_FISICO, k.SIGLA_LOGICA, k.SITE_OPERATOR, k.SITE_VENDOR, k.STATION_CODE, k.AZIMUTH, k.BEAMWIDTH, k.CELL_BAND, k.CELL_NRARFCN, k.CELL_OPERATOR, k.CELL_TYPE, k.GNODEB_IBGE_ID, k.GNODEB_LATITUDE, k.GNODEB_LONGITUDE, k.GNODEB_NEIGHBORHOOD, k.NETWORK, k.SITE_TYPE, k.SITE_VERSION) inner_select group by inner_select.par0, inner_select.par1, inner_select.par2, inner_select.par3, inner_select.par4, inner_select.par5, inner_select.par6, inner_select.par7 order by inner_select.par0, inner_select.par1, inner_select.par2, inner_select.par3, inner_select.par4, inner_select.par5, inner_select.par6, inner_select.par6, inner_select.par7</sql_fulltext>
+      <sql_fulltext is_full="Y">select SUM(P__1),inner_select.par0, inner_select.par1, inner_select.par2, inner_select.par3, inner_select.par4, inner_select.par5, inner_select.par6, inner_select.par7, inner_select.par8, inner_select.par9, inner_select.par10, inner_select.par11, inner_select.par12, inner_select.par13, inner_select.par14, inner_select.par15, inner_select.par16, inner_select.par17, inner_select.par18, inner_select.par19, inner_select.par20, inner_select.par21, inner_select.par22, inner_select.par23, inner_select.par24, inner_select.par25, inner_select.par26, inner_select.par27, inner_select.par28, inner_select.par29, inner_select.par30, inner_select.par31 from (select SUM(a.GRANULARITYPERIOD) P__1 ,k.AZIMUTH par0, k.BEAMWIDTH par1, k.ENODEB_CN par2, a.EUTRANCELLFDD par3, k.CELL_TYPE par4, k.CELL_BAND par5, k.CELL_EARFCN par6, k.CELL_OPERATOR par7, k.ENODEB_IBGE_ID par8, k.ID_MASTER par9, k.ENODEB_MUNICIPALY par10, k.NETWORK par11, k.SITE_OPERATOR par12, :1  par13, l.OPERATOR par14, k.ENODEB_REGION par15, k.SETOR_FISICO par16, k.SHARING_MODE par17, k.SIGLA_LOGICA par18, k.SITE_TYPE par19, k.ERB_FISICA par20, k.STATION_CODE par21, k.CELL_TAC par22, k.ENODEB_UF par23, k.SITE_VENDOR par24, k.SITE_VERSION par25, :2  par26, a.MECONTEXT par27, k.ENODEB_IBGE_ID par28, k.ENODEB_LATITUDE par29, k.ENODEB_LONGITUDE par30, k.ENODEB_NEIGHBORHOOD par31 from DBN0_ERI_RAN.LTE_EUTRANCELLFDD_PLMN a, DBN0_EXT_ENRICH.ENR_RADIO_4G_CELLS k, DBN0_EXT_ENRICH.ENR_RADIO_4G_ERI_CELLS_OPER l where a.EUTRANCELLFDD = k.CELL_NAME AND a.MECONTEXT = k.MOBILE_SITE_NAME AND a.EUTRANCELLFDD = l.CELL_NAME AND a.INDEX_C = l.INDEX_C AND a.MECONTEXT = l.MOBILE_SITE_NAME AND a.MEASSTARTTIME&gt;=to_date(:3 ,&apos;YYYYMMDDHH24MI&apos;) AND a.MEASSTARTTIME&lt;to_date(:4 ,&apos;YYYYMMDDHH24MI&apos;) AND k.STARTTIME&gt;=to_date(:5 ,&apos;YYYYMMDDHH24MI&apos;) AND k.STARTTIME&lt;to_date(:6 ,&apos;YYYYMMDDHH24MI&apos;) group by k.ENODEB_CN, k.ENODEB_MUNICIPALY, k.ENODEB_REGION, k.ENODEB_UF, k.ERB_FISICA, a.EUTRANCELLFDD, k.ID_MASTER, a.INDEX_C, l.MNC, a.MECONTEXT, l.OPERATOR, k.SETOR_FISICO, k.SIGLA_LOGICA, k.SITE_OPERATOR, k.SITE_VENDOR, k.STATION_CODE, k.AZIMUTH, k.BEAMWIDTH, k.CELL_BAND, k.CELL_EARFCN, k.CELL_OPERATOR, k.CELL_TAC, k.CELL_TYPE, k.ENODEB_IBGE_ID, k.ENODEB_LATITUDE, k.ENODEB_LONGITUDE, k.ENODEB_NEIGHBORHOOD, k.NETWORK, k.SHARING_MODE, k.SITE_TYPE, k.SITE_VERSION) inner_select group by inner_select.par0, inner_select.par1, inner_select.par2, inner_select.par3, inner_select.par4, inner_select.par5, inner_select.par6, inner_select.par7, inner_select.par8, inner_select.par9, inner_select.par10, inner_select.par11, inner_select.par12, inner_select.par13, inner_select.par14, inner_select.par15, inner_select.par16, inner_select.par17, inner_select.par18, inner_select.par19, inner_select.par20, inner_select.par21, inner_select.par22, inner_select.par23, inner_select.par24, inner_select.par25, inner_select.par26, inner_select.par27, inner_select.par28, inner_select.par29, inner_select.par30, inner_select.par31 order by inner_select.par2, inner_select.par3, inner_select.par9, inner_select.par10, inner_select.par12, inner_select.par13, inner_select.par14, inner_select.par15, inner_select.par16, inner_select.par18, inner_select.par20, inner_select.par21, inner_select.par23, inner_select.par24, inner_select.par26, inner_select.par27, inner_select.par0, inner_select.par1, inner_select.par4, inner_select.par5, inner_select.par6, inner_select.par7, inner_select.par8, inner_select.par11, inner_select.par17, inner_select.par19, inner_select.par22, inner_select.par25, inner_select.par28, inner_select.par29, inner_select.par30, inner_select.par31</sql_fulltext>
       <status>EXECUTING</status>
-      <refresh_count>168</refresh_count>
-      <first_refresh_time>06/12/2026 14:24:25</first_refresh_time>
-      <last_refresh_time>06/12/2026 14:29:59</last_refresh_time>
-      <duration>340</duration>
+      <refresh_count>134</refresh_count>
+      <first_refresh_time>06/12/2026 15:05:29</first_refresh_time>
+      <last_refresh_time>06/12/2026 15:09:55</last_refresh_time>
+      <duration>272</duration>
       <rminfo rmcg="OTHER_GROUPS"/>
       <optimizer_env>
         <param name="active_instance_count">2</param>
@@ -39,320 +39,307 @@
       </optimizer_env>
     </target>
     <stats type="monitor">
-      <stat name="elapsed_time">339256168</stat>
-      <stat name="cpu_time">334881619</stat>
-      <stat name="concurrency_wait_time">4669</stat>
-      <stat name="other_wait_time">4369880</stat>
-      <stat name="buffer_gets">61424200</stat>
+      <stat name="elapsed_time">269848709</stat>
+      <stat name="cpu_time">249024402</stat>
+      <stat name="user_io_wait_time">13054339</stat>
+      <stat name="concurrency_wait_time">3932</stat>
+      <stat name="cluster_wait_time">3125460</stat>
+      <stat name="other_wait_time">4640576</stat>
+      <stat name="buffer_gets">54381796</stat>
+      <stat name="disk_reads">106946</stat>
+      <stat name="read_reqs">106946</stat>
+      <stat name="read_bytes">876101632</stat>
     </stats>
     <activity_sampled>
-      <activity class="Cpu">338</activity>
+      <activity class="Cluster" event="gc cr grant busy">2</activity>
+      <activity class="Cluster" event="gc current block 2-way">1</activity>
+      <activity class="Cpu">254</activity>
+      <activity class="User I/O" event="db file parallel read">6</activity>
+      <activity class="User I/O" event="db file sequential read">7</activity>
     </activity_sampled>
     <binds>
-      <bind name=":1" pos="1" dty="2" dtystr="NUMBER" maxlen="22" len="6">202606121100</bind>
-      <bind name=":2" pos="2" dty="2" dtystr="NUMBER" maxlen="22" len="7">202606121115</bind>
-      <bind name=":3" pos="3" dty="1" dtystr="VARCHAR2(128)" maxlen="128" csid="873" len="12">202606120000</bind>
-      <bind name=":4" pos="4" dty="1" dtystr="VARCHAR2(128)" maxlen="128" csid="873" len="12">202606130000</bind>
+      <bind name=":3" pos="3" dty="2" dtystr="NUMBER" maxlen="22" len="7">202606120915</bind>
+      <bind name=":4" pos="4" dty="2" dtystr="NUMBER" maxlen="22" len="7">202606120930</bind>
+      <bind name=":5" pos="5" dty="1" dtystr="VARCHAR2(128)" maxlen="128" csid="873" len="12">202606120000</bind>
+      <bind name=":6" pos="6" dty="1" dtystr="VARCHAR2(128)" maxlen="128" csid="873" len="12">202606130000</bind>
     </binds>
-    <activity_detail start_time="06/12/2026 14:24:19" end_time="06/12/2026 14:30:00" first_sample_time="06/12/2026 14:24:19" last_sample_time="06/12/2026 14:29:59" duration="341" sample_interval="1" bucket_interval="4" bucket_count="86" bucket_duration="342" cpu_cores="96" total_cpu_cores="96" hyperthread="Y">
+    <activity_detail start_time="06/12/2026 15:05:25" end_time="06/12/2026 15:09:58" first_sample_time="06/12/2026 15:05:26" last_sample_time="06/12/2026 15:09:57" duration="272" sample_interval="1" bucket_interval="4" bucket_count="69" bucket_duration="274" cpu_cores="96" total_cpu_cores="96" hyperthread="Y">
       <bucket number="1">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="User I/O" event="db file sequential read" line="11">3</activity>
       </bucket>
       <bucket number="2">
-        <activity class="Cpu" line="9">3</activity>
+        <activity class="Cluster" event="gc current block 2-way" line="11">1</activity>
+        <activity class="Cpu" line="11">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="11">2</activity>
       </bucket>
       <bucket number="3">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cluster" event="gc cr grant busy" line="11">2</activity>
+        <activity class="Cpu" line="11">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="12">1</activity>
       </bucket>
       <bucket number="4">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="12">3</activity>
+        <activity class="User I/O" event="db file parallel read" line="12">1</activity>
       </bucket>
       <bucket number="5">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">1</activity>
+        <activity class="Cpu" line="12">1</activity>
+        <activity class="User I/O" event="db file parallel read" line="12">2</activity>
       </bucket>
       <bucket number="6">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">1</activity>
+        <activity class="Cpu" line="12">2</activity>
+        <activity class="User I/O" event="db file parallel read" line="12">1</activity>
       </bucket>
       <bucket number="7">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">1</activity>
+        <activity class="Cpu" line="12">3</activity>
       </bucket>
       <bucket number="8">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="9">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="10">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">2</activity>
+        <activity class="Cpu" line="12">2</activity>
       </bucket>
       <bucket number="11">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="12">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="13">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="14">
-        <activity class="Cpu" line="3">1</activity>
-        <activity class="Cpu" line="9">3</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="15">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="16">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="17">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="18">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="19">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="20">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
       </bucket>
       <bucket number="21">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="22">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="23">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="24">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="25">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="26">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="27">
-        <activity class="Cpu" line="8">1</activity>
-        <activity class="Cpu" line="9">3</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="28">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">2</activity>
+        <activity class="Cpu" line="12">2</activity>
       </bucket>
       <bucket number="29">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="30">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="31">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="32">
-        <activity class="Cpu" line="9">3</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="33">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="34">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="35">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="36">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="37">
-        <activity class="Cpu" line="8">1</activity>
-        <activity class="Cpu" line="9">3</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="38">
-        <activity class="Cpu" line="3">1</activity>
-        <activity class="Cpu" line="9">3</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="39">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="40">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="41">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="42">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="43">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="44">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">1</activity>
+        <activity class="Cpu" line="12">1</activity>
+        <activity class="User I/O" event="db file parallel read" line="12">2</activity>
       </bucket>
       <bucket number="45">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">2</activity>
+        <activity class="Cpu" line="12">1</activity>
+        <activity class="User I/O" event="db file sequential read" line="12">1</activity>
       </bucket>
       <bucket number="46">
-        <activity class="Cpu" line="8">1</activity>
-        <activity class="Cpu" line="9">3</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="47">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">2</activity>
+        <activity class="Cpu" line="12">2</activity>
       </bucket>
       <bucket number="48">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="49">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="50">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="51">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="52">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="53">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="54">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="55">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="56">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">2</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="57">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="58">
-        <activity class="Cpu" line="8">1</activity>
-        <activity class="Cpu" line="9">3</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="59">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="60">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="61">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="62">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="63">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">4</activity>
       </bucket>
       <bucket number="64">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">2</activity>
+        <activity class="Cpu" line="12">2</activity>
       </bucket>
       <bucket number="65">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="66">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">2</activity>
+        <activity class="Cpu" line="12">2</activity>
       </bucket>
       <bucket number="67">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">3</activity>
+        <activity class="Cpu" line="12">1</activity>
       </bucket>
       <bucket number="68">
-        <activity class="Cpu" line="9">4</activity>
+        <activity class="Cpu" line="11">2</activity>
+        <activity class="Cpu" line="12">2</activity>
       </bucket>
       <bucket number="69">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="70">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="71">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="72">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="73">
-        <activity class="Cpu" line="9">3</activity>
-      </bucket>
-      <bucket number="74">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="75">
-        <activity class="Cpu" line="8">1</activity>
-        <activity class="Cpu" line="9">3</activity>
-      </bucket>
-      <bucket number="76">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="77">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="78">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="79">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="80">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="81">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="82">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="83">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="84">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="85">
-        <activity class="Cpu" line="9">4</activity>
-      </bucket>
-      <bucket number="86">
-        <activity class="Cpu" line="9">1</activity>
+        <activity class="Cpu" line="11">1</activity>
       </bucket>
     </activity_detail>
     <plan>
-      <operation name="SELECT STATEMENT" id="0" depth="0" pos="6">
-        <cost>6</cost>
+      <operation name="SELECT STATEMENT" id="0" depth="0" pos="18690">
+        <cost>18690</cost>
       </operation>
       <operation name="SORT" options="GROUP BY" id="1" depth="1" pos="1">
         <card>1</card>
-        <bytes>1332</bytes>
-        <cost>6</cost>
-        <io_cost>5</io_cost>
-        <cpu_cost>52842231</cpu_cost>
+        <bytes>1518</bytes>
+        <cost>18690</cost>
+        <io_cost>18686</io_cost>
+        <cpu_cost>235101534</cpu_cost>
         <time>00:00:01 </time>
         <qblock>SEL$2566E639</qblock>
         <other_xml>
-          <info type="nodeid/pflags">000009000001</info>
-          <info type="nodeid/pflags">000008000001</info>
+          <info type="nodeid/pflags">000012000001</info>
+          <info type="nodeid/pflags">000011000001</info>
+          <info type="nodeid/pflags">000010000001</info>
           <info type="nodeid/pflags">000007000001</info>
           <info type="nodeid/pflags">000006000001</info>
-          <info type="nodeid/pflags">000005000001</info>
           <info type="has_user_tab">yes</info>
           <info type="db_version">19.0.0.0</info>
           <info type="parse_schema"><![CDATA["DBN0_ERI_RAN"]]></info>
-          <info type="plan_hash_full">4124211292</info>
-          <info type="plan_hash">2100321346</info>
-          <info type="plan_hash_2">4124211292</info>
+          <info type="plan_hash_full">3604957022</info>
+          <info type="plan_hash">784346099</info>
+          <info type="plan_hash_2">3604957022</info>
           <peeked_binds>
-            <bind nam=":1" pos="1" dty="2" pre="0" scl="0" mxl="22">c6151b070d0a</bind>
-            <bind nam=":2" pos="2" dty="2" pre="0" scl="0" mxl="22">c6151b070d0a10</bind>
-            <bind nam=":3" pos="3" dty="1" csi="873" frm="1" mxl="128">323032363036313230303030</bind>
-            <bind nam=":4" pos="4" dty="1" csi="873" frm="1" mxl="128">323032363036313330303030</bind>
+            <bind nam=":3" pos="3" dty="2" pre="0" scl="0" mxl="22">c6151b070d082e</bind>
+            <bind nam=":4" pos="4" dty="2" pre="0" scl="0" mxl="22">c6151b070d09</bind>
+            <bind nam=":5" pos="5" dty="1" csi="873" frm="1" mxl="128">323032363036313230303030</bind>
+            <bind nam=":6" pos="6" dty="1" csi="873" frm="1" mxl="128">323032363036313330303030</bind>
           </peeked_binds>
           <stats type="compilation">
-            <stat name="bg">21</stat>
+            <stat name="bg">39</stat>
           </stats>
           <qb_registry>
             <q o="69" h="y">
@@ -365,6 +352,10 @@
                 </h>
                 <h>
                   <t><![CDATA[K]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
+                <h>
+                  <t><![CDATA[L]]></t>
                   <s><![CDATA[SEL$2]]></s>
                 </h>
               </f>
@@ -396,6 +387,10 @@
                   <t><![CDATA[K]]></t>
                   <s><![CDATA[SEL$2]]></s>
                 </h>
+                <h>
+                  <t><![CDATA[L]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
               </f>
             </q>
             <q o="2">
@@ -407,6 +402,10 @@
                 </h>
                 <h>
                   <t><![CDATA[K]]></t>
+                  <s><![CDATA[SEL$2]]></s>
+                </h>
+                <h>
+                  <t><![CDATA[L]]></t>
                   <s><![CDATA[SEL$2]]></s>
                 </h>
               </f>
@@ -424,119 +423,135 @@
             <hint><![CDATA[ELIM_GROUPBY(@"SEL$2")]]></hint>
             <hint><![CDATA[OUTLINE(@"SEL$2")]]></hint>
             <hint><![CDATA[FULL(@"SEL$2566E639" "K"@"SEL$2")]]></hint>
-            <hint><![CDATA[INDEX(@"SEL$2566E639" "A"@"SEL$2" ("LTE_NRCELLDU"."MEASSTARTTIME" "LTE_NRCELLDU"."SEQ_NUMBER"))]]></hint>
-            <hint><![CDATA[LEADING(@"SEL$2566E639" "K"@"SEL$2" "A"@"SEL$2")]]></hint>
+            <hint><![CDATA[FULL(@"SEL$2566E639" "L"@"SEL$2")]]></hint>
+            <hint><![CDATA[INDEX(@"SEL$2566E639" "A"@"SEL$2" ("LTE_EUTRANCELLFDD_PLMN"."MEASSTARTTIME" "LTE_EUTRANCELLFDD_PLMN"."NEDISTINGUISHEDNAME" "LTE_EUTRANCELLFDD_PLMN"."INDEX_C" "LTE_EUTRANCELLFDD_PLMN"."MEASUREDOBJECTID"))]]></hint>
+            <hint><![CDATA[LEADING(@"SEL$2566E639" "K"@"SEL$2" "L"@"SEL$2" "A"@"SEL$2")]]></hint>
+            <hint><![CDATA[USE_MERGE_CARTESIAN(@"SEL$2566E639" "L"@"SEL$2")]]></hint>
             <hint><![CDATA[USE_NL(@"SEL$2566E639" "A"@"SEL$2")]]></hint>
             <hint><![CDATA[NLJ_BATCHING(@"SEL$2566E639" "A"@"SEL$2")]]></hint>
           </outline_data>
         </other_xml>
       </operation>
       <operation name="FILTER" id="2" depth="2" pos="1">
-        <predicates type="filter">(TO_DATE(:4,&apos;YYYYMMDDHH24MI&apos;)&gt;TO_DATE(:3,&apos;YYYYMMDDHH24MI&apos;) AND TO_DATE(TO_CHAR(:2),&apos;YYYYMMDDHH24MI&apos;)&gt;TO_DATE(TO_CHAR(:1),&apos;YYYYMMDDHH24MI&apos;))</predicates>
+        <predicates type="filter">(TO_DATE(:6,&apos;YYYYMMDDHH24MI&apos;)&gt;TO_DATE(:5,&apos;YYYYMMDDHH24MI&apos;) AND TO_DATE(TO_CHAR(:4),&apos;YYYYMMDDHH24MI&apos;)&gt;TO_DATE(TO_CHAR(:3),&apos;YYYYMMDDHH24MI&apos;))</predicates>
       </operation>
       <operation name="NESTED LOOPS" id="3" depth="3" pos="1">
         <card>1</card>
-        <bytes>1332</bytes>
-        <cost>5</cost>
-        <io_cost>5</io_cost>
-        <cpu_cost>30231</cpu_cost>
+        <bytes>1518</bytes>
+        <cost>18689</cost>
+        <io_cost>18686</io_cost>
+        <cpu_cost>182289534</cpu_cost>
         <time>00:00:01 </time>
       </operation>
       <operation name="NESTED LOOPS" id="4" depth="4" pos="1">
-        <card>1</card>
-        <bytes>1332</bytes>
-        <cost>5</cost>
-        <io_cost>5</io_cost>
-        <cpu_cost>30231</cpu_cost>
+        <card>19841</card>
+        <bytes>1518</bytes>
+        <cost>18689</cost>
+        <io_cost>18686</io_cost>
+        <cpu_cost>182289534</cpu_cost>
         <time>00:00:01 </time>
       </operation>
-      <operation name="PARTITION RANGE" options="ITERATOR" id="5" depth="5" pos="1">
+      <operation name="MERGE JOIN" options="CARTESIAN" id="5" depth="5" pos="1">
         <card>1</card>
-        <bytes>1299</bytes>
+        <bytes>1484</bytes>
+        <cost>72</cost>
+        <io_cost>72</io_cost>
+        <cpu_cost>5590346</cpu_cost>
+        <time>00:00:01 </time>
+      </operation>
+      <operation name="PARTITION RANGE" options="ITERATOR" id="6" depth="6" pos="1">
+        <card>1</card>
+        <bytes>1459</bytes>
         <cost>2</cost>
         <io_cost>2</io_cost>
         <cpu_cost>7121</cpu_cost>
         <time>00:00:01 </time>
         <partition start="KEY" stop="KEY"/>
       </operation>
-      <operation name="TABLE ACCESS" options="FULL" id="6" depth="6" pos="1">
-        <object>ENR_RADIO_5G_CELLS</object>
+      <operation name="TABLE ACCESS" options="FULL" id="7" depth="7" pos="1">
+        <object>ENR_RADIO_4G_CELLS</object>
         <card>1</card>
-        <bytes>1299</bytes>
+        <bytes>1459</bytes>
         <cost>2</cost>
         <io_cost>2</io_cost>
         <cpu_cost>7121</cpu_cost>
         <time>00:00:01 </time>
         <partition start="KEY" stop="KEY"/>
-        <predicates type="filter">(&quot;K&quot;.&quot;STARTTIME&quot;&gt;=TO_DATE(:3,&apos;YYYYMMDDHH24MI&apos;) AND &quot;K&quot;.&quot;STARTTIME&quot;&lt;TO_DATE(:4,&apos;YYYYMMDDHH24MI&apos;))</predicates>
+        <predicates type="filter">(&quot;K&quot;.&quot;STARTTIME&quot;&gt;=TO_DATE(:5,&apos;YYYYMMDDHH24MI&apos;) AND &quot;K&quot;.&quot;STARTTIME&quot;&lt;TO_DATE(:6,&apos;YYYYMMDDHH24MI&apos;))</predicates>
         <qblock>SEL$2566E639</qblock>
         <object_alias>&quot;K&quot;@&quot;SEL$2&quot;</object_alias>
       </operation>
-      <operation name="PARTITION RANGE" options="ITERATOR" id="7" depth="5" pos="2">
-        <card>1</card>
-        <cost>2</cost>
-        <io_cost>2</io_cost>
-        <cpu_cost>15293</cpu_cost>
+      <operation name="BUFFER" options="SORT" id="8" depth="6" pos="2">
+        <card>15126</card>
+        <bytes>378150</bytes>
+        <cost>70</cost>
+        <io_cost>70</io_cost>
+        <cpu_cost>5583224</cpu_cost>
+        <time>00:00:01 </time>
+      </operation>
+      <operation name="TABLE ACCESS" options="FULL" id="9" depth="7" pos="1">
+        <object>ENR_RADIO_4G_ERI_CELLS_OPER</object>
+        <card>15126</card>
+        <bytes>378150</bytes>
+        <cost>70</cost>
+        <io_cost>70</io_cost>
+        <cpu_cost>5583224</cpu_cost>
+        <time>00:00:01 </time>
+        <qblock>SEL$2566E639</qblock>
+        <object_alias>&quot;L&quot;@&quot;SEL$2&quot;</object_alias>
+      </operation>
+      <operation name="PARTITION RANGE" options="ITERATOR" id="10" depth="5" pos="2">
+        <card>19841</card>
+        <cost>3963</cost>
+        <io_cost>3962</io_cost>
+        <cpu_cost>63156795</cpu_cost>
         <time>00:00:01 </time>
         <partition start="KEY" stop="KEY"/>
       </operation>
-      <operation name="INDEX" options="RANGE SCAN" id="8" depth="6" pos="1">
-        <object>LTE_NRCELLDU2</object>
-        <card>1</card>
-        <cost>2</cost>
-        <io_cost>2</io_cost>
-        <cpu_cost>15293</cpu_cost>
+      <operation name="INDEX" options="RANGE SCAN" id="11" depth="6" pos="1">
+        <object>LTE_EUTRANCELLFDD_PLMNPK</object>
+        <card>19841</card>
+        <cost>3963</cost>
+        <io_cost>3962</io_cost>
+        <cpu_cost>63156795</cpu_cost>
         <time>00:00:01 </time>
         <partition start="KEY" stop="KEY"/>
-        <predicates type="access">&quot;A&quot;.&quot;MEASSTARTTIME&quot;&gt;=TO_DATE(TO_CHAR(:1),&apos;YYYYMMDDHH24MI&apos;) AND &quot;A&quot;.&quot;MEASSTARTTIME&quot;&lt;TO_DATE(TO_CHAR(:2),&apos;YYYYMMDDHH24MI&apos;)</predicates>
+        <predicates type="access">&quot;A&quot;.&quot;MEASSTARTTIME&quot;&gt;=TO_DATE(TO_CHAR(:3),&apos;YYYYMMDDHH24MI&apos;) AND &quot;A&quot;.&quot;INDEX_C&quot;=&quot;L&quot;.&quot;INDEX_C&quot; AND &quot;A&quot;.&quot;MEASSTARTTIME&quot;&lt;TO_DATE(TO_CHAR(:4),&apos;YYYYMMDDHH24MI&apos;)</predicates>
+        <predicates type="filter">&quot;A&quot;.&quot;INDEX_C&quot;=&quot;L&quot;.&quot;INDEX_C&quot;</predicates>
         <qblock>SEL$2566E639</qblock>
         <object_alias>&quot;A&quot;@&quot;SEL$2&quot;</object_alias>
       </operation>
-      <operation name="TABLE ACCESS" options="BY LOCAL INDEX ROWID" id="9" depth="4" pos="2">
-        <object>LTE_NRCELLDU</object>
+      <operation name="TABLE ACCESS" options="BY LOCAL INDEX ROWID" id="12" depth="4" pos="2">
+        <object>LTE_EUTRANCELLFDD_PLMN</object>
         <card>1</card>
-        <bytes>33</bytes>
-        <cost>3</cost>
-        <io_cost>3</io_cost>
-        <cpu_cost>23109</cpu_cost>
+        <bytes>34</bytes>
+        <cost>18617</cost>
+        <io_cost>18614</io_cost>
+        <cpu_cost>176699188</cpu_cost>
         <time>00:00:01 </time>
         <partition start="1" stop="1"/>
-        <predicates type="filter">(&quot;A&quot;.&quot;MECONTEXT&quot;=&quot;K&quot;.&quot;MOBILE_SITE_NAME&quot; AND &quot;A&quot;.&quot;NRCELLDU&quot;=&quot;K&quot;.&quot;CELL_NAME&quot;)</predicates>
+        <predicates type="filter">(&quot;A&quot;.&quot;EUTRANCELLFDD&quot;=&quot;K&quot;.&quot;CELL_NAME&quot; AND &quot;A&quot;.&quot;MECONTEXT&quot;=&quot;K&quot;.&quot;MOBILE_SITE_NAME&quot; AND &quot;A&quot;.&quot;EUTRANCELLFDD&quot;=&quot;L&quot;.&quot;CELL_NAME&quot; AND &quot;A&quot;.&quot;MECONTEXT&quot;=&quot;L&quot;.&quot;MOBILE_SITE_NAME&quot;)</predicates>
         <qblock>SEL$2566E639</qblock>
         <object_alias>&quot;A&quot;@&quot;SEL$2&quot;</object_alias>
       </operation>
     </plan>
-    <plan_monitor max_activity_count="331" max_io_reqs="0" max_io_bytes="0" max_imq_count="0" max_cpu_count="331" max_wait_count="0" max_other_sql_count="0">
+    <plan_monitor max_activity_count="223" max_io_reqs="87148" max_io_bytes="713916416" max_imq_count="0" max_cpu_count="215" max_wait_count="8" max_other_sql_count="0">
       <operation id="0" name="SELECT STATEMENT" depth="0" position="0" skp="0">
         <stats type="plan_monitor">
-          <stat name="first_active">06/12/2026 14:24:25</stat>
-          <stat name="last_active">06/12/2026 14:29:59</stat>
-          <stat name="duration">335</stat>
-          <stat name="from_most_recent">0</stat>
-          <stat name="from_sql_exec_start">6</stat>
           <stat name="starts">1</stat>
-          <stat name="cardinality">0</stat>
         </stats>
       </operation>
       <operation id="1" parent_id="0" name="SORT" options="GROUP BY" depth="1" position="1" skp="0">
         <optimizer>
           <cardinality>1</cardinality>
-          <bytes>1332</bytes>
-          <cost>6</cost>
-          <cpu_cost>52842231</cpu_cost>
-          <io_cost>5</io_cost>
+          <bytes>1518</bytes>
+          <cost>18690</cost>
+          <cpu_cost>235101534</cpu_cost>
+          <io_cost>18686</io_cost>
           <time>1</time>
         </optimizer>
         <stats type="plan_monitor">
-          <stat name="first_active">06/12/2026 14:24:25</stat>
-          <stat name="last_active">06/12/2026 14:29:59</stat>
-          <stat name="duration">335</stat>
-          <stat name="from_most_recent">0</stat>
-          <stat name="from_sql_exec_start">6</stat>
           <stat name="starts">1</stat>
-          <stat name="cardinality">0</stat>
-          <stat name="memory">885760</stat>
-          <stat name="max_memory">885760</stat>
         </stats>
         <rwsstats group_id="20">
           <metadata>
@@ -549,108 +564,110 @@
       </operation>
       <operation id="2" parent_id="1" name="FILTER" depth="2" position="1" skp="0">
         <stats type="plan_monitor">
-          <stat name="first_active">06/12/2026 14:24:25</stat>
-          <stat name="last_active">06/12/2026 14:29:59</stat>
-          <stat name="duration">335</stat>
-          <stat name="from_most_recent">0</stat>
-          <stat name="from_sql_exec_start">6</stat>
           <stat name="starts">1</stat>
-          <stat name="cardinality">7409</stat>
         </stats>
       </operation>
       <operation id="3" parent_id="2" name="NESTED LOOPS" depth="3" position="1" skp="0">
         <optimizer>
           <cardinality>1</cardinality>
-          <bytes>1332</bytes>
-          <cost>5</cost>
-          <cpu_cost>30231</cpu_cost>
-          <io_cost>5</io_cost>
+          <bytes>1518</bytes>
+          <cost>18689</cost>
+          <cpu_cost>182289534</cpu_cost>
+          <io_cost>18686</io_cost>
           <time>1</time>
         </optimizer>
         <stats type="plan_monitor">
-          <stat name="first_active">06/12/2026 14:24:25</stat>
-          <stat name="last_active">06/12/2026 14:29:59</stat>
-          <stat name="duration">335</stat>
+          <stat name="first_active">06/12/2026 15:05:37</stat>
+          <stat name="last_active">06/12/2026 15:09:57</stat>
+          <stat name="duration">261</stat>
           <stat name="from_most_recent">0</stat>
-          <stat name="from_sql_exec_start">6</stat>
+          <stat name="from_sql_exec_start">12</stat>
           <stat name="starts">1</stat>
-          <stat name="cardinality">7409</stat>
+          <stat name="cardinality">0</stat>
         </stats>
-        <activity_sampled start_time="06/12/2026 14:25:13" end_time="06/12/2026 14:26:50" duration="98" count="2" imq_count="0" wait_count="0" cpu_count="2" other_sql_count="0" cpu_cores="96" hyperthread="Y">
-          <activity class="Cpu">2</activity>
-          <activity_histogram bucket_interval="4" bucket_count="86" start_time="06/12/2026 14:24:19" end_time="06/12/2026 14:30:00" duration="342">
-            <bucket number="14">
-              <activity class="Cpu">1</activity>
-            </bucket>
-            <bucket number="38">
-              <activity class="Cpu">1</activity>
-            </bucket>
-          </activity_histogram>
-        </activity_sampled>
       </operation>
       <operation id="4" parent_id="3" name="NESTED LOOPS" depth="4" position="1" skp="0">
         <optimizer>
-          <cardinality>1</cardinality>
-          <bytes>1332</bytes>
-          <cost>5</cost>
-          <cpu_cost>30231</cpu_cost>
-          <io_cost>5</io_cost>
+          <cardinality>19841</cardinality>
+          <bytes>1518</bytes>
+          <cost>18689</cost>
+          <cpu_cost>182289534</cpu_cost>
+          <io_cost>18686</io_cost>
           <time>1</time>
         </optimizer>
         <stats type="plan_monitor">
-          <stat name="first_active">06/12/2026 14:24:25</stat>
-          <stat name="last_active">06/12/2026 14:29:59</stat>
-          <stat name="duration">335</stat>
+          <stat name="first_active">06/12/2026 15:05:29</stat>
+          <stat name="last_active">06/12/2026 15:09:57</stat>
+          <stat name="duration">269</stat>
           <stat name="from_most_recent">0</stat>
-          <stat name="from_sql_exec_start">6</stat>
+          <stat name="from_sql_exec_start">4</stat>
           <stat name="starts">1</stat>
-          <stat name="cardinality">278720903</stat>
+          <stat name="cardinality">18791536</stat>
         </stats>
       </operation>
-      <operation id="5" parent_id="4" name="PARTITION RANGE" options="ITERATOR" depth="5" position="1" skp="0">
+      <operation id="5" parent_id="4" name="MERGE JOIN" options="CARTESIAN" depth="5" position="1" skp="0">
+        <optimizer>
+          <cardinality>1</cardinality>
+          <bytes>1484</bytes>
+          <cost>72</cost>
+          <cpu_cost>5590346</cpu_cost>
+          <io_cost>72</io_cost>
+          <time>1</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="first_active">06/12/2026 15:05:29</stat>
+          <stat name="last_active">06/12/2026 15:09:57</stat>
+          <stat name="duration">269</stat>
+          <stat name="from_most_recent">0</stat>
+          <stat name="from_sql_exec_start">4</stat>
+          <stat name="starts">1</stat>
+          <stat name="cardinality">1723</stat>
+        </stats>
+      </operation>
+      <operation id="6" parent_id="5" name="PARTITION RANGE" options="ITERATOR" depth="6" position="1" skp="0">
         <partition_start>KEY</partition_start>
         <partition_stop>KEY</partition_stop>
         <optimizer>
           <cardinality>1</cardinality>
-          <bytes>1299</bytes>
+          <bytes>1459</bytes>
           <cost>2</cost>
           <cpu_cost>7121</cpu_cost>
           <io_cost>2</io_cost>
           <time>1</time>
         </optimizer>
         <stats type="plan_monitor">
-          <stat name="first_active">06/12/2026 14:24:25</stat>
-          <stat name="last_active">06/12/2026 14:29:59</stat>
-          <stat name="duration">335</stat>
-          <stat name="from_most_recent">0</stat>
-          <stat name="from_sql_exec_start">6</stat>
+          <stat name="first_active">06/12/2026 15:05:29</stat>
+          <stat name="last_active">06/12/2026 15:05:29</stat>
+          <stat name="duration">1</stat>
+          <stat name="from_most_recent">268</stat>
+          <stat name="from_sql_exec_start">4</stat>
           <stat name="starts">1</stat>
-          <stat name="cardinality">9295</stat>
+          <stat name="cardinality">2</stat>
         </stats>
       </operation>
-      <operation id="6" parent_id="5" name="TABLE ACCESS" options="FULL" depth="6" position="1" skp="0">
+      <operation id="7" parent_id="6" name="TABLE ACCESS" options="FULL" depth="7" position="1" skp="0">
         <object type="TABLE">
           <owner>DBN0_EXT_ENRICH</owner>
-          <name>ENR_RADIO_5G_CELLS</name>
+          <name>ENR_RADIO_4G_CELLS</name>
         </object>
         <partition_start>KEY</partition_start>
         <partition_stop>KEY</partition_stop>
         <optimizer>
           <cardinality>1</cardinality>
-          <bytes>1299</bytes>
+          <bytes>1459</bytes>
           <cost>2</cost>
           <cpu_cost>7121</cpu_cost>
           <io_cost>2</io_cost>
           <time>1</time>
         </optimizer>
         <stats type="plan_monitor">
-          <stat name="first_active">06/12/2026 14:24:25</stat>
-          <stat name="last_active">06/12/2026 14:29:59</stat>
-          <stat name="duration">335</stat>
+          <stat name="first_active">06/12/2026 15:05:29</stat>
+          <stat name="last_active">06/12/2026 15:09:57</stat>
+          <stat name="duration">269</stat>
           <stat name="from_most_recent">0</stat>
-          <stat name="from_sql_exec_start">6</stat>
+          <stat name="from_sql_exec_start">4</stat>
           <stat name="starts">1</stat>
-          <stat name="cardinality">9295</stat>
+          <stat name="cardinality">2</stat>
         </stats>
         <rwsstats group_id="3">
           <metadata>
@@ -667,130 +684,135 @@
           </metadata>
         </rwsstats>
       </operation>
-      <operation id="7" parent_id="4" name="PARTITION RANGE" options="ITERATOR" depth="5" position="2" skp="0">
-        <partition_start>KEY</partition_start>
-        <partition_stop>KEY</partition_stop>
+      <operation id="8" parent_id="5" name="BUFFER" options="SORT" depth="6" position="2" skp="0">
         <optimizer>
-          <cardinality>1</cardinality>
-          <cost>2</cost>
-          <cpu_cost>15293</cpu_cost>
-          <io_cost>2</io_cost>
+          <cardinality>15126</cardinality>
+          <bytes>378150</bytes>
+          <cost>70</cost>
+          <cpu_cost>5583224</cpu_cost>
+          <io_cost>70</io_cost>
           <time>1</time>
         </optimizer>
         <stats type="plan_monitor">
-          <stat name="first_active">06/12/2026 14:24:25</stat>
-          <stat name="last_active">06/12/2026 14:29:59</stat>
-          <stat name="duration">335</stat>
+          <stat name="first_active">06/12/2026 15:05:29</stat>
+          <stat name="last_active">06/12/2026 15:09:57</stat>
+          <stat name="duration">269</stat>
           <stat name="from_most_recent">0</stat>
-          <stat name="from_sql_exec_start">6</stat>
-          <stat name="starts">9296</stat>
-          <stat name="cardinality">278720903</stat>
+          <stat name="from_sql_exec_start">4</stat>
+          <stat name="starts">1</stat>
+          <stat name="cardinality">1723</stat>
+          <stat name="memory">885760</stat>
+          <stat name="max_memory">885760</stat>
         </stats>
       </operation>
-      <operation id="8" parent_id="7" name="INDEX" options="RANGE SCAN" depth="6" position="1" skp="0">
-        <object type="INDEX">
-          <owner>DBN0_ERI_RAN</owner>
-          <name>LTE_NRCELLDU2</name>
-        </object>
-        <partition_start>KEY</partition_start>
-        <partition_stop>KEY</partition_stop>
-        <optimizer>
-          <cardinality>1</cardinality>
-          <cost>2</cost>
-          <cpu_cost>15293</cpu_cost>
-          <io_cost>2</io_cost>
-          <time>1</time>
-        </optimizer>
-        <stats type="plan_monitor">
-          <stat name="first_active">06/12/2026 14:24:25</stat>
-          <stat name="last_active">06/12/2026 14:29:59</stat>
-          <stat name="duration">335</stat>
-          <stat name="from_most_recent">0</stat>
-          <stat name="from_sql_exec_start">6</stat>
-          <stat name="starts">9296</stat>
-          <stat name="cardinality">278720903</stat>
-        </stats>
-        <activity_sampled start_time="06/12/2026 14:26:03" end_time="06/12/2026 14:29:15" duration="193" count="5" imq_count="0" wait_count="0" cpu_count="5" other_sql_count="0" cpu_cores="96" hyperthread="Y">
-          <activity class="Cpu">5</activity>
-          <activity_histogram bucket_interval="4" bucket_count="86" start_time="06/12/2026 14:24:19" end_time="06/12/2026 14:30:00" duration="342">
-            <bucket number="27">
-              <activity class="Cpu">1</activity>
-            </bucket>
-            <bucket number="37">
-              <activity class="Cpu">1</activity>
-            </bucket>
-            <bucket number="46">
-              <activity class="Cpu">1</activity>
-            </bucket>
-            <bucket number="58">
-              <activity class="Cpu">1</activity>
-            </bucket>
-            <bucket number="75">
-              <activity class="Cpu">1</activity>
-            </bucket>
-          </activity_histogram>
-        </activity_sampled>
-      </operation>
-      <operation id="9" parent_id="3" name="TABLE ACCESS" options="BY LOCAL INDEX ROWID" depth="4" position="2" skp="0">
+      <operation id="9" parent_id="8" name="TABLE ACCESS" options="FULL" depth="7" position="1" skp="0">
         <object type="TABLE">
-          <owner>DBN0_ERI_RAN</owner>
-          <name>LTE_NRCELLDU</name>
+          <owner>DBN0_EXT_ENRICH</owner>
+          <name>ENR_RADIO_4G_ERI_CELLS_OPER</name>
         </object>
-        <partition_start>1</partition_start>
-        <partition_stop>1</partition_stop>
         <optimizer>
-          <cardinality>1</cardinality>
-          <bytes>33</bytes>
-          <cost>3</cost>
-          <cpu_cost>23109</cpu_cost>
-          <io_cost>3</io_cost>
+          <cardinality>15126</cardinality>
+          <bytes>378150</bytes>
+          <cost>70</cost>
+          <cpu_cost>5583224</cpu_cost>
+          <io_cost>70</io_cost>
           <time>1</time>
         </optimizer>
         <stats type="plan_monitor">
-          <stat name="first_active">06/12/2026 14:24:19</stat>
-          <stat name="first_row">06/12/2026 14:24:25</stat>
-          <stat name="last_active">06/12/2026 14:29:59</stat>
-          <stat name="duration">341</stat>
-          <stat name="from_most_recent">0</stat>
-          <stat name="from_sql_exec_start">0</stat>
-          <stat name="starts">278720903</stat>
-          <stat name="cardinality">7409</stat>
+          <stat name="first_active">06/12/2026 15:05:29</stat>
+          <stat name="last_active">06/12/2026 15:05:29</stat>
+          <stat name="duration">1</stat>
+          <stat name="from_most_recent">268</stat>
+          <stat name="from_sql_exec_start">4</stat>
+          <stat name="starts">1</stat>
+          <stat name="cardinality">15126</stat>
         </stats>
-        <activity_sampled start_time="06/12/2026 14:24:19" end_time="06/12/2026 14:29:59" duration="341" count="331" imq_count="0" wait_count="0" cpu_count="331" other_sql_count="0" cpu_cores="96" hyperthread="Y">
-          <activity class="Cpu">331</activity>
-          <activity_histogram bucket_interval="4" bucket_count="86" start_time="06/12/2026 14:24:19" end_time="06/12/2026 14:30:00" duration="342">
+        <rwsstats group_id="3"/>
+      </operation>
+      <operation id="10" parent_id="4" name="PARTITION RANGE" options="ITERATOR" depth="5" position="2" skp="0">
+        <partition_start>KEY</partition_start>
+        <partition_stop>KEY</partition_stop>
+        <optimizer>
+          <cardinality>19841</cardinality>
+          <cost>3963</cost>
+          <cpu_cost>63156795</cpu_cost>
+          <io_cost>3962</io_cost>
+          <time>1</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="first_active">06/12/2026 15:05:37</stat>
+          <stat name="last_active">06/12/2026 15:09:57</stat>
+          <stat name="duration">261</stat>
+          <stat name="from_most_recent">0</stat>
+          <stat name="from_sql_exec_start">12</stat>
+          <stat name="starts">1724</stat>
+          <stat name="cardinality">18791536</stat>
+        </stats>
+      </operation>
+      <operation id="11" parent_id="10" name="INDEX" options="RANGE SCAN" depth="6" position="1" skp="0">
+        <object type="INDEX (UNIQUE)">
+          <owner>DBN0_ERI_RAN</owner>
+          <name>LTE_EUTRANCELLFDD_PLMNPK</name>
+        </object>
+        <partition_start>KEY</partition_start>
+        <partition_stop>KEY</partition_stop>
+        <optimizer>
+          <cardinality>19841</cardinality>
+          <cost>3963</cost>
+          <cpu_cost>63156795</cpu_cost>
+          <io_cost>3962</io_cost>
+          <time>1</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="first_active">06/12/2026 15:05:26</stat>
+          <stat name="first_row">06/12/2026 15:05:29</stat>
+          <stat name="last_active">06/12/2026 15:09:57</stat>
+          <stat name="duration">272</stat>
+          <stat name="from_most_recent">0</stat>
+          <stat name="from_sql_exec_start">1</stat>
+          <stat name="starts">1724</stat>
+          <stat name="cardinality">18791536</stat>
+          <stat name="read_reqs">19798</stat>
+          <stat name="read_bytes">162185216</stat>
+        </stats>
+        <activity_sampled start_time="06/12/2026 15:05:26" end_time="06/12/2026 15:09:57" duration="272" count="223" imq_count="0" wait_count="8" cpu_count="215" other_sql_count="0" cpu_cores="96" hyperthread="Y">
+          <activity class="Cluster" event="gc cr grant busy">2</activity>
+          <activity class="Cluster" event="gc current block 2-way">1</activity>
+          <activity class="Cpu">215</activity>
+          <activity class="User I/O" event="db file sequential read">5</activity>
+          <activity_histogram bucket_interval="4" bucket_count="69" start_time="06/12/2026 15:05:25" end_time="06/12/2026 15:09:58" duration="274">
             <bucket number="1">
-              <activity class="Cpu">4</activity>
+              <activity class="User I/O" event="db file sequential read">3</activity>
             </bucket>
             <bucket number="2">
-              <activity class="Cpu">3</activity>
+              <activity class="Cluster" event="gc current block 2-way">1</activity>
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">2</activity>
             </bucket>
             <bucket number="3">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="4">
-              <activity class="Cpu">4</activity>
+              <activity class="Cluster" event="gc cr grant busy">2</activity>
+              <activity class="Cpu">1</activity>
             </bucket>
             <bucket number="5">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">1</activity>
             </bucket>
             <bucket number="6">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">1</activity>
             </bucket>
             <bucket number="7">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">1</activity>
             </bucket>
             <bucket number="8">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="9">
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="10">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">2</activity>
             </bucket>
             <bucket number="11">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="12">
               <activity class="Cpu">4</activity>
@@ -805,7 +827,7 @@
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="16">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="17">
               <activity class="Cpu">4</activity>
@@ -817,31 +839,31 @@
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="20">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="21">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="22">
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="23">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="24">
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="25">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="26">
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="27">
-              <activity class="Cpu">3</activity>
+              <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="28">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">2</activity>
             </bucket>
             <bucket number="29">
               <activity class="Cpu">4</activity>
@@ -850,28 +872,28 @@
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="31">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="32">
               <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="33">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="34">
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="35">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="36">
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="37">
-              <activity class="Cpu">3</activity>
+              <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="38">
-              <activity class="Cpu">3</activity>
+              <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="39">
               <activity class="Cpu">4</activity>
@@ -889,16 +911,16 @@
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="44">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">1</activity>
             </bucket>
             <bucket number="45">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">2</activity>
             </bucket>
             <bucket number="46">
-              <activity class="Cpu">3</activity>
+              <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="47">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">2</activity>
             </bucket>
             <bucket number="48">
               <activity class="Cpu">4</activity>
@@ -922,16 +944,16 @@
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="55">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="56">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">2</activity>
             </bucket>
             <bucket number="57">
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="58">
-              <activity class="Cpu">3</activity>
+              <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="59">
               <activity class="Cpu">4</activity>
@@ -943,79 +965,155 @@
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="62">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="63">
               <activity class="Cpu">4</activity>
             </bucket>
             <bucket number="64">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">2</activity>
             </bucket>
             <bucket number="65">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="66">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">2</activity>
             </bucket>
             <bucket number="67">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">3</activity>
             </bucket>
             <bucket number="68">
-              <activity class="Cpu">4</activity>
+              <activity class="Cpu">2</activity>
             </bucket>
             <bucket number="69">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="70">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="71">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="72">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="73">
-              <activity class="Cpu">3</activity>
-            </bucket>
-            <bucket number="74">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="75">
-              <activity class="Cpu">3</activity>
-            </bucket>
-            <bucket number="76">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="77">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="78">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="79">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="80">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="81">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="82">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="83">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="84">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="85">
-              <activity class="Cpu">4</activity>
-            </bucket>
-            <bucket number="86">
               <activity class="Cpu">1</activity>
+            </bucket>
+          </activity_histogram>
+        </activity_sampled>
+      </operation>
+      <operation id="12" parent_id="3" name="TABLE ACCESS" options="BY LOCAL INDEX ROWID" depth="4" position="2" skp="0">
+        <object type="TABLE">
+          <owner>DBN0_ERI_RAN</owner>
+          <name>LTE_EUTRANCELLFDD_PLMN</name>
+        </object>
+        <partition_start>1</partition_start>
+        <partition_stop>1</partition_stop>
+        <optimizer>
+          <cardinality>1</cardinality>
+          <bytes>34</bytes>
+          <cost>18617</cost>
+          <cpu_cost>176699188</cpu_cost>
+          <io_cost>18614</io_cost>
+          <time>1</time>
+        </optimizer>
+        <stats type="plan_monitor">
+          <stat name="first_active">06/12/2026 15:05:36</stat>
+          <stat name="first_row">06/12/2026 15:08:19</stat>
+          <stat name="last_active">06/12/2026 15:09:56</stat>
+          <stat name="duration">261</stat>
+          <stat name="from_most_recent">1</stat>
+          <stat name="from_sql_exec_start">11</stat>
+          <stat name="starts">18988357</stat>
+          <stat name="cardinality">0</stat>
+          <stat name="read_reqs">87148</stat>
+          <stat name="read_bytes">713916416</stat>
+        </stats>
+        <activity_sampled start_time="06/12/2026 15:05:36" end_time="06/12/2026 15:09:56" duration="261" count="47" imq_count="0" wait_count="8" cpu_count="39" other_sql_count="0" cpu_cores="96" hyperthread="Y">
+          <activity class="Cpu">39</activity>
+          <activity class="User I/O" event="db file parallel read">6</activity>
+          <activity class="User I/O" event="db file sequential read">2</activity>
+          <activity_histogram bucket_interval="4" bucket_count="69" start_time="06/12/2026 15:05:25" end_time="06/12/2026 15:09:58" duration="274">
+            <bucket number="3">
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="4">
+              <activity class="Cpu">3</activity>
+              <activity class="User I/O" event="db file parallel read">1</activity>
+            </bucket>
+            <bucket number="5">
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file parallel read">2</activity>
+            </bucket>
+            <bucket number="6">
+              <activity class="Cpu">2</activity>
+              <activity class="User I/O" event="db file parallel read">1</activity>
+            </bucket>
+            <bucket number="7">
+              <activity class="Cpu">3</activity>
+            </bucket>
+            <bucket number="8">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="10">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="11">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="14">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="16">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="21">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="23">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="25">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="28">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="31">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="32">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="33">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="35">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="44">
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file parallel read">2</activity>
+            </bucket>
+            <bucket number="45">
+              <activity class="Cpu">1</activity>
+              <activity class="User I/O" event="db file sequential read">1</activity>
+            </bucket>
+            <bucket number="47">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="55">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="56">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="62">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="64">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="65">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="66">
+              <activity class="Cpu">2</activity>
+            </bucket>
+            <bucket number="67">
+              <activity class="Cpu">1</activity>
+            </bucket>
+            <bucket number="68">
+              <activity class="Cpu">2</activity>
             </bucket>
           </activity_histogram>
         </activity_sampled>
@@ -1034,439 +1132,381 @@
         <stat id="9" name="pga_kb" unit="bytes" factor="1024"/>
         <stat id="10" name="tmp_kb" unit="bytes" factor="1024"/>
       </stat_info>
-      <buckets bucket_interval="4" bucket_count="86" start_time="06/12/2026 14:24:19" end_time="06/12/2026 14:30:00" duration="342">
+      <buckets bucket_interval="4" bucket_count="69" start_time="06/12/2026 15:05:25" end_time="06/12/2026 15:09:58" duration="274">
         <bucket bucket_id="1">
-          <stat id="1" value="1.18"/>
-          <stat id="3" value="1"/>
-          <stat id="5" value="8"/>
-          <stat id="7" value="8"/>
-          <stat id="8" value="1393537"/>
-          <stat id="9" value="16961"/>
+          <stat id="1" value=".22"/>
+          <stat id="3" value="1845"/>
+          <stat id="5" value="14760"/>
+          <stat id="7" value="14760"/>
+          <stat id="8" value="15272"/>
+          <stat id="9" value="16194"/>
         </bucket>
         <bucket bucket_id="2">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1566735"/>
-          <stat id="9" value="16962"/>
+          <stat id="1" value=".35"/>
+          <stat id="3" value="1947"/>
+          <stat id="5" value="15578"/>
+          <stat id="7" value="15578"/>
+          <stat id="8" value="21774"/>
+          <stat id="9" value="16192"/>
         </bucket>
         <bucket bucket_id="3">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1870723"/>
-          <stat id="9" value="16959"/>
+          <stat id="1" value=".51"/>
+          <stat id="3" value="1690"/>
+          <stat id="5" value="13523"/>
+          <stat id="7" value="13523"/>
+          <stat id="8" value="785469"/>
+          <stat id="9" value="16613"/>
         </bucket>
         <bucket bucket_id="4">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1667966"/>
-          <stat id="9" value="16438"/>
+          <stat id="1" value=".5"/>
+          <stat id="3" value="4682"/>
+          <stat id="5" value="37456"/>
+          <stat id="7" value="37456"/>
+          <stat id="8" value="254856"/>
+          <stat id="9" value="17309"/>
         </bucket>
         <bucket bucket_id="5">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1287372"/>
-          <stat id="9" value="15872"/>
+          <stat id="1" value=".49"/>
+          <stat id="3" value="5159"/>
+          <stat id="5" value="41271"/>
+          <stat id="7" value="41271"/>
+          <stat id="8" value="335038"/>
+          <stat id="9" value="17345"/>
         </bucket>
         <bucket bucket_id="6">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1255674"/>
-          <stat id="9" value="15876"/>
+          <stat id="1" value=".66"/>
+          <stat id="3" value="3822"/>
+          <stat id="5" value="30575"/>
+          <stat id="7" value="30575"/>
+          <stat id="8" value="897025"/>
+          <stat id="9" value="17344"/>
         </bucket>
         <bucket bucket_id="7">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1478485"/>
-          <stat id="9" value="15872"/>
+          <stat id="1" value=".84"/>
+          <stat id="3" value="303"/>
+          <stat id="5" value="2423"/>
+          <stat id="7" value="2423"/>
+          <stat id="8" value="1818727"/>
+          <stat id="9" value="17350"/>
         </bucket>
         <bucket bucket_id="8">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1576434"/>
-          <stat id="9" value="15876"/>
+          <stat id="1" value=".93"/>
+          <stat id="3" value="1"/>
+          <stat id="5" value="5"/>
+          <stat id="7" value="5"/>
+          <stat id="8" value="1461487"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="9">
-          <stat id="1" value=".96"/>
-          <stat id="8" value="1333763"/>
-          <stat id="9" value="15874"/>
+          <stat id="1" value=".94"/>
+          <stat id="8" value="1525913"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="10">
           <stat id="1" value=".96"/>
-          <stat id="8" value="1265920"/>
-          <stat id="9" value="15874"/>
+          <stat id="8" value="1942473"/>
+          <stat id="9" value="17344"/>
         </bucket>
         <bucket bucket_id="11">
           <stat id="1" value=".97"/>
-          <stat id="8" value="1278388"/>
-          <stat id="9" value="15872"/>
+          <stat id="8" value="1603254"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="12">
-          <stat id="1" value=".97"/>
-          <stat id="8" value="1269225"/>
-          <stat id="9" value="15876"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1327773"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="13">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1267588"/>
-          <stat id="9" value="15871"/>
+          <stat id="8" value="1569714"/>
+          <stat id="9" value="17345"/>
         </bucket>
         <bucket bucket_id="14">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1303243"/>
-          <stat id="9" value="15874"/>
+          <stat id="1" value="1.23"/>
+          <stat id="8" value="1516851"/>
+          <stat id="9" value="17344"/>
         </bucket>
         <bucket bucket_id="15">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1313873"/>
-          <stat id="9" value="15876"/>
+          <stat id="8" value="1447755"/>
+          <stat id="9" value="17348"/>
         </bucket>
         <bucket bucket_id="16">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1252539"/>
-          <stat id="9" value="15875"/>
+          <stat id="8" value="1859075"/>
+          <stat id="9" value="17344"/>
         </bucket>
         <bucket bucket_id="17">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1249859"/>
-          <stat id="9" value="15871"/>
+          <stat id="8" value="1919892"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="18">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1256169"/>
-          <stat id="9" value="15873"/>
+          <stat id="8" value="1630731"/>
+          <stat id="9" value="17348"/>
         </bucket>
         <bucket bucket_id="19">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1256143"/>
-          <stat id="9" value="15876"/>
+          <stat id="8" value="1693752"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="20">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1253138"/>
-          <stat id="9" value="15875"/>
+          <stat id="8" value="1812991"/>
+          <stat id="9" value="17343"/>
         </bucket>
         <bucket bucket_id="21">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1256569"/>
-          <stat id="9" value="15874"/>
+          <stat id="8" value="1870838"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="22">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1249529"/>
-          <stat id="9" value="15874"/>
+          <stat id="8" value="1471843"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="23">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1249948"/>
-          <stat id="9" value="15873"/>
+          <stat id="1" value=".96"/>
+          <stat id="8" value="1868442"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="24">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1248050"/>
-          <stat id="9" value="15873"/>
+          <stat id="8" value="1835049"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="25">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1255909"/>
-          <stat id="9" value="15875"/>
+          <stat id="8" value="1666655"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="26">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1719141"/>
-          <stat id="9" value="15872"/>
+          <stat id="8" value="1656343"/>
+          <stat id="9" value="17345"/>
         </bucket>
         <bucket bucket_id="27">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1788312"/>
-          <stat id="9" value="15876"/>
+          <stat id="8" value="1778248"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="28">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1613742"/>
-          <stat id="9" value="15873"/>
+          <stat id="8" value="1810325"/>
+          <stat id="9" value="17345"/>
         </bucket>
         <bucket bucket_id="29">
-          <stat id="1" value="1.2"/>
-          <stat id="8" value="1467322"/>
-          <stat id="9" value="15873"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1824988"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="30">
-          <stat id="1" value=".97"/>
-          <stat id="8" value="1460105"/>
-          <stat id="9" value="15874"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1784525"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="31">
-          <stat id="1" value=".97"/>
-          <stat id="8" value="1522915"/>
-          <stat id="9" value="15875"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1769123"/>
+          <stat id="9" value="17345"/>
         </bucket>
         <bucket bucket_id="32">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1630811"/>
-          <stat id="9" value="15874"/>
+          <stat id="8" value="1731342"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="33">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1623916"/>
-          <stat id="9" value="15876"/>
+          <stat id="8" value="2059841"/>
+          <stat id="9" value="17345"/>
         </bucket>
         <bucket bucket_id="34">
           <stat id="1" value=".97"/>
-          <stat id="8" value="1658700"/>
-          <stat id="9" value="15872"/>
+          <stat id="8" value="1555761"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="35">
-          <stat id="1" value=".97"/>
-          <stat id="8" value="1532074"/>
-          <stat id="9" value="15877"/>
+          <stat id="1" value=".94"/>
+          <stat id="8" value="1497069"/>
+          <stat id="9" value="17348"/>
         </bucket>
         <bucket bucket_id="36">
-          <stat id="1" value=".97"/>
-          <stat id="8" value="1460152"/>
-          <stat id="9" value="15871"/>
+          <stat id="1" value=".94"/>
+          <stat id="8" value="1392875"/>
+          <stat id="9" value="17344"/>
         </bucket>
         <bucket bucket_id="37">
-          <stat id="1" value=".97"/>
-          <stat id="8" value="1377220"/>
-          <stat id="9" value="15876"/>
+          <stat id="1" value=".94"/>
+          <stat id="8" value="1252777"/>
+          <stat id="9" value="17344"/>
         </bucket>
         <bucket bucket_id="38">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1267351"/>
-          <stat id="9" value="15874"/>
+          <stat id="1" value=".94"/>
+          <stat id="8" value="1243638"/>
+          <stat id="9" value="17349"/>
         </bucket>
         <bucket bucket_id="39">
-          <stat id="1" value=".97"/>
-          <stat id="8" value="1314450"/>
-          <stat id="9" value="15872"/>
+          <stat id="1" value=".95"/>
+          <stat id="8" value="1386943"/>
+          <stat id="9" value="17343"/>
         </bucket>
         <bucket bucket_id="40">
           <stat id="1" value=".97"/>
-          <stat id="8" value="1258199"/>
-          <stat id="9" value="15876"/>
+          <stat id="8" value="1351745"/>
+          <stat id="9" value="17348"/>
         </bucket>
         <bucket bucket_id="41">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1552316"/>
-          <stat id="9" value="15874"/>
+          <stat id="1" value=".93"/>
+          <stat id="8" value="1365464"/>
+          <stat id="9" value="17344"/>
         </bucket>
         <bucket bucket_id="42">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1408372"/>
-          <stat id="9" value="15874"/>
+          <stat id="1" value=".96"/>
+          <stat id="8" value="1460308"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="43">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1615830"/>
-          <stat id="9" value="15874"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1683648"/>
+          <stat id="9" value="17350"/>
         </bucket>
         <bucket bucket_id="44">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1517538"/>
-          <stat id="9" value="15872"/>
+          <stat id="1" value=".75"/>
+          <stat id="3" value="3107"/>
+          <stat id="5" value="24860"/>
+          <stat id="7" value="24860"/>
+          <stat id="8" value="970954"/>
+          <stat id="9" value="17345"/>
         </bucket>
         <bucket bucket_id="45">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1254016"/>
-          <stat id="9" value="15875"/>
+          <stat id="1" value=".54"/>
+          <stat id="3" value="4180"/>
+          <stat id="5" value="33442"/>
+          <stat id="7" value="33442"/>
+          <stat id="8" value="529910"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="46">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1256054"/>
-          <stat id="9" value="15875"/>
+          <stat id="1" value=".91"/>
+          <stat id="8" value="2525000"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="47">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1389540"/>
-          <stat id="9" value="15872"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2851194"/>
+          <stat id="9" value="17344"/>
         </bucket>
         <bucket bucket_id="48">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1395476"/>
-          <stat id="9" value="15875"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2287769"/>
+          <stat id="9" value="17348"/>
         </bucket>
         <bucket bucket_id="49">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1401694"/>
-          <stat id="9" value="15876"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2124430"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="50">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1420267"/>
-          <stat id="9" value="15872"/>
+          <stat id="8" value="1838923"/>
+          <stat id="9" value="17343"/>
         </bucket>
         <bucket bucket_id="51">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1438684"/>
-          <stat id="9" value="15873"/>
+          <stat id="1" value="1.2"/>
+          <stat id="8" value="1666818"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="52">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1465298"/>
-          <stat id="9" value="15875"/>
+          <stat id="1" value=".95"/>
+          <stat id="8" value="1835566"/>
+          <stat id="9" value="17348"/>
         </bucket>
         <bucket bucket_id="53">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1444960"/>
-          <stat id="9" value="15876"/>
+          <stat id="1" value=".95"/>
+          <stat id="8" value="1668519"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="54">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1410511"/>
-          <stat id="9" value="15872"/>
+          <stat id="1" value=".95"/>
+          <stat id="8" value="1645808"/>
+          <stat id="9" value="17343"/>
         </bucket>
         <bucket bucket_id="55">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1456130"/>
-          <stat id="9" value="15872"/>
+          <stat id="1" value=".94"/>
+          <stat id="8" value="1705019"/>
+          <stat id="9" value="17345"/>
         </bucket>
         <bucket bucket_id="56">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1498331"/>
-          <stat id="9" value="15875"/>
+          <stat id="1" value=".97"/>
+          <stat id="8" value="1968064"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="57">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1492913"/>
-          <stat id="9" value="15874"/>
+          <stat id="1" value=".95"/>
+          <stat id="8" value="1498263"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="58">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1466955"/>
-          <stat id="9" value="15876"/>
+          <stat id="1" value=".95"/>
+          <stat id="8" value="1502343"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="59">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1447473"/>
-          <stat id="9" value="15874"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1681354"/>
+          <stat id="9" value="17345"/>
         </bucket>
         <bucket bucket_id="60">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1475788"/>
-          <stat id="9" value="15875"/>
+          <stat id="1" value=".97"/>
+          <stat id="8" value="1684116"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="61">
           <stat id="1" value=".97"/>
-          <stat id="8" value="1538389"/>
-          <stat id="9" value="15874"/>
+          <stat id="8" value="1540282"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="62">
-          <stat id="1" value=".97"/>
-          <stat id="8" value="1526990"/>
-          <stat id="9" value="15873"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1761277"/>
+          <stat id="9" value="17345"/>
         </bucket>
         <bucket bucket_id="63">
-          <stat id="1" value=".97"/>
-          <stat id="8" value="1481098"/>
-          <stat id="9" value="15874"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="1326345"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="64">
-          <stat id="1" value=".97"/>
-          <stat id="8" value="1540722"/>
-          <stat id="9" value="15873"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2221736"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="65">
           <stat id="1" value=".98"/>
-          <stat id="8" value="1393108"/>
-          <stat id="9" value="15875"/>
+          <stat id="8" value="2314052"/>
+          <stat id="9" value="17345"/>
         </bucket>
         <bucket bucket_id="66">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1392323"/>
-          <stat id="9" value="15873"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2752633"/>
+          <stat id="9" value="17347"/>
         </bucket>
         <bucket bucket_id="67">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1397655"/>
-          <stat id="9" value="15875"/>
+          <stat id="1" value=".98"/>
+          <stat id="8" value="2387618"/>
+          <stat id="9" value="17348"/>
         </bucket>
         <bucket bucket_id="68">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1430103"/>
-          <stat id="9" value="15874"/>
+          <stat id="1" value="1.01"/>
+          <stat id="8" value="2341153"/>
+          <stat id="9" value="17346"/>
         </bucket>
         <bucket bucket_id="69">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1478671"/>
-          <stat id="9" value="15874"/>
-        </bucket>
-        <bucket bucket_id="70">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1439836"/>
-          <stat id="9" value="15873"/>
-        </bucket>
-        <bucket bucket_id="71">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1431286"/>
-          <stat id="9" value="15876"/>
-        </bucket>
-        <bucket bucket_id="72">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1431952"/>
-          <stat id="9" value="15875"/>
-        </bucket>
-        <bucket bucket_id="73">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1458855"/>
-          <stat id="9" value="15870"/>
-        </bucket>
-        <bucket bucket_id="74">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1466547"/>
-          <stat id="9" value="15875"/>
-        </bucket>
-        <bucket bucket_id="75">
-          <stat id="1" value="1.24"/>
-          <stat id="8" value="1472356"/>
-          <stat id="9" value="15876"/>
-        </bucket>
-        <bucket bucket_id="76">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1485334"/>
-          <stat id="9" value="15874"/>
-        </bucket>
-        <bucket bucket_id="77">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1489918"/>
-          <stat id="9" value="15873"/>
-        </bucket>
-        <bucket bucket_id="78">
-          <stat id="1" value=".99"/>
-          <stat id="8" value="1493311"/>
-          <stat id="9" value="15872"/>
-        </bucket>
-        <bucket bucket_id="79">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1482803"/>
-          <stat id="9" value="15878"/>
-        </bucket>
-        <bucket bucket_id="80">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1468662"/>
-          <stat id="9" value="15871"/>
-        </bucket>
-        <bucket bucket_id="81">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1465476"/>
-          <stat id="9" value="15874"/>
-        </bucket>
-        <bucket bucket_id="82">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1734143"/>
-          <stat id="9" value="15873"/>
-        </bucket>
-        <bucket bucket_id="83">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1789042"/>
-          <stat id="9" value="15877"/>
-        </bucket>
-        <bucket bucket_id="84">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1873635"/>
-          <stat id="9" value="15871"/>
-        </bucket>
-        <bucket bucket_id="85">
-          <stat id="1" value=".98"/>
-          <stat id="8" value="1818385"/>
-          <stat id="9" value="15876"/>
-        </bucket>
-        <bucket bucket_id="86">
-          <stat id="1" value=".13"/>
-          <stat id="8" value="1182159"/>
-          <stat id="9" value="7936"/>
+          <stat id="1" value=".58"/>
+          <stat id="8" value="1339510"/>
+          <stat id="9" value="8673"/>
         </bucket>
       </buckets>
     </stattype>

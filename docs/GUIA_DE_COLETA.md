@@ -126,10 +126,22 @@ WHERE  name IN ('db_block_size','optimizer_index_cost_adj','optimizer_index_cach
   'cluster_database','optimizer_features_enable','optimizer_adaptive_plans',
   'session_cached_cursors','use_large_pages');
 ```
-E um **AWR report** (HTML) de um período representativo, do qual se extraem:
+E um **AWR report em HTML** de um período representativo, do qual se extraem:
 CPU bound %, cache hit, redo, eventos de contenção (top 10), segmentos quentes
-(Segment Statistics), e top SQL. O perfil YAML é então editado conforme esses
-números (ver MANUAL_DE_USO.md §7).
+(Segment Statistics) e parâmetros do otimizador.
+
+Não edite o YAML a mão para isso: passe o AWR para o gerador, que cria ou
+atualiza o perfil automaticamente (ver **`docs/GUIA_ENV_PROFILE.md`**):
+
+```bash
+# criar
+python -m advisor.awr_cli --awr awr_prod.html --out config/env_profile_prod.yaml --diag
+# atualizar preservando os ajustes manuais (scoring/index_ddl)
+python -m advisor.awr_cli --awr awr_novo.html --out config/env_profile_prod.yaml --update
+```
+
+Como gerar o AWR em HTML: `@?/rdbms/admin/awrrpt.sql` (escolha `html`); para RAC,
+`awrrpti.sql` por instância (um arquivo por nó) ou `awrgrpt.sql` (global).
 
 ---
 

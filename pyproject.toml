@@ -18,6 +18,7 @@ dev = ["pytest>=7.0"]
 
 [project.scripts]
 advisor = "advisor.cli:main"
+advisor-awr = "advisor.awr_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

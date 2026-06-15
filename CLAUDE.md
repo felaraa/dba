@@ -39,6 +39,12 @@ src/advisor/
                          Detecta instabilidade (vários plan_hash). Só no modo db.
   metadata_collector.py  cardinalidade (Oracle DBA_* | fixture). É resiliente:
                          coleta cada tabela isolada, trata views, reporta faltantes.
+  awr_parser.py          AWR HTML -> AwrMetrics (números crus). Resiliente: cada
+                         métrica isolada, reporta o que faltou. NÃO tem regra.
+  profile_builder.py     AwrMetrics (+ perfil existente) -> env_profile YAML.
+                         Aplica os LIMIARES (cpu_bound, cache_hit) e re-emite o
+                         YAML COMENTADO. Preserva campos humanos no --update.
+  awr_cli.py             orquestrador AWR->env_profile (create/update; agrega RAC)
   db_connection.py       resolução de credenciais (CLI > env > YAML > wallet)
   rule_base.py           Rule + RuleContext (ponto de desacoplamento)
   engine.py              descobre e executa regras-plugin; ranqueia por net_score
@@ -141,6 +147,9 @@ fixture` o histórico vem vazio e a regra fica inerte (a coleta é só no modo d
   fixture) para fechar o loop previsão→medição.
 - **Regra R-global-on-partitioned**: auditar/sinalizar índices globais sobre
   tabelas particionadas como dívida de manutenção (query base em sql/).
+- **Geração de env_profile a partir de AWR**: FEITO — `advisor.awr_cli`
+  (create/update) + `docs/GUIA_ENV_PROFILE.md`. Próximo: validar o parser contra
+  AWRs reais de outras versões e estender as palavras-chave conforme aparecerem.
 - **Modo `--from-awr`**: varrer top SQL do AWR e analisar em lote.
 - **Camada de IA opcional** (`--explain`): modelo via Ollama para explicação em
   linguagem natural; o motor de regras continua a fonte de verdade.
@@ -167,7 +176,27 @@ python -m advisor.cli --sql q.sql --plan p.xml \
 
 # validar índice recomendado com INVISIBLE (mede ganho real)
 python -m advisor.cli ... --source db --validate
+
+# criar/atualizar um env_profile a partir de um AWR HTML (ver docs/GUIA_ENV_PROFILE.md)
+python -m advisor.awr_cli --awr awr_prod.html --out config/env_profile_prod.yaml --diag
+python -m advisor.awr_cli --awr awr_novo.html --out config/env_profile_prod.yaml --update
 ```
+
+## Como nasce/atualiza um env_profile (AWR -> YAML)
+
+O perfil do ambiente NÃO é digitado a mão a partir do zero: `advisor.awr_cli` lê
+um (ou vários) AWR HTML e emite o `env_profile_*.yaml` comentado.
+
+- `awr_parser.py` extrai os fatos crus (resiliente, reporta o que faltou);
+- `profile_builder.py` aplica os LIMIARES de calibração (`CPU_BOUND_THRESHOLD`,
+  `CACHE_HIT_VERY_HIGH_PCT`, ...) e re-emite o YAML inteiro pelo template
+  comentado — por isso `--update` NUNCA perde comentários nem campos humanos;
+- campos HUMANOS (`scoring.*`, `index_ddl.*`, `identity.exadata`,
+  `io.full_scan_block_discount`, `workload.benefit_metric`) recebem default no
+  create e são PRESERVADOS no update. O resto é refrescado do AWR.
+- Caso real novo de AWR vira teste com fixture HTML em `tests/fixtures/`.
+
+Passo a passo completo em `docs/GUIA_ENV_PROFILE.md`.
 
 ## Regras de ouro ao evoluir
 
