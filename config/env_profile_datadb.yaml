@@ -1,0 +1,77 @@
+# =============================================================================
+# env_profile DBN1
+# Perfil do ambiente extraído de AWR(s) — create de 2 AWR(s) em 2026-06-16.
+# Edite este arquivo para recalibrar a engine sem tocar em código. Cada chave
+# alimenta pesos/limiares das regras. Campos marcados [humano] NÃO vêm do AWR e
+# são preservados quando você reexecuta o advisor.awr_cli em modo --update.
+# =============================================================================
+
+identity:
+  name: DBN1
+  rac_nodes: 2
+  exadata: false            # [humano] AWR não detecta com confiança
+  oracle_version: "19.30.0.0.0"
+  db_block_size: 8192
+
+# --- Natureza da carga (define o que "benefício" significa no scoring) -------
+workload:
+  cpu_bound: false              # DB CPU >= 50% do DB time
+  db_cpu_pct_of_dbtime: 0.24
+  cache_hit_very_high: true    # Buffer Hit% alto ou LIO>>PIO
+  # alvo de otimização: reduzir gets/linhas (proxy de CPU), não IO físico
+  benefit_metric: buffer_gets_and_rows
+  redo_mb_per_s: 49.05
+  block_changes_per_s: 249494
+
+# --- Latências de IO reais (break-even índice vs full scan) ------------------
+io:
+  single_block_read_us: 330690    # db file sequential read médio
+  multiblock_read_count: 128   # db_file_multiblock_read_count
+  # [humano] custo relativo de 1 multiblock read vs 1 single block
+  full_scan_block_discount: 0.85
+
+# --- Contenção em RAC já existente (regras de mitigação ativas) --------------
+rac_contention:
+  index_contention_in_top_events: true   # enq: TX - index contention no top
+  sequential_index_hotblock_observed: true
+  gc_buffer_busy_in_top_events: true
+  # objetos confirmadamente quentes pelo AWR (Segments by ...):
+  hot_segments:
+    - {owner: DBN1, name: PK_AGGHRFR4G_CELL, type: INDEX}
+    - {owner: DBN1, name: F_R4G_ERI_SCTPASSO, type: TABLE}
+    - {owner: DBN1, name: UK_D_ENTITY_R4G_ADJL, type: INDEX}
+    - {owner: DBN1, name: PK_F_R4G_ADJL, type: INDEX}
+    - {owner: DBN1, name: F_R4G_ADJL, type: TABLE}
+    - {owner: DBN1, name: AGG_HR_F_R4G_ADJL, type: TABLE}
+    - {owner: DBN1, name: PK_F_R5G_ERI_SCTPASSOC, type: INDEX}
+    - {owner: DBN1, name: IE_F_R3G_ADJU, type: INDEX}
+    - {owner: DBN1, name: AGG_HR_F_R5G_ERI_SCTPASSOC, type: TABLE}
+    - {owner: DBN1, name: AGG_HR_F_R3G_ADJU, type: TABLE}
+    - {owner: DBN1, name: AGG_DD_F_R5G_ADJL, type: TABLE}
+    - {owner: DBN1, name: AGG_HR_F_R4G_HUA_X2_INTF, type: TABLE}
+    - {owner: DBN1, name: PK_F_R4G_ADJN, type: INDEX}
+    - {owner: DBN1, name: PK_F_R3G_ADJU, type: INDEX}
+    - {owner: DBN1, name: PK_F_R4G_ERI_SCTPASSO, type: INDEX}
+    - {owner: DBN1, name: F_R3G_ADJU, type: TABLE}
+    - {owner: DBN1, name: AGG_HR_F_R4G_ADJN, type: TABLE}
+
+# --- Pesos do scoring [humano] — NÃO vêm do AWR; calibração manual -----------
+scoring:
+  maint_cost_hot_table: 0.6        # penalidade base p/ índice em tabela quente
+  maint_cost_cold_table: 0.05      # tabelas enriquecidas (carga em lote)
+  coverage_cost_per_byte: 0.004    # custo de cobertura por byte extra
+  wide_column_bytes: 30              # limiar de "coluna larga"
+  nl_explosion_factor: 100          # explosão de NESTED LOOPS p/ severidade crítica
+
+# --- Optimizer (de init.ora no AWR; engine não compensa distorção) -----------
+optimizer:
+  index_cost_adj: 100
+  index_caching: 0
+  adaptive_plans: true
+
+# --- Geração de DDL de índice [humano] (afeta SÓ o texto do CREATE INDEX) ----
+index_ddl:
+  # DOP para acelerar a CRIAÇÃO do índice (vazio = sem PARALLEL).
+  parallel:  16
+  # TABLESPACE de destino do índice (vazio = default do schema).
+  tablespace: DBN1_I

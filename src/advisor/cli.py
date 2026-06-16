@@ -10,15 +10,19 @@ Liga todas as camadas:
   -> RuleContext -> RuleEngine -> [Recommendation] -> reporter
 
 Fontes de metadados:
-  --source db       conecta via python-oracledb (produção)
-  --source fixture  usa metadados de um módulo Python (demo/teste)
+  --source fixture   usa metadados de um módulo Python (demo/teste)
+  --source <nome>    conecta ao banco cujas credenciais estão em
+                     config/<nome>.yaml  (ex.: rawdb → config/rawdb.yaml,
+                     datadb → config/datadb.yaml, db → config/db.yaml)
 
-Uso típico (produção):
+Uso típico (produção com banco nomeado):
   python -m advisor.cli \
       --sql query.sql --plan plan.xml \
       --env config/env_profile_rawdb.yaml \
-      --source db --dsn host:1521/svc --user U --password P \
+      --source rawdb \
       [--validate]            # opcional: testa com índice invisível
+
+  # credenciais em config/rawdb.yaml  (db.yaml.example como modelo)
 
 Uso de demonstração (sem banco):
   python -m advisor.cli \
@@ -48,6 +52,13 @@ def _read(path: str) -> str:
         return fh.read()
 
 
+def _db_config_path(args) -> str:
+    """Resolve o caminho do YAML de conexão: explícito ou config/<source>.yaml."""
+    if args.db_config:
+        return args.db_config
+    return f"config/{args.source}.yaml"
+
+
 def build_context(args):
     sql = _read(args.sql)
     plan_text = _read(args.plan)
@@ -68,7 +79,7 @@ def build_context(args):
         metadata = mod.get_metadata()
     else:
         from .db_connection import connect, resolve_db_config
-        cfg = resolve_db_config(args.dsn, args.user, args.password, args.db_config)
+        cfg = resolve_db_config(args.dsn, args.user, args.password, _db_config_path(args))
         conn = connect(cfg)
         hot = set(s["name"] for s in env.raw["rac_contention"].get("hot_segments", []))
         collector = OracleMetadataCollector(conn, hot)
@@ -119,7 +130,9 @@ def main(argv=None):
     p.add_argument("--sql", required=True, help="arquivo .sql com a query")
     p.add_argument("--plan", required=True, help="plano (XML SQL Monitor ou texto XPLAN)")
     p.add_argument("--env", required=True, help="perfil de ambiente YAML")
-    p.add_argument("--source", choices=["db", "fixture"], default="fixture")
+    p.add_argument("--source", default="fixture",
+                   help="'fixture' (sem banco) ou nome do banco cujas credenciais "
+                        "estão em config/<nome>.yaml (ex.: rawdb, datadb, db)")
     p.add_argument("--fixture", default="tests.fixtures_rawdb",
                    help="módulo Python com get_metadata() (source=fixture)")
     p.add_argument("--dsn"); p.add_argument("--user"); p.add_argument("--password")
@@ -149,8 +162,9 @@ def main(argv=None):
     print(out)
 
     if args.validate:
-        if args.source != "db":
-            print("\n[validação ignorada: requer --source db]", file=sys.stderr)
+        if args.source == "fixture":
+            print("\n[validação ignorada: requer --source <banco> (ex.: rawdb)]",
+                  file=sys.stderr)
         else:
             _run_validation(args, ctx, sql, recs)
     return 0
@@ -159,7 +173,7 @@ def main(argv=None):
 def _run_validation(args, ctx, sql, recs):
     from .db_connection import connect, resolve_db_config
     from .validator import InvisibleIndexValidator
-    cfg = resolve_db_config(args.dsn, args.user, args.password, args.db_config)
+    cfg = resolve_db_config(args.dsn, args.user, args.password, _db_config_path(args))
     conn = connect(cfg)
     validator = InvisibleIndexValidator(conn)
     print("\n\nVALIDAÇÃO COM ÍNDICE INVISÍVEL")

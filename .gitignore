@@ -1,5 +1,7 @@
 # credenciais reais — NUNCA versionar
 config/db.yaml
+config/rawdb.yaml
+config/datadb.yaml
 
 # artefatos Python
 __pycache__/
