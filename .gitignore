@@ -16,3 +16,6 @@ dist/
 # saídas locais de análise
 *.local.md
 out/
+
+# artefatos do modo batch (SQL/planos extraídos ao vivo — nunca versionar)
+temp/
