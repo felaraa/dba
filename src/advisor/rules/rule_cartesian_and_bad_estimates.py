@@ -148,16 +148,11 @@ class CartesianAndBadEstimatesRule(Rule):
         """
         degree_val = str(degree) if degree else "DBMS_STATS.AUTO_DEGREE"
         return (
-            "        EXEC DBMS_STATS.GATHER_TABLE_STATS(\n"
-            f"                 ownname          => '{owner}',\n"
-            f"                 tabname          => '{table}',\n"
-            "                 estimate_percent => DBMS_STATS.AUTO_SAMPLE_SIZE,\n"
-            "                 method_opt       => 'FOR ALL COLUMNS SIZE AUTO',\n"
-            "                 granularity      => 'AUTO',\n"
-            f"                 degree           => {degree_val},\n"
-            "                 cascade          => TRUE,\n"
-            "                 options          => 'GATHER AUTO',\n"
-            "                 force            => TRUE);"
+            f"        EXEC DBMS_STATS.GATHER_TABLE_STATS(ownname=> '{owner}', "
+            f"tabname=> '{table}', estimate_percent => DBMS_STATS.AUTO_SAMPLE_SIZE, "
+            "method_opt=> 'FOR ALL COLUMNS SIZE AUTO', granularity=> 'AUTO', "
+            f"degree=> {degree_val}, cascade=> TRUE, options=> 'GATHER AUTO', "
+            "force=> TRUE);"
         )
 
     @staticmethod
