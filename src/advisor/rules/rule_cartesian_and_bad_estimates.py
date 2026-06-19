@@ -59,9 +59,8 @@ class CartesianAndBadEstimatesRule(Rule):
                 suspects = self._stale_suspects(ctx)
                 if suspects:
                     cmds = "\n".join(
-                        f"        EXEC DBMS_STATS.GATHER_TABLE_STATS(OWNNAME=>'{o}', "
-                        f"TABNAME=>'{t}', GRANULARITY=>'ALL', DEGREE=>16, "
-                        f"CASCADE=>TRUE, FORCE=>TRUE);" for o, t in suspects)
+                        self._gather_stmt(o, t, ctx.env.index_parallel)
+                        for o, t in suspects)
                     warn_stats = (
                         f"Tabela(s) com estatística OBSOLETA identificada(s): "
                         f"{', '.join(t for _, t in suspects)}. Recolha primeiro:\n{cmds}"
@@ -117,9 +116,8 @@ class CartesianAndBadEstimatesRule(Rule):
                          + "\n      - ".join(stale_report))
             if suspects:
                 cmds = "\n".join(
-                    f"        EXEC DBMS_STATS.GATHER_TABLE_STATS(OWNNAME=>'{o}', "
-                    f"TABNAME=>'{t}', GRANULARITY=>'ALL', DEGREE=>16, "
-                    f"CASCADE=>TRUE, FORCE=>TRUE);" for o, t in suspects)
+                    self._gather_stmt(o, t, ctx.env.index_parallel)
+                    for o, t in suspects)
                 warns = [f"Tabela(s) com estatística OBSOLETA: "
                          f"{', '.join(t for _, t in suspects)}. Recolha primeiro:\n{cmds}"]
             recs.append(Recommendation(
@@ -138,6 +136,24 @@ class CartesianAndBadEstimatesRule(Rule):
                 warnings=warns,
             ))
         return recs
+
+    @staticmethod
+    def _gather_stmt(owner: str, table: str, degree: int | None) -> str:
+        """Comando DBMS_STATS.GATHER_TABLE_STATS com parâmetros completos.
+
+        Usa AUTO_SAMPLE_SIZE + histogramas AUTO + GATHER AUTO (só o que está
+        obsoleto). CASCADE recolhe também os índices. O `degree` vem do
+        paralelismo configurado no env_profile (`index_ddl.parallel`); na
+        ausência, usa DBMS_STATS.AUTO_DEGREE.
+        """
+        degree_val = str(degree) if degree else "DBMS_STATS.AUTO_DEGREE"
+        return (
+            f"        EXEC DBMS_STATS.GATHER_TABLE_STATS(ownname=> '{owner}', "
+            f"tabname=> '{table}', estimate_percent => DBMS_STATS.AUTO_SAMPLE_SIZE, "
+            "method_opt=> 'FOR ALL COLUMNS SIZE AUTO', granularity=> 'AUTO', "
+            f"degree=> {degree_val}, cascade=> TRUE, options=> 'GATHER AUTO', "
+            "force=> TRUE);"
+        )
 
     @staticmethod
     def _stale_report(ctx: RuleContext) -> list[str]:
