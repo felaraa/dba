@@ -130,7 +130,7 @@ class PlanInstabilityRule(Rule):
                 "  DECLARE n NUMBER; BEGIN\n"
                 f"    n := DBMS_SPM.LOAD_PLANS_FROM_CURSOR_CACHE(sql_id=>'"
                 f"{ctx.plan.sql_id or '<SQL_ID>'}', "
-                f"plan_hash_value=>{best.plan_hash}, fixed=>'YES', enabled=>'YES');\n"
+                f"plan_hash_value=>{best.plan_hash});\n"
                 "  END;\n"
                 "Se o melhor plano só existir no AWR (não no cursor cache), "
                 "carregue via DBMS_SPM.LOAD_PLANS_FROM_AWR no intervalo de snapshot "
