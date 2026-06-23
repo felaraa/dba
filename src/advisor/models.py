@@ -90,12 +90,24 @@ class PlanOperation:
     access_predicates: tuple[str, ...] = ()
     filter_predicates: tuple[str, ...] = ()
     parent_id: Optional[int] = None
+    # owner do objeto (de <object><owner> na seção runtime do SQL Monitor)
+    object_owner: Optional[str] = None
+    # runtime de workarea (SQL Monitor): TEMP usado, nº de spills, bytes escritos.
+    # Só preenchido a partir do XML; None no texto do DBMS_XPLAN.
+    temp_bytes: Optional[float] = None    # max_temp (ou temp) do workarea, em bytes
+    spill_count: Optional[float] = None   # passagens com spill (>=1 = derramou p/ TEMP)
+    write_bytes: Optional[float] = None   # bytes escritos (direct path write temp)
 
     @property
     def rows_per_exec(self) -> Optional[float]:
         if self.actual_rows is None or not self.executions:
             return None
         return self.actual_rows / self.executions
+
+    @property
+    def spilled(self) -> bool:
+        """True se a operação derramou workarea para TEMP."""
+        return bool(self.spill_count) or bool(self.temp_bytes)
 
 
 @dataclass(frozen=True)

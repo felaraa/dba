@@ -65,6 +65,8 @@ src/advisor/
 | R001_filter_should_be_access | 10 | join aplicado como `filter` pós-acesso + explosão de NESTED LOOPS |
 | R002_avoidable_full_scan | 20 | TABLE ACCESS FULL evitável por join seletivo |
 | R006_buffer_sort_materialization | 25 | BUFFER SORT/SORT JOIN materializando muitas linhas para join |
+| R010_workarea_spill_to_temp | 6 | SORT/HASH (GROUP BY/JOIN) derramando volume grande para o TEMP (workarea spill). Aponta a operação que mais derrama, liga a causa à estimativa colapsada (R004) e recomenda estatística + paralelismo (HASH GROUP BY paralelo, ENABLE PARALLEL DML). Sinaliza plano SERIAL apesar de hint PARALLEL. Consome `temp_bytes`/`spill_count`/`write_bytes` do SQL Monitor |
+| R011_massive_rowid_access | 7 | TABLE ACCESS BY [LOCAL] INDEX ROWID devolvendo volume MASSIVO numa única passagem (inverso da R002): índice usado para varrer fração enorme da tabela. Recomenda full/partition scan + estatística + FULL/PARALLEL. Exclui o lado interno de NESTED LOOPS (muitas Execs → R001) |
 | R003_covering_for_aggregation | 30 | TABLE ACCESS BY ROWID custoso só para projeção/agregação |
 | R008_global_index_on_partitioned | 40 | índice GLOBAL existente sobre tabela PARTICIONADA (dívida de manutenção) |
 | R900_rac_hotblock_mitigation | 900 | hot leaf block em índice de chave crescente (RAC) — anexa mitigação |

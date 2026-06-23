@@ -75,6 +75,12 @@ class SqlMonitorXmlParser:
                 access_predicates=s.get("access", ()),
                 filter_predicates=s.get("filter", ()),
                 parent_id=parent_id,
+                object_owner=r.get("object_owner"),
+                # max_temp é o pico do workarea; cai para temp se ausente
+                temp_bytes=(r.get("max_temp") if r.get("max_temp") is not None
+                            else r.get("temp")),
+                spill_count=r.get("spill_count"),
+                write_bytes=r.get("write_bytes"),
             ))
         ops.sort(key=lambda o: o.op_id)
         return ParsedPlan(sql_id=sql_id, plan_hash=plan_hash,
@@ -140,11 +146,18 @@ class SqlMonitorXmlParser:
             if stats_node is not None:
                 for st in stats_node.findall("stat"):
                     name = st.get("name")
-                    if name in ("starts", "cardinality", "read_reqs", "read_bytes"):
+                    if name in ("starts", "cardinality", "read_reqs", "read_bytes",
+                                "temp", "max_temp", "spill_count", "write_bytes"):
                         try:
                             rec[name] = float(st.text)
                         except (ValueError, TypeError):
                             pass
+            # owner do objeto (presente na seção runtime: <object><owner>...)
+            obj = node.find("object")
+            if obj is not None:
+                owner = obj.findtext("owner")
+                if owner and owner.strip():
+                    rec["object_owner"] = owner.strip()
             out[op_id] = rec
         return out
 
