@@ -113,6 +113,6 @@ class BufferSortMaterializationRule(Rule):
             if node.object_name:
                 for t in ctx.query.tables:
                     if t.name == node.object_name:
-                        return (t.owner, t.name, t.alias)
+                        return (ctx.resolve_owner(t.name, t.owner), t.name, t.alias)
             stack.extend(children.get(node.op_id, []))
         return None

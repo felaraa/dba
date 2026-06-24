@@ -96,7 +96,7 @@ class FullScanRule(Rule):
             return None
         for t in ctx.query.tables:
             if t.name == object_name:
-                return (t.owner, t.name, t.alias)
+                return (ctx.resolve_owner(t.name, t.owner), t.name, t.alias)
         return None
 
     def _selectivity(self, ctx: RuleContext, table: str, col: str):

@@ -139,6 +139,19 @@ fixture` o histórico vem vazio e a regra fica inerte (a coleta é só no modo d
    (b) índice existente em outra ordem das colunas de igualdade não era
    reconhecido → `existing_index_covering` passou a comparar por CONJUNTO.
    → test_index_collection_fixes.py
+6. **86kwg7rukwx07** (DATADB/DBN1) — MERGE de agregação diária
+   (`F_R4G_ADJL` → `AGG_DD_F_R4G_ADJL`): estimativa colapsada (E-Rows=1 vs 389M)
+   levou a SORT GROUP BY SERIAL derramando ~198 GB no TEMP e acesso por ROWID de
+   389M linhas. Originou R010 (spill de workarea) e R011 (rowid massivo).
+   → test_workarea_spill.py, test_massive_rowid_access.py
+7. **0jcwmys0db3dp** (DATADB/DBN1) — mesma forma em `F_R4G_ADJN`, agora com plano
+   PARALELO (PX) e HASH JOIN, mas ainda com spill de ~35 GB e ROWID de 69M linhas
+   (R010/R011 disparam mesmo com R004 silencioso — a divergência é ~35x, abaixo
+   do limiar de 1000x). Expôs o bug de owner: a query não qualifica o owner
+   (`FROM F_R4G_ADJN`), então o DDL saía como `CREATE INDEX None.IX_... ON
+   None.F_R4G_ADJN`. Fix: `RuleContext.resolve_owner()` recupera o owner do plano
+   (`<object><owner>` do SQL Monitor) ou dos metadados; todas as regras que geram
+   DDL passaram a usá-lo. → test_owner_resolution.py
 
 ## Pendências / próximos passos conhecidos
 

@@ -125,13 +125,13 @@ class FilterShouldBeAccessRule(Rule):
             return None
         for t in ctx.query.tables:
             if t.name == object_name:
-                return (t.owner, t.name, t.alias)
+                return (ctx.resolve_owner(t.name, t.owner), t.name, t.alias)
         # objeto pode ser um índice; tenta casar pelo dono via metadados
         for idx in ctx.metadata.indexes:
             if idx.index_name == object_name:
                 for t in ctx.query.tables:
                     if t.name == idx.table_name:
-                        return (t.owner, t.name, t.alias)
+                        return (ctx.resolve_owner(t.name, t.owner), t.name, t.alias)
         return None
 
     def _equality_join_cols(self, ctx: RuleContext, alias: str) -> list[str]:

@@ -54,7 +54,7 @@ class MassiveRowidAccessRule(Rule):
                 continue
 
             table = op.object_name or "(tabela)"
-            owner = op.object_owner or self._owner_from_ctx(ctx, table)
+            owner = op.object_owner or ctx.resolve_owner(table)
             partitioned = ctx.is_partitioned(owner, table)
             sev = Severity.HIGH if rows >= _HIGH_ROWS else Severity.MEDIUM
 
@@ -94,14 +94,6 @@ class MassiveRowidAccessRule(Rule):
                 ],
             ))
         return recs
-
-    @staticmethod
-    def _owner_from_ctx(ctx: RuleContext, table: str) -> str | None:
-        for t in ctx.query.tables:
-            if t.name == table and t.owner:
-                return t.owner
-        meta = ctx.metadata.table(None, table)
-        return meta.owner if meta else None
 
     @staticmethod
     def _gather_stmt(owner: str | None, table: str, degree: int | None,

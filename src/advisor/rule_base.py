@@ -36,6 +36,28 @@ class RuleContext:
         c = self.metadata.column(table_name, column)
         return float(c.avg_col_len) if c and c.avg_col_len else 8.0
 
+    def resolve_owner(self, table_name: str,
+                      query_owner: str | None = None) -> str | None:
+        """
+        Resolve o owner de uma tabela na ordem: owner explícito na query >
+        owner do objeto no plano (<object><owner> do SQL Monitor) > metadados.
+
+        Queries geradas por ferramentas (BI/ETL) quase nunca qualificam o owner
+        (`FROM TAB`, não `OWNER.TAB`), então `ctx.query.tables[*].owner` vem
+        None. Sem este fallback, regras que geram DDL emitiriam
+        `CREATE INDEX None.IX_... ON None.TAB`. O owner real está no plano
+        (seção runtime) e/ou nos metadados coletados.
+        """
+        if query_owner:
+            return query_owner
+        for op in self.plan.operations:
+            if op.object_name == table_name and op.object_owner:
+                return op.object_owner
+        meta = self.metadata.table(None, table_name)
+        if meta and meta.owner:
+            return meta.owner
+        return None
+
     def is_table_hot(self, owner: str | None, table_name: str) -> bool:
         # quente se o AWR marcou OU se o coletor de metadados marcou
         meta = self.metadata.table(owner, table_name)
