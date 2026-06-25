@@ -109,6 +109,26 @@ Tambem use `ctx.resolve_owner` antes de gerar DDL; queries reais podem nao
 qualificar owner, mas o plano SQL Monitor ou os metadados costumam ter essa
 informacao.
 
+## Regra de memoria do projeto
+
+Depois de qualquer mudanca significativa, atualize a memoria em `.ai/` no mesmo
+trabalho. Considere significativa qualquer alteracao de comportamento, regra,
+modulo, contrato publico, CLI, formato de relatorio, perfil YAML, fixture, teste
+ou decisao de arquitetura/produto.
+
+- Atualize `.ai/implemented-index.md` se comportamento, regras, arquivos
+  importantes, comandos ou testes mudarem.
+- Atualize `.ai/decision-log.md` se houver decisao arquitetural, operacional ou
+  de produto nova ou revisada.
+- Atualize `.ai/context-index.md` se surgir novo dominio, modulo, fluxo,
+  documento ou grupo importante de arquivos.
+- Atualize `.ai/architecture-map.md`, `.ai/coding-rules.md` ou
+  `.ai/testing-rules.md` quando a mudanca afetar arquitetura, padroes de codigo
+  ou estrategia de testes.
+- Se `.ai/` ainda nao existir, informe no resumo final qual memoria devera ser
+  criada ou atualizada quando a estrutura for implantada.
+- Nao atualize memoria para formatacao, typo ou comentario sem impacto tecnico.
+
 ## Workflow para Claude Code
 
 1. Identifique o tipo de tarefa: regra, parser, coletor, CLI, AWR, relatorio,

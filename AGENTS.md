@@ -79,6 +79,27 @@ testes relacionados a tarefa.
 9. O perfil de ambiente e configuracao. Recalibrar ambiente significa editar ou
    regenerar `env_profile_*.yaml`, nao codificar excecoes nas regras.
 
+## Regra de atualizacao de memoria
+
+Depois de qualquer mudanca significativa, atualize a memoria do projeto junto
+com a implementacao. Mudanca significativa inclui alteracao de comportamento,
+nova regra, novo modulo, mudanca em contrato publico, CLI, formato de relatorio,
+perfil YAML, fixture, teste ou decisao de arquitetura/produto.
+
+- Atualize `.ai/implemented-index.md` quando comportamento, regras, arquivos
+  importantes, comandos ou testes forem criados/alterados.
+- Atualize `.ai/decision-log.md` quando uma decisao arquitetural, operacional
+  ou de produto for tomada ou alterada.
+- Atualize `.ai/context-index.md` quando um novo dominio, modulo, fluxo,
+  documento ou grupo de arquivos passar a existir.
+- Atualize `.ai/architecture-map.md`, `.ai/coding-rules.md` ou
+  `.ai/testing-rules.md` quando a mudanca afetar arquitetura, padroes de codigo
+  ou estrategia de testes.
+- Se a pasta `.ai/` ainda nao existir, registre no resumo final qual memoria
+  devera ser criada/atualizada na proxima etapa.
+- Nao atualize memoria para mudancas triviais de formatacao, typo ou comentario
+  sem impacto tecnico.
+
 ## Convencoes obrigatorias para regras de indice
 
 - Use `ctx.resolve_owner()` antes de gerar DDL; nao produza `None.TABELA`.
