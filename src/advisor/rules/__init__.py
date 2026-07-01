@@ -8,6 +8,8 @@ Helpers NÃO tomam decisões de tuning — são utilidades; a decisão fica na r
 """
 from __future__ import annotations
 
+import re
+
 from ..env_profile import EnvProfile
 from ..models import ColumnRef, TableRef
 
@@ -15,6 +17,30 @@ from ..models import ColumnRef, TableRef
 def _clean_token(s: str) -> str:
     """Normaliza um pedaço de nome: maiúsculo, sem underscores nas pontas."""
     return s.upper().strip("_")
+
+
+_TRAILING_NUM = re.compile(r"(\d+)$")
+
+
+def _shorten_table(table: str, limit: int) -> str:
+    """
+    Trunca o nome da tabela ao `limit`, preservando um sufixo numérico final
+    (ex.: LTE_EUTRANCELLFDD_247 -> LTE_EUTRA247). Tabelas irmãs que só diferem
+    nesse número (comum em esquemas RAN particionados por ID) ficariam com o
+    mesmo nome de índice se o sufixo fosse simplesmente cortado.
+    """
+    clean = _clean_token(table)
+    if limit <= 0:
+        return ""
+    match = _TRAILING_NUM.search(clean)
+    if not match:
+        return clean[:limit]
+    suffix = match.group(1)
+    if len(suffix) >= limit:
+        return suffix[-limit:]
+    head = clean[: match.start()].rstrip("_")
+    head_budget = limit - len(suffix)
+    return f"{head[:head_budget]}{suffix}"
 
 
 def build_index_name(table: str, columns: list[str], suffix: str = "",
@@ -30,7 +56,7 @@ def build_index_name(table: str, columns: list[str], suffix: str = "",
     if owner:
         # primeiro segmento do owner (antes do 1º '_') como abreviação
         parts.append(_clean_token(owner.split("_")[0])[:6])
-    parts.append(_clean_token(table)[:12])
+    parts.append(_shorten_table(table, 12))
     if columns:
         col_tok = "_".join(_clean_token(c)[:4] for c in columns[:3])
         parts.append(_clean_token(col_tok))

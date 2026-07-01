@@ -24,6 +24,18 @@ def test_index_name_has_owner_no_double_underscore():
     assert not n.endswith("_")         # sem underscore no fim
     assert len(n) <= 30                # limite Oracle
 
+def test_index_name_disambiguates_sibling_tables_by_numeric_suffix():
+    # Tabelas irmãs que só diferem pelo ID numérico final (comum em esquemas
+    # RAN particionados, ex.: LTE_EUTRANCELLFDD_247/_248) não podem gerar o
+    # mesmo nome de índice só porque o prefixo comum já ocupa os 12 chars
+    # reservados ao nome da tabela.
+    cols = ["EUTRANCELLFDD", "MECONTEXT", "MEASSTARTTIME"]
+    n247 = build_index_name("LTE_EUTRANCELLFDD_247", cols, owner="DBN0_ERI_RAN")
+    n248 = build_index_name("LTE_EUTRANCELLFDD_248", cols, owner="DBN0_ERI_RAN")
+    assert n247 != n248
+    assert n247.endswith("247_EUTR_MECO") or "247" in n247
+    assert "248" in n248
+
 def test_ddl_includes_gather_index_stats():
     ddl = build_index_ddl("DBN0_EXT_ENRICH","ENR_RADIO_5G_GNODEB",
                           "IX_TESTE",["NE_NAME","STARTTIME"],True)

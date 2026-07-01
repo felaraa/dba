@@ -567,6 +567,10 @@ Files:
 Behavior:
 - `build_index_name` gera nomes deterministas, com indicio do owner, sem
   underscores duplos e ate 30 caracteres.
+- O token da tabela (ate 12 chars) preserva um sufixo numerico final via
+  `_shorten_table` (ex.: `LTE_EUTRANCELLFDD_247` -> `LTE_EUTRA247`), evitando
+  colisao de nome entre tabelas irmas que só diferem por um ID numerico
+  (comum em esquemas RAN particionados, ex.: `..._247` vs `..._248`).
 - `build_index_ddl` gera `CREATE INDEX owner.idx ON owner.table`, adiciona
   `LOCAL` quando pedido, `TABLESPACE`, `PARALLEL`, `ALTER INDEX ... NOPARALLEL`
   e `DBMS_STATS.GATHER_INDEX_STATS`.
